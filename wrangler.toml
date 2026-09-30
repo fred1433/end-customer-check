@@ -1,0 +1,26 @@
+# Page and evidence checker at https://theaipipe.com/end-customer-check/ (route under a path, no DNS record).
+# The Worker never calls a model: /api/verify re-reads a page and looks for a quote, /api/screen reads a home page.
+name = "end-customer-check"
+main = "src/worker.js"
+compatibility_date = "2026-09-01"
+workers_dev = false
+routes = [
+  { pattern = "theaipipe.com/end-customer-check*", zone_name = "theaipipe.com" }
+]
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+html_handling = "auto-trailing-slash"
+run_worker_first = ["/end-customer-check/api/*"]
+
+[[ratelimits]]
+name = "LIMITER"
+namespace_id = "1433"
+simple = { limit = 30, period = 60 }
+
+[[ratelimits]]
+name = "GLOBAL_LIMITER"
+namespace_id = "1434"
+simple = { limit = 60, period = 60 }
+# Secrets (wrangler secret put): CHECK_KEY, ALLOWED_HOSTS

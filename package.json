@@ -1,0 +1,9 @@
+{
+  "name": "end-customer-check",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/",
+    "score": "node scripts/run.mjs"
+  }
+}
