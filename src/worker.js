@@ -40,11 +40,11 @@ export default {
       let b;
       try { b = JSON.parse(raw || "{}"); } catch { return json({ error: "invalid_json" }, 400); }
       if (typeof b !== "object" || b === null) return json({ error: "invalid_json" }, 400);
-      for (const k of ["url", "quote", "date", "entity"]) {
+      for (const k of ["url", "quote", "date", "entity", "domain"]) {
         if (b[k] !== undefined && b[k] !== null && typeof b[k] !== "string") return json({ error: `${k} must be a string` }, 400);
       }
       const allowedHosts = String(env.ALLOWED_HOSTS || "").split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
-      return json(await verifyEvidence({ url: b.url, quote: b.quote, date: b.date, entity: b.entity }, { allowedHosts }));
+      return json(await verifyEvidence({ url: b.url, quote: b.quote, date: b.date, entity: b.entity, domain: b.domain }, { allowedHosts }));
     }
     const res = await env.ASSETS.fetch(request);
     const out = new Response(res.body, res);

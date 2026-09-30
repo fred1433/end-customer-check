@@ -1,5 +1,6 @@
 {
  "run_date": "2026-09-30",
+ "policy": "Demo evidence policy v2",
  "sample_rule": {
   "selected_by": "research agents working from written briefs, on 2026-09-30, before any classification ran",
   "rule": "US companies with a dated public signal of a .NET, Azure, Power Platform or Dynamics initiative, taken from sources other than job boards: Microsoft customer stories, partner case studies, press releases, leadership-change announcements, the company's own careers or service pages. One brief asked for end customers, one for hard cases (companies that describe themselves as IT solutions or consulting firms, IT staffing firms, Microsoft partners, mixed businesses), one for leadership changes and careers pages. One company appearing in two briefs was kept once; one company was added by hand to reach 50.",
@@ -7,16 +8,20 @@
   "frozen": "The 50 rows, the research prompt and the decision policy were fixed before the benchmark run started in Clay."
  },
  "featured": {
-  "focal": 22,
+  "focal": 37,
+  "weak": 22,
   "fixture": "F2 unsupported conclusion"
  },
  "tally": {
   "companies": 50,
-  "accepted": 24,
+  "accepted": 23,
+  "routed": 1,
   "withheld_text_not_on_page": 13,
   "withheld_not_supported": 6,
+  "withheld_third_party": 0,
   "withheld_other": 0,
-  "unverifiable": 7,
+  "unverifiable": 6,
+  "refused": 1,
   "not_on_page_where": {
    "nowhere on the page": 8,
    "page source outside visible text": 1,
@@ -24,7 +29,6 @@
   },
   "accepted_by_model": {
    "end_customer": 13,
-   "mixed_uncertain": 1,
    "staffing_recruitment": 1,
    "engineering_services": 9
   },
@@ -36,42 +40,21 @@
    "accepted": 50,
    "accepted_correct": 43,
    "accepted_wrong": 7,
-   "not_accepted": 0,
-   "middleman_accepted_as_end_customer": 0,
-   "wrong_rows": [
-    18,
-    32,
-    35,
-    38,
-    41,
-    47,
-    50
-   ]
+   "middleman_accepted_as_end_customer": 0
   },
   "text_present": {
    "accepted": 30,
    "accepted_correct": 25,
    "accepted_wrong": 5,
-   "not_accepted": 20,
-   "middleman_accepted_as_end_customer": 0,
-   "wrong_rows": [
-    18,
-    32,
-    35,
-    38,
-    50
-   ]
+   "middleman_accepted_as_end_customer": 0
   },
   "supported": {
-   "accepted": 24,
-   "accepted_correct": 23,
+   "accepted": 23,
+   "accepted_correct": 22,
    "accepted_wrong": 1,
-   "not_accepted": 26,
-   "middleman_accepted_as_end_customer": 0,
-   "wrong_rows": [
-    38
-   ]
-  }
+   "middleman_accepted_as_end_customer": 0
+  },
+  "note": "The last step counts accepted rows only; a row routed to a person (evidence shows both) is not an accepted classification."
  },
  "usage": {
   "measured_on": "2026-09-30",
@@ -125,7 +108,7 @@
   "whole_workspace_so_far": {
    "data_credits": 206.1,
    "actions": 339,
-   "note": "Everything spent in the workspace on 2026-09-30: building and testing the table, one review pass that ran on every row before its run condition was saved, one accidental research rerun, and the five fixtures."
+   "note": "Everything spent in the workspace on 2026-09-30 as of the last balance read: building and testing the table, one review pass that ran on every row before its run condition was saved, one accidental research rerun, the five fixtures, and one rewrite of the Evidence table after the policy changed."
   },
   "development": {
    "data_credits": 35.1,
@@ -135,14 +118,17 @@
    "usd_per_data_credit": 0.05,
    "usd_per_data_credit_source": "workspace centsPerCredit = 5, read 2026-09-30",
    "usd_per_action": 0.005125,
-   "usd_per_action_source": "Growth plan, 40K actions/mo for $205/mo, clay.com/pricing read 2026-09-30"
+   "usd_per_action_source": "Growth plan, 40K actions/mo for $205/mo, clay.com/pricing read 2026-09-30",
+   "plan_note": "The HTTP API column needs Clay Growth or Enterprise (clay.com/pricing, 2026-09-30: not included on Free and Launch). Growth monthly: 40K actions for $205 and 6K data credits for $290, $495 a month. The per-company figures are marginal costs on that plan."
   },
-  "final_run_usd": 9.73,
-  "per_input_company_usd": 0.195,
   "external_spend": "none: the quote checker runs on Cloudflare Workers free tier; no model API was called outside Clay",
   "cheap_filter_rows_stopped": 0,
-  "per_accepted_classification_usd": 0.405,
-  "per_accepted_end_customer_usd": 0.748
+  "final_run_usd_exact": 9.7288
+ },
+ "cost": {
+  "per_input_company_usd": 0.1946,
+  "per_accepted_classification_usd": 0.423,
+  "per_accepted_end_customer_usd": 0.7484
  },
  "fixtures": [
   {
@@ -312,6 +298,7 @@
    "id": 1,
    "company": "Access Community Health Network",
    "domain": "accesscommunityhealth.net",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/26106-access-community-health-network-azure",
@@ -343,34 +330,16 @@
     "why": "timeout"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": null,
     "check_reason": "timeout"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 2,
    "company": "CareSource",
    "domain": "caresource.com",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/25041-caresource-azure",
@@ -402,34 +371,16 @@
     "why": "not_html"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": null,
     "check_reason": "not_html"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 3,
    "company": "Taylor Farms",
    "domain": "taylorfarms.com",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/24441-taylor-farms-dynamics-365-supply-chain-management",
@@ -458,12 +409,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "end_customer",
+   "reference": {
+    "label": "end_customer",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "The company sells fresh-food products to consumers, not engineering services or staffing.",
     "url": "https://www.taylorfarms.com/our-impact",
@@ -497,28 +450,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 4,
    "company": "Rheem Manufacturing",
    "domain": "rheem.com",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/25108-rheem-manufacturing-dynamics-365-customer-service",
@@ -547,12 +485,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "end_customer",
+   "reference": {
+    "label": "end_customer",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "Rheem sells air and water products to end users and businesses; the cited passage does not describe selling software engineering or staffing services.",
     "url": "http://rheem.com/about",
@@ -586,28 +526,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 5,
    "company": "Publix Employees Federal Credit Union",
    "domain": "pefcu.com",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/24708-publix-employees-federal-credit-union-azure-migrate",
@@ -636,12 +561,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "end_customer",
+   "reference": {
+    "label": "end_customer",
+    "confidence": "medium"
+   },
    "agrees_with_reference": true,
-   "reference_label": "end_customer",
-   "reference_confidence": "medium",
    "evidence": {
     "reason": "PEFCU offers financial products and services directly to its members, so it fits the end_customer category.",
     "url": "https://www.pefcu.com/about/about-us/welcome-to-pefcu",
@@ -675,28 +602,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 6,
    "company": "Members 1st Federal Credit Union",
    "domain": "members1st.org",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/23344-members-1st-federal-credit-union-microsoft-fabric",
@@ -725,12 +637,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "end_customer",
+   "reference": {
+    "label": "end_customer",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "Classify as end_customer: Members 1st sells financial products and services to members and business customers rather than staffing or engineering services to other organizations.",
     "url": "https://members1st.org/",
@@ -764,28 +678,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 7,
    "company": "TriHealth",
    "domain": "trihealth.com",
+   "sample_correction": null,
    "entry_reason": "Press release",
    "signal": {
     "url": "https://www.trihealth.com/news/ms-azure-migration",
@@ -814,12 +713,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "end_customer",
+   "reference": {
+    "label": "end_customer",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "Its stated business is providing healthcare, not selling software engineering or staffing services.",
     "url": "https://www.trihealth.com/about-trihealth",
@@ -853,28 +754,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 8,
    "company": "Carle Health",
    "domain": "carle.org",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/23790-carle-health-dynamics-365-customer-insights",
@@ -906,34 +792,16 @@
     "why": "text not on the page"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": "nowhere on the page",
     "check_reason": "not_on_page"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 9,
    "company": "Ziegler Companies",
    "domain": "zieglercat.com",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/25424-ziegler-companies-dynamics-365-supply-chain-management",
@@ -965,34 +833,16 @@
     "why": "text not on the page"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": "page source outside visible text",
     "check_reason": "not_on_page"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 10,
    "company": "Regional Water Authority",
    "domain": "rwater.com",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/25543-regional-water-authority-dynamics-365-contact-center",
@@ -1021,12 +871,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "end_customer",
+   "reference": {
+    "label": "end_customer",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "Regional Water Authority's description focuses on delivering water to the communities it serves, not selling engineering or recruiting services to other organizations.",
     "url": "https://www.rwater.com/about-us/our-organization",
@@ -1060,28 +912,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 11,
    "company": "Clyde Companies",
    "domain": "clydeinc.com",
+   "sample_correction": null,
    "entry_reason": "Press release",
    "signal": {
     "url": "https://www.prnewswire.com/news-releases/sis-llc-announces-successful-go-live-of-microsoft-dynamics-365-and-sis-construct-365-at-clyde-companies-302646008.html",
@@ -1113,34 +950,16 @@
     "why": "text not on the page"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": "nowhere on the page",
     "check_reason": "not_on_page"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 12,
    "company": "Hayward Holdings, Inc.",
    "domain": "hayward.com",
+   "sample_correction": null,
    "entry_reason": "Press release",
    "signal": {
     "url": "https://www.prnewswire.com/news-releases/alithya-announces-microsoft-d365-go-live-completion-in-europe-for-global-pool-and-outdoor-living-manufacturer-302502008.html",
@@ -1169,12 +988,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "end_customer",
+   "reference": {
+    "label": "end_customer",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "The page identifies pool equipment as Hayward’s offering; it does not describe selling engineering staff or software development services to other organizations.",
     "url": "https://www.hayward.com/company/about-us",
@@ -1208,28 +1029,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 13,
    "company": "Beasley Group",
    "domain": "beasleygroup.com",
+   "sample_correction": null,
    "entry_reason": "Press release",
    "signal": {
     "url": "https://www.prnewswire.com/news-releases/sis-llc-announces-beasley-groups-adoption-of-microsoft-dynamics-365-and-sis-construct-365-project-cost-management-302734021.html",
@@ -1258,12 +1064,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "end_customer",
+   "reference": {
+    "label": "end_customer",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "The cited passage lists Beasley Group’s products, supporting a product-sales business model rather than engineering or recruitment services.",
     "url": "https://www.beasleygroup.com/",
@@ -1297,28 +1105,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 14,
    "company": "Vera Bradley",
    "domain": "verabradley.com",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/24992-vera-bradley-dynamics-365-finance",
@@ -1350,34 +1143,16 @@
     "why": "text not on the page"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": "page metadata only",
     "check_reason": "not_on_page"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 15,
    "company": "Community Health Network",
    "domain": "ecommunity.com",
+   "sample_correction": null,
    "entry_reason": "Partner case study",
    "signal": {
     "url": "https://partner.microsoft.com/en-US/case-studies/ehc-consulting",
@@ -1399,34 +1174,16 @@
     "why": "http_403"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": null,
     "check_reason": "http_403"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 16,
    "company": "Tinius Olsen",
    "domain": "tiniusolsen.com",
+   "sample_correction": null,
    "entry_reason": "Partner case study",
    "signal": {
     "url": "https://partner.microsoft.com/en-us/case-studies/cloudfronts",
@@ -1445,12 +1202,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "end_customer",
+   "reference": {
+    "label": "end_customer",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "The official page identifies Tinius Olsen as a manufacturer and supplier of equipment, not a staffing, recruiting, or engineering-services provider.",
     "url": "http://tiniusolsen.com/our-company",
@@ -1484,28 +1243,16 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 17,
    "company": "Heritage Grocers Group",
    "domain": "heritagegrocers.com",
+   "sample_correction": {
+    "domain": "heritagegrocersgroup.com",
+    "note": "Our sample listed heritagegrocers.com, which does not resolve. The research step cited the company's real site, heritagegrocersgroup.com, and the checker refused it because its domain list was built from our wrong domain. Our error, not the company's page."
+   },
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/22559-heritage-grocers-group-microsoft-fabric",
@@ -1533,38 +1280,20 @@
     }
    },
    "decision": {
-    "status": "unverifiable",
-    "why": "domain_not_allowed"
+    "status": "refused",
+    "why": "domain not on the checker's list"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": null,
     "check_reason": "domain_not_allowed"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 18,
    "company": "Now Optics",
    "domain": "nowoptics.com",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/23869-now-optics-dynamics-365-supply-chain-management",
@@ -1596,34 +1325,16 @@
     "why": "text on the page but it does not support the label in context"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "medium",
    "not_accepted": {
     "where": null,
     "check_reason": "exact"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": false
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": false
-    },
-    "supported": {
-     "accepted": false,
-     "correct": false
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 19,
    "company": "OneDigital",
    "domain": "onedigital.com",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/23595-onedigital-azure-open-ai-service",
@@ -1655,34 +1366,16 @@
     "why": "text not on the page"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": "page metadata only",
     "check_reason": "not_on_page"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 20,
    "company": "City of Hope",
    "domain": "cityofhope.org",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/23397-city-of-hope-azure-open-ai-service",
@@ -1714,34 +1407,16 @@
     "why": "http_403"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": null,
     "check_reason": "http_403"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 21,
    "company": "Ballard Spahr",
    "domain": "ballardspahr.com",
+   "sample_correction": null,
    "entry_reason": "Microsoft customer story",
    "signal": {
     "url": "https://www.microsoft.com/en/customers/story/24650-ballard-spahr-azure-openai",
@@ -1770,12 +1445,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "end_customer",
+   "reference": {
+    "label": "end_customer",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "The company’s stated offering is strategic legal services, not software engineering or IT delivery.",
     "url": "http://ballardspahr.com/about/about-the-firm",
@@ -1809,28 +1486,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 22,
    "company": "Sagitec Solutions",
    "domain": "sagitec.com",
+   "sample_correction": null,
    "entry_reason": "Company site",
    "signal": {
     "url": "https://www.sagitec.com/about",
@@ -1858,13 +1520,15 @@
     }
    },
    "decision": {
-    "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "status": "routed",
+    "why": "the evidence shows both: a person decides"
    },
    "business_model": "mixed_uncertain",
+   "reference": {
+    "label": "mixed_uncertain",
+    "confidence": "medium"
+   },
    "agrees_with_reference": true,
-   "reference_label": "mixed_uncertain",
-   "reference_confidence": "medium",
    "evidence": {
     "reason": "The evidence shows both Sagitec’s own software products and services delivered to clients.",
     "url": "https://www.sagitec.com/about",
@@ -1898,28 +1562,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 23,
    "company": "Revature",
    "domain": "revature.com",
+   "sample_correction": null,
    "entry_reason": "Company site",
    "signal": {
     "url": "https://revature.com/get-hired",
@@ -1948,12 +1597,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "staffing_recruitment",
+   "reference": {
+    "label": "staffing_recruitment",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "staffing_recruitment",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "Revature primarily supplies trained engineering talent to other organizations through deployment and placement, so staffing_recruitment is the best fit.",
     "url": "https://www.revature.com/emerging-talent-program",
@@ -1987,28 +1638,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 24,
    "company": "Planet Technologies",
    "domain": "go-planet.com",
+   "sample_correction": null,
    "entry_reason": "Press release",
    "signal": {
     "url": "https://go-planet.com/planet-technologies-and-carahsoft-partner-to-bring-optimization-of-microsoft-solutions-to-government-agencies/",
@@ -2037,12 +1673,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "engineering_services",
+   "reference": {
+    "label": "engineering_services",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "engineering_services",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "Planet sells IT support and managed services to organizations, which places it in the engineering_services category.",
     "url": "https://go-planet.com/Microsoft-managed-services",
@@ -2076,28 +1714,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 25,
    "company": "Applied Information Sciences (AIS)",
    "domain": "ais.com",
+   "sample_correction": null,
    "entry_reason": "Press release",
    "signal": {
     "url": "https://www.ais.com/resources/news/ais-acquires-dorrean/",
@@ -2126,12 +1749,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "engineering_services",
+   "reference": {
+    "label": "engineering_services",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "engineering_services",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "AIS sells software product development and engineering services to client organizations, so the best fit is engineering_services.",
     "url": "https://www.ais.com/capabilities/application-development",
@@ -2165,28 +1790,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 26,
    "company": "Velosio",
    "domain": "velosio.com",
+   "sample_correction": null,
    "entry_reason": "Press release",
    "signal": {
     "url": "https://www.prweb.com/releases/velosio-acquires-strava-technology-group-expanding-customer-engagement-capabilities-across-the-microsoft-cloud-portfolio-302472866.html",
@@ -2215,12 +1825,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "engineering_services",
+   "reference": {
+    "label": "engineering_services",
+    "confidence": "medium"
+   },
    "agrees_with_reference": true,
-   "reference_label": "engineering_services",
-   "reference_confidence": "medium",
    "evidence": {
     "reason": "Velosio provides implementation and development services to business clients, rather than supplying staff or recruiters.",
     "url": "https://www.velosio.com/services",
@@ -2254,28 +1866,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 27,
    "company": "ScienceSoft",
    "domain": "scnsoft.com",
+   "sample_correction": null,
    "entry_reason": "Company site",
    "signal": {
     "url": "https://www.scnsoft.com/software-development/dotnet",
@@ -2307,34 +1904,16 @@
     "why": "text not on the page"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "engineering_services",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": "nowhere on the page",
     "check_reason": "not_on_page"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 28,
    "company": "Dataprise",
    "domain": "dataprise.com",
+   "sample_correction": null,
    "entry_reason": "Partner case study",
    "signal": {
     "url": "https://www.dataprise.com/",
@@ -2366,34 +1945,16 @@
     "why": "text not on the page"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "engineering_services",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": "nowhere on the page",
     "check_reason": "not_on_page"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 29,
    "company": "Sparkhound",
    "domain": "sparkhound.com",
+   "sample_correction": null,
    "entry_reason": "Partner case study",
    "signal": {
     "url": "https://www.sparkhound.com/",
@@ -2425,34 +1986,16 @@
     "why": "text not on the page"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "engineering_services",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": "nowhere on the page",
     "check_reason": "not_on_page"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 30,
    "company": "Centric Consulting",
    "domain": "centricconsulting.com",
+   "sample_correction": null,
    "entry_reason": "Partner case study",
    "signal": {
     "url": "https://centricconsulting.com/",
@@ -2481,12 +2024,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "engineering_services",
+   "reference": {
+    "label": "engineering_services",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "engineering_services",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "Centric Consulting sells consulting and technology-related services to client organizations, so it fits engineering_services rather than staffing_recruitment.",
     "url": "https://centricconsulting.com/",
@@ -2520,28 +2065,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 31,
    "company": "KORE1",
    "domain": "kore1.com",
+   "sample_correction": null,
    "entry_reason": "Company site",
    "signal": {
     "url": "https://www.kore1.com/dynamics-365-consultant-staffing/",
@@ -2573,34 +2103,16 @@
     "why": "text not on the page"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "staffing_recruitment",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": "page metadata only",
     "check_reason": "not_on_page"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 32,
    "company": "Motion Recruitment",
    "domain": "motionrecruitment.com",
+   "sample_correction": null,
    "entry_reason": "Careers page",
    "signal": {
     "url": "https://motionrecruitment.com/tech-jobs/dot-net",
@@ -2632,34 +2144,16 @@
     "why": "text on the page but it does not support the label in context"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "staffing_recruitment",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": null,
     "check_reason": "exact"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": false
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": false
-    },
-    "supported": {
-     "accepted": false,
-     "correct": false
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 33,
    "company": "Stoneridge Software",
    "domain": "stoneridgesoftware.com",
+   "sample_correction": null,
    "entry_reason": "Company site",
    "signal": {
     "url": "https://stoneridgesoftware.com/",
@@ -2688,12 +2182,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "engineering_services",
+   "reference": {
+    "label": "engineering_services",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "engineering_services",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "The company provides implementation and support services to other organizations, so it is an engineering_services business.",
     "url": "https://stoneridgesoftware.com/business-profile",
@@ -2727,28 +2223,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 34,
    "company": "ePlus inc.",
    "domain": "eplus.com",
+   "sample_correction": null,
    "entry_reason": "Press release",
    "signal": {
     "url": "https://www.eplus.com/who-we-are/investor-relations/press-releases/2026/08/eplus-acquires-assets-of-daymark-solutions",
@@ -2777,12 +2258,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "engineering_services",
+   "reference": {
+    "label": "engineering_services",
+    "confidence": "medium"
+   },
    "agrees_with_reference": true,
-   "reference_label": "engineering_services",
-   "reference_confidence": "medium",
    "evidence": {
     "reason": "ePlus sells managed IT services to other organizations, so it fits engineering_services under the supplied definitions.",
     "url": "https://eplus.com/how-we-deliver/eplus-managed-services",
@@ -2816,28 +2299,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 35,
    "company": "Carahsoft Technology Corp.",
    "domain": "carahsoft.com",
+   "sample_correction": null,
    "entry_reason": "Company site",
    "signal": {
     "url": "https://www.carahsoft.com/microsoft",
@@ -2869,34 +2337,16 @@
     "why": "text on the page but it does not support the label in context"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "medium",
    "not_accepted": {
     "where": null,
     "check_reason": "exact"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": false
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": false
-    },
-    "supported": {
-     "accepted": false,
-     "correct": false
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 36,
    "company": "Infinite Computer Solutions",
    "domain": "infinite.com",
+   "sample_correction": null,
    "entry_reason": "Partner case study",
    "signal": {
     "url": "https://www.infinite.com/",
@@ -2925,12 +2375,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "engineering_services",
+   "reference": {
+    "label": "engineering_services",
+    "confidence": "medium"
+   },
    "agrees_with_reference": true,
-   "reference_label": "engineering_services",
-   "reference_confidence": "medium",
    "evidence": {
     "reason": "Infinite sells digital engineering and IT services to clients, so it fits engineering_services.",
     "url": "https://www.infinite.com/services",
@@ -2964,28 +2416,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 37,
    "company": "Ntiva",
    "domain": "ntiva.com",
+   "sample_correction": null,
    "entry_reason": "Company site",
    "signal": {
     "url": "https://www.ntiva.com/",
@@ -3014,12 +2451,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "engineering_services",
+   "reference": {
+    "label": "engineering_services",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "engineering_services",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "The passage describes providing managed IT services for businesses, not staffing or recruitment, or a software product sold to end customers.",
     "url": "https://www.ntiva.com/",
@@ -3053,28 +2492,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 38,
    "company": "Celsior (Pyramid Consulting, Inc.)",
    "domain": "celsiortech.com",
+   "sample_correction": null,
    "entry_reason": "Partner case study",
    "signal": {
     "url": "https://celsiortech.com/",
@@ -3103,12 +2527,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "engineering_services",
+   "reference": {
+    "label": "mixed_uncertain",
+    "confidence": "medium"
+   },
    "agrees_with_reference": false,
-   "reference_label": "mixed_uncertain",
-   "reference_confidence": "medium",
    "evidence": {
     "reason": "Celsior sells managed software engineering delivery to enterprise clients, so the best fit is engineering_services—not staffing_recruitment.",
     "url": "https://celsiortech.com/",
@@ -3142,28 +2568,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": false
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": false
-    },
-    "supported": {
-     "accepted": true,
-     "correct": false
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 39,
    "company": "ivision",
    "domain": "ivision.com",
+   "sample_correction": null,
    "entry_reason": "Press release",
    "signal": {
     "url": "https://ivision.com/news/microsoft-solutions-partner-business-application",
@@ -3195,34 +2606,16 @@
     "why": "http_404"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "engineering_services",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": null,
     "check_reason": "http_404"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   },
   {
    "id": 40,
    "company": "PSECU (Pennsylvania State Employees Credit Union)",
    "domain": "psecu.com",
+   "sample_correction": null,
    "entry_reason": "Leadership change",
    "signal": {
     "url": "https://www.psecu.com/learn/psecu-to-appoint-van-scyoc-new-cio-long-retires-after-41-year-career",
@@ -3251,12 +2644,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "end_customer",
+   "reference": {
+    "label": "end_customer",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "PSECU serves account holders with financial products and banking services, so it is an end-customer business.",
     "url": "https://www.psecu.com/join",
@@ -3290,28 +2685,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 41,
    "company": "CRB Group, Inc.",
    "domain": "crbgroup.com",
+   "sample_correction": null,
    "entry_reason": "Leadership change",
    "signal": {
     "url": "https://finance.yahoo.com/technology/ai/articles/crb-names-joe-finsterwald-chief-120500871.html",
@@ -3343,34 +2723,16 @@
     "why": "text not on the page"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "medium",
    "not_accepted": {
     "where": "nowhere on the page",
     "check_reason": "not_on_page"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": false
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": false
-    },
-    "supported": {
-     "accepted": false,
-     "correct": false
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 42,
    "company": "Exostar",
    "domain": "exostar.com",
+   "sample_correction": null,
    "entry_reason": "Leadership change",
    "signal": {
     "url": "https://www.prnewswire.com/news-releases/exostar-names-amy-hogan-chief-information-officer-302729392.html",
@@ -3402,34 +2764,16 @@
     "why": "text on the page but it does not support the label in context"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": null,
     "check_reason": "exact"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 43,
    "company": "Duck Creek Technologies",
    "domain": "duckcreek.com",
+   "sample_correction": null,
    "entry_reason": "Leadership change",
    "signal": {
     "url": "https://www.prnewswire.com/news-releases/duck-creek-technologies-announces-veteran-enterprise-technology-leader-rajesh-raheja-as-chief-technology-officer-302630081.html",
@@ -3461,34 +2805,16 @@
     "why": "text not on the page"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": "nowhere on the page",
     "check_reason": "not_on_page"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 44,
    "company": "Progress Software Corporation",
    "domain": "progress.com",
+   "sample_correction": null,
    "entry_reason": "Leadership change",
    "signal": {
     "url": "https://finance.yahoo.com/technology/ai/articles/progress-software-appoints-bridget-collins-123000561.html",
@@ -3520,34 +2846,16 @@
     "why": "text not on the page"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": "page metadata only",
     "check_reason": "not_on_page"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 45,
    "company": "Plante Moran",
    "domain": "plantemoran.com",
+   "sample_correction": null,
    "entry_reason": "Careers page",
    "signal": {
     "url": "https://careers.plantemoran.com/power-platform-developer/job/B264876E3B0B3396B6A5959841F6BC9E",
@@ -3579,34 +2887,16 @@
     "why": "text on the page but it does not support the label in context"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "mixed_uncertain",
-   "reference_confidence": "medium",
    "not_accepted": {
     "where": null,
     "check_reason": "exact"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 46,
    "company": "Paychex, Inc.",
    "domain": "paychex.com",
+   "sample_correction": null,
    "entry_reason": "Careers page",
    "signal": {
     "url": "https://careers.paychex.com/it-teams",
@@ -3635,12 +2925,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "end_customer",
+   "reference": {
+    "label": "end_customer",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "The cited passage identifies payroll services for business customers as Paychex’s offering, rather than staffing, recruiting, or engineering services.",
     "url": "https://www.paychex.com/",
@@ -3674,28 +2966,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 47,
    "company": "Epic Systems Corporation",
    "domain": "epic.com",
+   "sample_correction": null,
    "entry_reason": "Careers page",
    "signal": {
     "url": "https://careers.epic.com/jobs/softwaredevelopment/",
@@ -3727,34 +3004,16 @@
     "why": "not_html"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": null,
     "check_reason": "not_html"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": false
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": false
-    },
-    "supported": {
-     "accepted": false,
-     "correct": false
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 48,
    "company": "Medpace",
    "domain": "medpace.com",
+   "sample_correction": null,
    "entry_reason": "Careers page",
    "signal": {
     "url": "https://www.medpace.com/careers/functional-areas/information-technology/",
@@ -3783,12 +3042,14 @@
    },
    "decision": {
     "status": "accepted",
-    "why": "text on the page and it supports the label in context"
+    "why": "text on the company's own page, and it supports the label in context"
    },
    "business_model": "end_customer",
+   "reference": {
+    "label": "end_customer",
+    "confidence": "high"
+   },
    "agrees_with_reference": true,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "evidence": {
     "reason": "Medpace sells clinical research and clinical-development services to clients, rather than software engineering services or staffing/recruitment.",
     "url": "http://medpace.com/",
@@ -3822,28 +3083,13 @@
      "supports": true,
      "totalCreditsCharged": 0.7
     }
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": true
-    },
-    "supported": {
-     "accepted": true,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 49,
    "company": "Syncfusion, Inc.",
    "domain": "syncfusion.com",
+   "sample_correction": null,
    "entry_reason": "Careers page",
    "signal": {
     "url": "https://www.syncfusion.com/careers/dotnet-developer-experience/",
@@ -3875,34 +3121,16 @@
     "why": "text not on the page"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "end_customer",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": "nowhere on the page",
     "check_reason": "not_on_page"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": true
-    },
-    "text_present": {
-     "accepted": false,
-     "correct": true
-    },
-    "supported": {
-     "accepted": false,
-     "correct": true
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": false
+   }
   },
   {
    "id": 50,
    "company": "i3solutions",
    "domain": "i3solutions.com",
+   "sample_correction": null,
    "entry_reason": "Company site",
    "signal": {
     "url": "https://i3solutions.com/hire-power-platform-developers/",
@@ -3934,29 +3162,10 @@
     "why": "text on the page but it does not support the label in context"
    },
    "business_model": "unresolved",
-   "agrees_with_reference": null,
-   "reference_label": "engineering_services",
-   "reference_confidence": "high",
    "not_accepted": {
     "where": null,
     "check_reason": "exact"
-   },
-   "stages": {
-    "raw": {
-     "accepted": true,
-     "correct": false
-    },
-    "text_present": {
-     "accepted": true,
-     "correct": false
-    },
-    "supported": {
-     "accepted": false,
-     "correct": false
-    }
-   },
-   "middleman_proposed_as_end_customer": false,
-   "reference_is_middleman": true
+   }
   }
  ]
 }

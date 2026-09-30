@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   normalize, htmlToText, findQuote, metadataDate, dateOnPage, blockedTarget, fetchPage,
-  verifyEvidence, hostAllowed,
+  verifyEvidence, hostAllowed, onOwnSite,
 } from "../src/verify.js";
 import worker from "../src/worker.js";
 
@@ -115,7 +115,7 @@ test("four outcomes are kept apart: found, absent, unreadable, rejected", async 
   assert.equal(found.dates.retrieved, "2026-09-30");
   assert.equal(found.page_title, "Acme Mutual");
   assert.match(found.content_sha256, /^[0-9a-f]{64}$/);
-  assert.deepEqual(found.proposal, { url: "https://acme.example.com/news", quote: Q, date: "2025-11-04", entity: "Acme Mutual" });
+  assert.deepEqual(found.proposal, { url: "https://acme.example.com/news", quote: Q, date: "2025-11-04", entity: "Acme Mutual", domain: null });
   const absent = await verifyEvidence({ url: "https://acme.example.com/news", quote: "we partner with leading offshore development firms for all engineering" }, { fetchImpl: f, now: NOW });
   assert.equal(absent.status, "absent");
   assert.equal(absent.quote_found, false);
@@ -238,4 +238,22 @@ test("inputs are trimmed: a mapped value with a trailing newline reads the right
   const r = await verifyEvidence({ url: "https://acme.example.com/news\n", quote: Q + "\n", entity: "Acme Mutual\n" }, { fetchImpl: f, now: NOW });
   assert.equal(r.status, "found");
   assert.equal(r.proposal.url, "https://acme.example.com/news");
+});
+
+test("evidence must come from the account's own site: host compared to the account domain after redirects", async () => {
+  assert.equal(onOwnSite("https://www.taylorfarms.com/about", "taylorfarms.com"), true);
+  assert.equal(onOwnSite("https://careers.taylorfarms.com/jobs", "www.taylorfarms.com"), true);
+  assert.equal(onOwnSite("https://www.microsoft.com/en/customers/story/taylor-farms", "taylorfarms.com"), false);
+  assert.equal(onOwnSite("https://taylorfarms.com.evil.net/", "taylorfarms.com"), false);
+  assert.equal(onOwnSite("https://nottaylorfarms.com/", "taylorfarms.com"), false);
+  assert.equal(onOwnSite("https://x.example.com/", ""), null);
+  const f = fakeFetch({
+    "https://story.example.net/acme": { body: PAGE },
+    "https://acme.example.com/go": { status: 301, headers: { location: "https://story.example.net/acme" } },
+  });
+  const third = await verifyEvidence({ url: "https://story.example.net/acme", quote: Q, domain: "acme.example.com" }, { fetchImpl: f, now: NOW });
+  assert.equal(third.status, "found");
+  assert.equal(third.on_own_site, false, "found, but on a third-party site");
+  const hop = await verifyEvidence({ url: "https://acme.example.com/go", quote: Q, domain: "acme.example.com" }, { fetchImpl: f, now: NOW });
+  assert.equal(hop.on_own_site, false, "judged on the final URL, not the one cited");
 });

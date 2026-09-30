@@ -58,8 +58,8 @@
     <p class="clay-lede">One workbook, three tables. Accounts does the work and writes each decision to Evidence; a lookup reads it back. Adversarial fixtures runs the same checks on five made-up cases built to fail.</p>
     <div class="clay-grid">
       <figure class="shot shot-small">
-        <img src="img/clay-workbook.jpg" alt="Clay workbook overview: the Accounts table feeds the Evidence table; a separate Adversarial fixtures table" width="1100" height="867" loading="lazy">
-        <figcaption>The workbook in Clay, Sep 30, 2026.</figcaption>
+        <img src="img/clay-workbook.jpg" alt="Clay workbook overview: the Accounts table feeds the Evidence table; a separate Adversarial fixtures table" width="1100" height="867">
+        <figcaption>The workbook in Clay, Sep 30, 2026. The "~4.5 / row" badge is Clay's upfront estimate with the review's 1.5-credit cap; the run measured 3.42 per row.</figcaption>
       </figure>
       <div>
         <ol class="steps" id="steps"></ol>
@@ -67,9 +67,13 @@
       </div>
     </div>
     <figure class="shot">
-      <img src="img/clay-accounts.jpg" alt="Clay Accounts table: contextual review, decision, accepted business model, send table data and stored evidence columns" width="1600" height="546" loading="lazy">
-      <figcaption>Accounts, right-hand columns. The review only runs where the quote was found; everything else stays unresolved.</figcaption>
+      <img src="img/clay-accounts.jpg" alt="Clay Accounts table: contextual review, decision, accepted business model, send table data and stored evidence columns" width="1600" height="546">
+      <figcaption>Accounts, right-hand columns, 50 of 50 rows. The review only runs where the quote was found; everything else stays unresolved.</figcaption>
     </figure>
+    <div class="models">
+      <figure class="shot"><img src="img/clay-research-config.jpg" alt="Clay column settings: Research, web research (Claygent), model Clay Argon" width="560" height="367"><figcaption>Research column: Clay Argon, web research.</figcaption></figure>
+      <figure class="shot"><img src="img/clay-review-config.jpg" alt="Clay column settings: Contextual review, create or modify content, model Anthropic Claude Sonnet 5" width="560" height="367"><figcaption>Review column: Claude Sonnet 5, no web.</figcaption></figure>
+    </div>
 
     <div class="fixtures">
       <h3>Five cases built to fail</h3>
@@ -89,7 +93,8 @@
     <div class="fine">
       <div>
         <h3>The decision policy</h3>
-        <p>Accepted only if the quote is on the cited page of the company's own website and the review, reading the passage in context, agrees it shows the business model. Otherwise the company stays unresolved, never an end customer by default. Pages that cannot be read are unverifiable, not inventions.</p>
+        <p>Accepted only if the quote is on the cited page, that page is on the company's own domain (checked on the final URL, in the Decision formula), and the review, reading the passage in context, agrees it shows the business model. Evidence that fits both readings is routed to a person, not counted. Everything else stays unresolved, never an end customer by default. A page that cannot be read is unverifiable, not an invention.</p>
+        <p>Engineering services means software and IT work sold to other organizations.</p>
         <p>Full account qualification was not assessed: this checks one thing, what the company sells.</p>
       </div>
       <div>
@@ -98,7 +103,7 @@
       </div>
       <div>
         <h3>What this does not prove</h3>
-        <p>A quote on a page proves the words are there, not that they are true. The review is another model and can agree with a weak passage. The reference labels are a careful reading, not ground truth: a few companies are genuinely mixed. It ran on a Clay trial workspace, on 50 companies I picked, not on your list.</p>
+        <p>A quote on a page proves the words are there, not that they are true. The review is another model and can agree with a weak passage. The reference labels are a careful reading, not ground truth: a few companies are genuinely mixed. It ran on a Clay trial workspace, on 50 companies I picked, not on your list. The Evidence table was rewritten once after the policy gained the own-site and routing rules; that rewrite is counted in building costs.</p>
       </div>
     </div>
   </section>

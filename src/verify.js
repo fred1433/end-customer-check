@@ -266,7 +266,7 @@ export async function fetchPage(url, { fetchImpl = fetch, timeoutMs = LIMITS.tim
 
 // ---------- the check itself ----------
 
-export const VERIFIER_VERSION = "2026-09-30.3";
+export const VERIFIER_VERSION = "2026-09-30.4";
 export const METHOD = "substring match after NFKC, lowercase, unified quotes and dashes, collapsed whitespace; '...' splits fragments that must appear in order within 400 characters";
 
 // Host allowed if it equals an allowed domain or is a subdomain of one. An empty list allows nothing.
@@ -293,6 +293,15 @@ function publisherOf(html, finalUrl) {
   try { return new URL(finalUrl).hostname.replace(/^www\./, ""); } catch { return null; }
 }
 
+// True when the host is the account's own domain or one of its subdomains ("www." ignored on both sides).
+export function onOwnSite(rawUrl, domain) {
+  if (!domain) return null;
+  let h;
+  try { h = new URL(rawUrl).hostname.toLowerCase().replace(/^www\./, ""); } catch { return false; }
+  const d = String(domain).toLowerCase().trim().replace(/^https?:\/\//, "").replace(/\/.*$/, "").replace(/^www\./, "");
+  return h === d || h.endsWith("." + d);
+}
+
 // Status is one of:
 //   "found"      the page was read and the quote is on it
 //   "absent"     the page was read and the quote is not on it
@@ -302,11 +311,11 @@ function publisherOf(html, finalUrl) {
 export async function verifyEvidence(input, opts = {}) {
   // Table tools often append a newline or spaces to mapped values; a URL with a trailing "\n" would fetch another page.
   const trim = (v) => (typeof v === "string" ? v.trim() : v);
-  const url = trim(input.url), quote = trim(input.quote), date = trim(input.date), entity = trim(input.entity);
+  const url = trim(input.url), quote = trim(input.quote), date = trim(input.date), entity = trim(input.entity), domain = trim(input.domain);
   const now = opts.now ? opts.now() : new Date();
   const base = {
     verifier_version: VERIFIER_VERSION, method: METHOD,
-    proposal: { url: url ?? null, quote: quote ?? null, date: date || null, entity: entity || null },
+    proposal: { url: url ?? null, quote: quote ?? null, date: date || null, entity: entity || null, domain: domain || null },
     retrieved_at: now.toISOString(), original_url: typeof url === "string" ? url : null,
   };
   const out = (o) => ({ ...base, quote_found: o.status === "found", ok: o.status === "found" || o.status === "absent", ...o });
@@ -329,6 +338,8 @@ export async function verifyEvidence(input, opts = {}) {
     status: hit.status,
     reason: hit.reason,
     final_url: page.finalUrl,
+    // Checked against the final URL, after redirects. null when no account domain was sent.
+    on_own_site: onOwnSite(page.finalUrl, domain),
     http_status: page.status,
     content_sha256: await sha256(normalize(page.text)),
     page_title: titleOf(page.html),

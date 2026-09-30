@@ -50,7 +50,7 @@
  "whole_workspace_so_far": {
   "data_credits": 206.1,
   "actions": 339,
-  "note": "Everything spent in the workspace on 2026-09-30: building and testing the table, one review pass that ran on every row before its run condition was saved, one accidental research rerun, and the five fixtures."
+  "note": "Everything spent in the workspace on 2026-09-30 as of the last balance read: building and testing the table, one review pass that ran on every row before its run condition was saved, one accidental research rerun, the five fixtures, and one rewrite of the Evidence table after the policy changed."
  },
  "development": {
   "data_credits": 35.1,
@@ -60,10 +60,10 @@
   "usd_per_data_credit": 0.05,
   "usd_per_data_credit_source": "workspace centsPerCredit = 5, read 2026-09-30",
   "usd_per_action": 0.005125,
-  "usd_per_action_source": "Growth plan, 40K actions/mo for $205/mo, clay.com/pricing read 2026-09-30"
+  "usd_per_action_source": "Growth plan, 40K actions/mo for $205/mo, clay.com/pricing read 2026-09-30",
+  "plan_note": "The HTTP API column needs Clay Growth or Enterprise (clay.com/pricing, 2026-09-30: not included on Free and Launch). Growth monthly: 40K actions for $205 and 6K data credits for $290, $495 a month. The per-company figures are marginal costs on that plan."
  },
- "final_run_usd": 9.73,
- "per_input_company_usd": 0.195,
  "external_spend": "none: the quote checker runs on Cloudflare Workers free tier; no model API was called outside Clay",
- "cheap_filter_rows_stopped": 0
+ "cheap_filter_rows_stopped": 0,
+ "final_run_usd_exact": 9.7288
 }

@@ -4,6 +4,6 @@
   "type": "module",
   "scripts": {
     "test": "node --test test/",
-    "score": "node scripts/run.mjs"
+    "score": "node scripts/score.mjs"
   }
 }

@@ -2,6 +2,7 @@
 // private/clay_records.json, and writes the published copy data/clay_records.json in which a row whose
 // decision was not accepted carries none of the research step's proposal (no unsupported label next to a name).
 import { readFileSync, writeFileSync } from "node:fs";
+import { decisionOf } from "../src/policy.js";
 
 const root = new URL("..", import.meta.url).pathname;
 const raw = JSON.parse(readFileSync(root + "private/clay_records_full.json", "utf8"));
@@ -38,25 +39,26 @@ const rows = raw
   .map((r) => ({
     ...r,
     // The costly error, precomputed so the published copy can be scored without the withheld proposals.
+    proposal_is_mixed: r.proposal?.business_model === "mixed_uncertain",
     middleman_proposed_as_end_customer:
       ["staffing_recruitment", "engineering_services"].includes(reference[String(r.id)].label) && r.proposal?.business_model === "end_customer",
   }));
 
 writeFileSync(root + "private/clay_records.json", JSON.stringify(rows, null, 1));
 
-const accepted = (r) => r.quote_check?.status === "found" && r.review?.supports === true && r.proposal?.evidence_quote;
 const pub = rows.map((r) => {
-  if (accepted(r)) return r;
-  const x = structuredClone(r);
-  const ref = reference[String(r.id)].label;
-  x.raw_correct = r.proposal?.business_model === ref;
+  const d = decisionOf(r, r.domain);
+  const { middleman_proposed_as_end_customer, ...base } = r;
+  if (d.status === "accepted" || d.status === "routed") return base;
+  const x = structuredClone(base);
   x.proposal = r.proposal ? { evidence_quote_present: !!r.proposal.evidence_quote, withheld: true } : null;
-  if (x.quote_check) {
-    x.quote_check = { ...x.quote_check, proposal: null, before: null, match: null, after: null };
-  }
+  x.proposal_is_mixed = null;
+  if (x.quote_check) x.quote_check = { ...x.quote_check, proposal: null, before: null, match: null, after: null };
   x.review = r.review ? { supports: r.review.supports, why: null } : null;
   x.decision_in_clay = null;
   return x;
 });
 writeFileSync(root + "data/clay_records.json", JSON.stringify(pub, null, 1));
-console.log(rows.length, "rows;", pub.filter((r) => r.proposal?.withheld).length, "published without the proposal");
+const shownIds = new Set(pub.filter((r) => !r.proposal?.withheld && r.proposal).map((r) => String(r.id)));
+writeFileSync(root + "data/reference.json", JSON.stringify(Object.fromEntries(Object.entries(reference).filter(([id]) => shownIds.has(id))), null, 1));
+console.log(rows.length, "rows;", pub.filter((r) => r.proposal?.withheld).length, "published without the proposal;", shownIds.size, "reference labels published");

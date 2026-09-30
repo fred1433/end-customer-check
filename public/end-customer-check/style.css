@@ -35,7 +35,7 @@ a:hover { text-decoration-color: var(--ink); }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* ---------- masthead ---------- */
-.masthead { max-width: 1180px; margin: 0 auto; padding: 56px 32px 8px; display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; align-items: end; }
+.masthead { max-width: 1180px; margin: 0 auto; padding: 56px 32px 8px; display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; align-items: center; }
 .product {
   margin: 0 0 20px;
   font-weight: 700;
@@ -93,19 +93,14 @@ a:hover { text-decoration-color: var(--ink); }
 .card-name.withheld { color: var(--ink-soft); font-weight: 500; font-style: italic; }
 .card-id { font-size: 14px; color: var(--ink-soft); font-variation-settings: "wdth" 75; white-space: nowrap; }
 
-.fields {
-  margin: 14px 0 0;
-  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, var(--rule) 33px, var(--rule) 34px);
-  background-position: 0 0;
-}
-.field { display: grid; grid-template-columns: 118px 1fr; gap: 12px; min-height: 34px; }
+.fields { margin: 14px 0 0; }
+.field { display: grid; grid-template-columns: 118px 1fr; gap: 12px; padding: 9px 0 10px; border-bottom: 1px solid var(--rule); }
 .field dt {
   font-size: 13.5px; color: var(--ink-soft);
   font-variation-settings: "wdth" 72; font-weight: 600;
-  line-height: 34px;
+  line-height: 1.5; padding-top: 2px;
 }
-.field dd { margin: 0; font-size: 16.5px; line-height: 34px; }
-.field dd.wrap { line-height: 34px; }
+.field dd { margin: 0; font-size: 16px; line-height: 1.5; }
 
 .verdict { font-weight: 720; font-variation-settings: "wdth" 88; font-size: 19px; }
 .verdict.held { color: var(--held); }
@@ -306,6 +301,8 @@ a:hover { text-decoration-color: var(--ink); }
 .fx b { display: block; font-variation-settings: "wdth" 85; margin-bottom: 4px; }
 .fx span { font-size: 14px; color: var(--ink-soft); line-height: 1.45; }
 .clay .clay-config { margin-top: 40px; }
+.models { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 760px; }
+.models .shot { margin-top: 20px; }
 
 /* ---------- small screens ---------- */
 @media (max-width: 900px) {
@@ -315,6 +312,7 @@ a:hover { text-decoration-color: var(--ink); }
   .fallen { margin: 22px 0 0; width: 100%; transform: none; }
   .clay-grid, .fine { grid-template-columns: 1fr; gap: 28px; }
   .fx { grid-template-columns: 1fr; }
+  .models { grid-template-columns: 1fr; }
   .stages { grid-template-columns: 1fr; }
   .stage + .stage { border-left: 1px solid var(--line); border-top: 0; }
   .detail { grid-template-columns: 1fr; gap: 6px; }
@@ -331,9 +329,6 @@ a:hover { text-decoration-color: var(--ink); }
   .card-name { font-size: 20px; }
   .field { grid-template-columns: 1fr; gap: 0; }
   .field dt { padding-top: 0; }
-  .field dd { line-height: 1.5; padding-bottom: 8px; }
-  .fields { background-image: none; }
-  .field { border-bottom: 1px solid var(--rule); }
   .source-text { padding: 16px 16px 0; font-size: 16.5px; }
   .source-foot { margin: 14px 16px 0; }
   .thead { display: none; }

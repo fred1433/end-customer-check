@@ -1,5 +1,5 @@
 # Page and evidence checker at https://theaipipe.com/end-customer-check/ (route under a path, no DNS record).
-# The Worker never calls a model: /api/verify re-reads a page and looks for a quote, /api/screen reads a home page.
+# The Worker never calls a model: /api/verify re-reads a page and looks for a quote.
 name = "end-customer-check"
 main = "src/worker.js"
 compatibility_date = "2026-09-01"

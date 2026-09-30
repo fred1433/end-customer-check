@@ -110,8 +110,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 2,
@@ -224,8 +223,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 3,
@@ -365,7 +363,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 4,
@@ -505,7 +503,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 5,
@@ -645,7 +643,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 6,
@@ -786,7 +784,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 7,
@@ -926,7 +924,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 8,
@@ -1049,8 +1047,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 9,
@@ -1173,8 +1170,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 10,
@@ -1314,7 +1310,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 11,
@@ -1437,8 +1433,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 12,
@@ -1578,7 +1573,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 13,
@@ -1718,7 +1713,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 14,
@@ -1841,8 +1836,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 15,
@@ -1942,8 +1936,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 16,
@@ -2070,7 +2063,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 17,
@@ -2181,8 +2174,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 18,
@@ -2308,8 +2300,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": false
+  "proposal_is_mixed": null
  },
  {
   "id": 19,
@@ -2432,8 +2423,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 20,
@@ -2546,8 +2536,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 21,
@@ -2687,7 +2676,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 22,
@@ -2777,7 +2766,7 @@
    "supports": true,
    "totalCreditsCharged": 0.7
   },
-  "decision_in_clay": "accepted",
+  "decision_in_clay": "routed to a person",
   "last_run_usage": {
    "research": {
     "totalCost": 3,
@@ -2828,7 +2817,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": true
  },
  {
   "id": 23,
@@ -2968,7 +2957,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 24,
@@ -3108,7 +3097,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 25,
@@ -3248,7 +3237,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 26,
@@ -3388,7 +3377,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 27,
@@ -3511,8 +3500,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 28,
@@ -3635,8 +3623,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 29,
@@ -3759,8 +3746,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 30,
@@ -3902,7 +3888,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 31,
@@ -4025,8 +4011,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 32,
@@ -4152,8 +4137,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": false
+  "proposal_is_mixed": null
  },
  {
   "id": 33,
@@ -4293,7 +4277,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 34,
@@ -4433,7 +4417,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 35,
@@ -4559,8 +4543,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": false
+  "proposal_is_mixed": null
  },
  {
   "id": 36,
@@ -4700,7 +4683,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 37,
@@ -4840,7 +4823,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 38,
@@ -4980,7 +4963,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 39,
@@ -5093,8 +5076,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 40,
@@ -5234,7 +5216,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 41,
@@ -5357,8 +5339,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": false
+  "proposal_is_mixed": null
  },
  {
   "id": 42,
@@ -5484,8 +5465,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 43,
@@ -5608,8 +5588,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 44,
@@ -5732,8 +5711,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 45,
@@ -5859,8 +5837,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 46,
@@ -6000,7 +5977,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 47,
@@ -6113,8 +6090,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": false
+  "proposal_is_mixed": null
  },
  {
   "id": 48,
@@ -6254,7 +6230,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false
+  "proposal_is_mixed": false
  },
  {
   "id": 49,
@@ -6377,8 +6353,7 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": true
+  "proposal_is_mixed": null
  },
  {
   "id": 50,
@@ -6504,7 +6479,6 @@
     "audienceBulkEnrichmentTableCreditsUsed": 0
    }
   },
-  "middleman_proposed_as_end_customer": false,
-  "raw_correct": false
+  "proposal_is_mixed": null
  }
 ]

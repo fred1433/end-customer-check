@@ -1,0 +1,21 @@
+{
+ "raw": {
+  "accepted": 50,
+  "accepted_correct": 43,
+  "accepted_wrong": 7,
+  "middleman_accepted_as_end_customer": 0
+ },
+ "text_present": {
+  "accepted": 30,
+  "accepted_correct": 25,
+  "accepted_wrong": 5,
+  "middleman_accepted_as_end_customer": 0
+ },
+ "supported": {
+  "accepted": 23,
+  "accepted_correct": 22,
+  "accepted_wrong": 1,
+  "middleman_accepted_as_end_customer": 0
+ },
+ "note": "The last step counts accepted rows only; a row routed to a person (evidence shows both) is not an accepted classification."
+}
