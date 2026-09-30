@@ -1,0 +1,163 @@
+[
+ {
+  "fixture": "F1 fabricated text",
+  "company": "Northwind Mutual",
+  "claimed_business_model": "end_customer",
+  "url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/northwind-mutual.html",
+  "quote": "Northwind Mutual builds all of its insurance software in-house and has never used an outside vendor",
+  "claimed_date": null,
+  "proposition": "Northwind Mutual sells something other than engineering services, and does not sell engineering staff or engineering services to other organizations.",
+  "check": {
+   "status": "absent",
+   "reason": "not_on_page",
+   "quote_found": false,
+   "http_status": 200,
+   "final_url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/northwind-mutual.html",
+   "page_title": "Northwind Mutual | About (test fixture)",
+   "publisher": "Northwind Mutual (fictional test fixture)",
+   "dates": {
+    "claimed": null,
+    "published": "2023-03-14",
+    "retrieved": "2026-09-30",
+    "published_source": "page metadata",
+    "claimed_printed_on_page": null
+   },
+   "before": null,
+   "match": null,
+   "after": null,
+   "verifier_version": "2026-09-30.3",
+   "retrieved_at": "2026-09-30T16:30:46.882Z"
+  },
+  "review": null
+ },
+ {
+  "fixture": "F2 unsupported conclusion",
+  "company": "Northwind Mutual",
+  "claimed_business_model": "engineering_services",
+  "url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/northwind-mutual.html",
+  "quote": "Last year we engaged an offshore development partner to modernize our internal claims systems",
+  "claimed_date": null,
+  "proposition": "Northwind Mutual sells software engineering, IT consulting, implementation or managed IT services to other organizations.",
+  "check": {
+   "status": "found",
+   "reason": "exact",
+   "quote_found": true,
+   "http_status": 200,
+   "final_url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/northwind-mutual.html",
+   "page_title": "Northwind Mutual | About (test fixture)",
+   "publisher": "Northwind Mutual (fictional test fixture)",
+   "dates": {
+    "claimed": null,
+    "published": "2023-03-14",
+    "retrieved": "2026-09-30",
+    "published_source": "page metadata",
+    "claimed_printed_on_page": null
+   },
+   "before": "...used to test the evidence checks. It does not exist. About Northwind Mutual Northwind Mutual is a regional property and casualty insurer serving families and small businesses across Iowa and Nebraska since 1952. ",
+   "match": "Last year we engaged an offshore development partner to modernize our internal claims systems",
+   "after": ", and our own IT team now runs the platform on Azure. Our agents sell home, auto and farm policies through 140 independent offices. Published March 14, 2023",
+   "verifier_version": "2026-09-30.3",
+   "retrieved_at": "2026-09-30T16:30:46.880Z"
+  },
+  "review": {
+   "why": "The page describes Northwind Mutual as an insurer that hired an offshore development partner as a client/customer of IT services, not as a provider of software engineering, IT consulting, or managed IT services to other organizations.",
+   "supports": false,
+   "totalCreditsCharged": 0.7
+  }
+ },
+ {
+  "fixture": "F3 wrong entity",
+  "company": "BrightPath Consulting",
+  "claimed_business_model": "end_customer",
+  "url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/brightpath-case-study.html",
+  "quote": "Harbor Freightways is a family-owned trucking company that hauls refrigerated freight across the Southeast with its own fleet of 600 tractors",
+  "claimed_date": null,
+  "proposition": "BrightPath Consulting sells something other than engineering services, and does not sell engineering staff or engineering services to other organizations.",
+  "check": {
+   "status": "found",
+   "reason": "exact",
+   "quote_found": true,
+   "http_status": 200,
+   "final_url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/brightpath-case-study.html",
+   "page_title": "Case study: Harbor Freightways moves dispatch to Power Platform | BrightPath Consulting (test fixture)",
+   "publisher": "BrightPath Consulting (fictional test fixture)",
+   "dates": {
+    "claimed": null,
+    "published": null,
+    "retrieved": "2026-09-30",
+    "published_source": "none found",
+    "claimed_printed_on_page": null
+   },
+   "before": "...Platform | BrightPath Consulting (test fixture) Test fixture. BrightPath Consulting and Harbor Freightways are fictional companies used to test the evidence checks. Harbor Freightways moves dispatch to Power Platform ",
+   "match": "Harbor Freightways is a family-owned trucking company that hauls refrigerated freight across the Southeast with its own fleet of 600 tractors",
+   "after": ". BrightPath Consulting designed and built the new dispatch apps on Power Apps and Dataverse in fourteen weeks.",
+   "verifier_version": "2026-09-30.3",
+   "retrieved_at": "2026-09-30T16:30:46.943Z"
+  },
+  "review": {
+   "why": "The passage describes Harbor Freightways (the client) and BrightPath's app-building work for it, saying nothing about what BrightPath itself sells or whether it excludes engineering staff/services as a business offering.",
+   "supports": false,
+   "totalCreditsCharged": 0.7
+  }
+ },
+ {
+  "fixture": "F4 stale date",
+  "company": "Northwind Mutual",
+  "claimed_business_model": "end_customer",
+  "url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/northwind-mutual.html",
+  "quote": "Northwind Mutual is a regional property and casualty insurer serving families and small businesses across Iowa and Nebraska since 1952",
+  "claimed_date": "2026-06-01",
+  "proposition": "Northwind Mutual sells something other than engineering services, and does not sell engineering staff or engineering services to other organizations.",
+  "check": {
+   "status": "found",
+   "reason": "exact",
+   "quote_found": true,
+   "http_status": 200,
+   "final_url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/northwind-mutual.html",
+   "page_title": "Northwind Mutual | About (test fixture)",
+   "publisher": "Northwind Mutual (fictional test fixture)",
+   "dates": {
+    "claimed": null,
+    "published": "2023-03-14",
+    "retrieved": "2026-09-30",
+    "published_source": "page metadata",
+    "claimed_printed_on_page": null
+   },
+   "before": "Northwind Mutual | About (test fixture) Test fixture. Northwind Mutual is a fictional company used to test the evidence checks. It does not exist. About Northwind Mutual ",
+   "match": "Northwind Mutual is a regional property and casualty insurer serving families and small businesses across Iowa and Nebraska since 1952",
+   "after": ". Last year we engaged an offshore development partner to modernize our internal claims systems, and our own IT team now runs the platform on Azure. Our agents sell home, auto and farm policies through 140 independent...",
+   "verifier_version": "2026-09-30.3",
+   "retrieved_at": "2026-09-30T16:30:46.863Z"
+  },
+  "review": {
+   "why": "The page states Northwind Mutual is a property and casualty insurer selling home, auto, and farm policies through independent agents, and only outsourced IT development as a client rather than selling engineering services itself.",
+   "supports": true,
+   "totalCreditsCharged": 0.7
+  }
+ },
+ {
+  "fixture": "F5 unavailable page",
+  "company": "Northwind Mutual",
+  "claimed_business_model": "end_customer",
+  "url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/removed-page.html",
+  "quote": "Northwind Mutual is a regional property and casualty insurer serving families and small businesses",
+  "claimed_date": null,
+  "proposition": "Northwind Mutual sells something other than engineering services, and does not sell engineering staff or engineering services to other organizations.",
+  "check": {
+   "status": "unreadable",
+   "reason": "http_404",
+   "quote_found": false,
+   "http_status": 404,
+   "final_url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/removed-page.html",
+   "page_title": null,
+   "publisher": null,
+   "dates": null,
+   "before": null,
+   "match": null,
+   "after": null,
+   "verifier_version": "2026-09-30.3",
+   "retrieved_at": "2026-09-30T16:30:47.051Z"
+  },
+  "review": null
+ }
+]

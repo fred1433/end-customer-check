@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>End-customer check</title>
+<meta name="description" content="A Clay classifier that sorts companies into end customers and middlemen, and only accepts a label its source page supports. Tested on 50 US companies.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="mast-text">
+  <p class="product">End-customer check, built in Clay</p>
+  <h1>A Clay classifier that only accepts what the source page says.</h1>
+  <p class="lede">Clay's research agent proposes whether a company is an end customer or a middleman and quotes its website. Code downloads the cited page again and looks for the quote. A second model reads the passage in its context. Anything that does not survive stays unresolved.</p>
+  <p class="sample">50-company benchmark. Public sample selected by me, not a client-provided list.</p>
+  </div>
+  <aside class="totals" id="totals" aria-label="Results on the 50"></aside>
+</header>
+
+<main>
+  <section class="desk" aria-labelledby="focal-title">
+    <h2 id="focal-title" class="visually-hidden">One account, from proposal to decision</h2>
+    <div class="stack" id="stack"><p class="loading">Loading the accounts.</p></div>
+  </section>
+
+  <section class="ledger" aria-labelledby="ledger-title">
+    <div class="ledger-head">
+      <h2 id="ledger-title">The 50</h2>
+      <p class="funnel">Every company was also labelled by a separate reference review that read its own pages. Here is how many labels would have been accepted, and how many of those were wrong, at each step.</p>
+    </div>
+    <div class="stages" id="stages"></div>
+    <div class="filters" role="group" aria-label="Show">
+      <button type="button" data-filter="all" aria-pressed="true">All 50</button>
+      <button type="button" data-filter="accepted" aria-pressed="false">Accepted</button>
+      <button type="button" data-filter="unresolved" aria-pressed="false">Unresolved</button>
+    </div>
+    <div class="table" role="table" aria-label="Accounts">
+      <div class="thead" role="row">
+        <span role="columnheader">Account</span>
+        <span role="columnheader">Business model</span>
+        <span role="columnheader">Decision</span>
+        <span role="columnheader" class="rule-h">Reference</span>
+      </div>
+      <ol class="rows" id="rows"></ol>
+    </div>
+  </section>
+
+  <section class="clay" aria-labelledby="clay-title">
+    <h2 id="clay-title">How it runs in Clay</h2>
+    <p class="clay-lede">One workbook, three tables. Accounts does the work and writes each decision to Evidence; a lookup reads it back. Adversarial fixtures runs the same checks on five made-up cases built to fail.</p>
+    <div class="clay-grid">
+      <figure class="shot shot-small">
+        <img src="img/clay-workbook.jpg" alt="Clay workbook overview: the Accounts table feeds the Evidence table; a separate Adversarial fixtures table" width="1100" height="867" loading="lazy">
+        <figcaption>The workbook in Clay, Sep 30, 2026.</figcaption>
+      </figure>
+      <div>
+        <ol class="steps" id="steps"></ol>
+        <p class="cost" id="cost"></p>
+      </div>
+    </div>
+    <figure class="shot">
+      <img src="img/clay-accounts.jpg" alt="Clay Accounts table: contextual review, decision, accepted business model, send table data and stored evidence columns" width="1600" height="546" loading="lazy">
+      <figcaption>Accounts, right-hand columns. The review only runs where the quote was found; everything else stays unresolved.</figcaption>
+    </figure>
+
+    <div class="fixtures">
+      <h3>Five cases built to fail</h3>
+      <p>Made-up companies on test pages, labelled as fixtures, never mixed into the 50.</p>
+      <ol class="fx" id="fixtures"></ol>
+    </div>
+
+    <div class="clay-config">
+      <div class="config-head">
+        <p>The quote-check column (HTTP API)</p>
+        <button type="button" id="copy">Copy</button>
+      </div>
+      <pre id="config"></pre>
+      <p class="config-note">The key lives in a saved Clay header account, never in the column or a template. The endpoint only fetches domains on its list, re-checks every redirect, caps time and size, and allows 30 checks a minute per IP. It calls no model.</p>
+    </div>
+
+    <div class="fine">
+      <div>
+        <h3>The decision policy</h3>
+        <p>Accepted only if the quote is on the cited page of the company's own website and the review, reading the passage in context, agrees it shows the business model. Otherwise the company stays unresolved, never an end customer by default. Pages that cannot be read are unverifiable, not inventions.</p>
+        <p>Full account qualification was not assessed: this checks one thing, what the company sells.</p>
+      </div>
+      <div>
+        <h3>How the 50 were picked</h3>
+        <p id="sample-rule"></p>
+      </div>
+      <div>
+        <h3>What this does not prove</h3>
+        <p>A quote on a page proves the words are there, not that they are true. The review is another model and can agree with a weak passage. The reference labels are a careful reading, not ground truth: a few companies are genuinely mixed. It ran on a Clay trial workspace, on 50 companies I picked, not on your list.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Built by Frederic de Lavenne de Choulot, <a href="https://theaipipe.com">The AI Pipe</a>. Code, prompts, the exported table and every check: <a href="https://github.com/fred1433/end-customer-check">github.com/fred1433/end-customer-check</a>.</p>
+</footer>
+<script src="app.js" type="module"></script>
+</body>
+</html>

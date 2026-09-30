@@ -266,7 +266,7 @@ export async function fetchPage(url, { fetchImpl = fetch, timeoutMs = LIMITS.tim
 
 // ---------- the check itself ----------
 
-export const VERIFIER_VERSION = "2026-09-30.2";
+export const VERIFIER_VERSION = "2026-09-30.3";
 export const METHOD = "substring match after NFKC, lowercase, unified quotes and dashes, collapsed whitespace; '...' splits fragments that must appear in order within 400 characters";
 
 // Host allowed if it equals an allowed domain or is a subdomain of one. An empty list allows nothing.
@@ -299,7 +299,10 @@ function publisherOf(html, finalUrl) {
 //   "unreadable" the page could not be read (blocked, challenge page, timeout, not HTML, too many redirects)
 //   "rejected"   the input was refused before any download (trivial quote, bad URL, domain not on the list)
 // quote_found is true only for "found". The model's proposal is echoed back unchanged.
-export async function verifyEvidence({ url, quote, date, entity }, opts = {}) {
+export async function verifyEvidence(input, opts = {}) {
+  // Table tools often append a newline or spaces to mapped values; a URL with a trailing "\n" would fetch another page.
+  const trim = (v) => (typeof v === "string" ? v.trim() : v);
+  const url = trim(input.url), quote = trim(input.quote), date = trim(input.date), entity = trim(input.entity);
   const now = opts.now ? opts.now() : new Date();
   const base = {
     verifier_version: VERIFIER_VERSION, method: METHOD,

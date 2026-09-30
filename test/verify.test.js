@@ -232,3 +232,10 @@ test("the context keeps the page's own words and case around the match", () => {
   assert.equal(r.match, "Acme Mutual's internal engineering team rebuilt the claims portal");
   assert.ok(r.after.startsWith(" on .NET 8 and Azure App Service"));
 });
+
+test("inputs are trimmed: a mapped value with a trailing newline reads the right page", async () => {
+  const f = fakeFetch({ "https://acme.example.com/news": { body: PAGE } });
+  const r = await verifyEvidence({ url: "https://acme.example.com/news\n", quote: Q + "\n", entity: "Acme Mutual\n" }, { fetchImpl: f, now: NOW });
+  assert.equal(r.status, "found");
+  assert.equal(r.proposal.url, "https://acme.example.com/news");
+});

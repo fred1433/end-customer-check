@@ -1,0 +1,463 @@
+{
+ "1": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Network of 33 federally qualified community health centers in Cook and DuPage counties providing patient care; a health care provider.",
+  "sources": [
+   "https://www.achn.net/",
+   "https://www.achn.net/about-access/"
+  ]
+ },
+ "2": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Nonprofit managed care organization (Medicaid, Marketplace, D-SNP, TRICARE plans) serving over 2 million members; a health insurer.",
+  "sources": [
+   "https://www.caresource.com/",
+   "https://www.caresource.com/about-us/"
+  ]
+ },
+ "3": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Producer of salads and fresh foods with 20,000 employees and plants in North America and Europe.",
+  "sources": [
+   "https://www.taylorfarms.com/",
+   "https://www.taylorfarms.com/our-story/"
+  ]
+ },
+ "4": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Manufacturer of HVAC, water heaters, boilers and pool heaters for homes and businesses.",
+  "sources": [
+   "https://www.rheem.com/",
+   "https://www.rheem.com/about/"
+  ]
+ },
+ "5": {
+  "label": "end_customer",
+  "confidence": "medium",
+  "why": "Member-owned credit union for Publix associates and families (loans, mortgages, cards). Own site blocked all automated reads (Cloudflare 403), so the label rests on search snippets of its about pages and a third-party review page; a credit union is an end customer by rule.",
+  "sources": [
+   "https://www.pefcu.com/",
+   "https://www.pefcu.com/about/about-us/",
+   "https://wallethub.com/profile/publix-employees-federal-credit-union-13310938i"
+  ]
+ },
+ "6": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Pennsylvania federal credit union offering accounts, rates, branches and digital banking to members.",
+  "sources": [
+   "https://www.members1st.org/",
+   "https://www.members1st.org/about-us/"
+  ]
+ },
+ "7": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Not-for-profit integrated health system in Greater Cincinnati (Good Samaritan and Bethesda hospitals), about 14,000 staff.",
+  "sources": [
+   "https://www.trihealth.com/",
+   "https://www.trihealth.com/about-trihealth"
+  ]
+ },
+ "8": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Integrated health system with eight hospitals and 17,000 team members in central and southeastern Illinois.",
+  "sources": [
+   "https://carle.org/",
+   "https://carle.org/about-us"
+  ]
+ },
+ "9": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Caterpillar and AGCO equipment dealer (sales, rental, parts, service) with 34 Midwest locations.",
+  "sources": [
+   "https://www.zieglercat.com/",
+   "https://www.zieglercat.com/about/"
+  ]
+ },
+ "10": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Water utility supplying about 44 million gallons a day to 15 South Central Connecticut municipalities.",
+  "sources": [
+   "https://www.rwater.com/",
+   "https://www.rwater.com/about-us"
+  ]
+ },
+ "11": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Holding company of construction, building materials and insurance businesses (WW Clyde, Geneva Rock, Sunroc, Beehive Insurance) in the Intermountain West.",
+  "sources": [
+   "https://www.clydeinc.com/",
+   "https://www.clydeinc.com/about/"
+  ]
+ },
+ "12": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Designs, manufactures and markets residential and commercial pool equipment and automation systems.",
+  "sources": [
+   "https://hayward.com/",
+   "https://investor.hayward.com/"
+  ]
+ },
+ "13": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Vertically integrated forest products group: timber, hardwood sawmills, crane mats, flooring, energy.",
+  "sources": [
+   "https://www.beasleygroup.com/",
+   "https://www.beasleygroup.com/about.cms"
+  ]
+ },
+ "14": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Designs and sells women's handbags, luggage and accessories through its own e-commerce and stores.",
+  "sources": [
+   "https://verabradley.com/",
+   "https://verabradley.com/pages/brand-history"
+  ]
+ },
+ "15": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Non-profit health system with more than 200 sites of care in Central Indiana.",
+  "sources": [
+   "https://www.ecommunity.com/",
+   "https://www.ecommunity.com/about-us"
+  ]
+ },
+ "16": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Manufacturer of materials testing machines (UTMs, impact, hardness, melt flow) and their software.",
+  "sources": [
+   "https://www.tiniusolsen.com/",
+   "https://www.tiniusolsen.com/our-company/"
+  ]
+ },
+ "17": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Operator of Hispanic grocery chains (Cardenas, El Super and others). Note: heritagegrocers.com does not resolve; read the company's site heritagegrocersgroup.com.",
+  "sources": [
+   "https://www.heritagegrocers.com/",
+   "https://www.heritagegrocersgroup.com/",
+   "https://www.heritagegrocersgroup.com/about-us"
+  ]
+ },
+ "18": {
+  "label": "end_customer",
+  "confidence": "medium",
+  "why": "Optical retailer (Stanton Optical, 300+ stores) that also offers its own eye-care SaaS, private-label eyewear and a staff augmentation line for clinical eye-care personnel; the core is retail eye care, and the staffing line supplies clinicians, not engineers.",
+  "sources": [
+   "https://www.nowoptics.com/",
+   "https://www.nowoptics.com/who-we-are",
+   "https://www.nowoptics.com/business-solutions"
+  ]
+ },
+ "19": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Insurance brokerage, employee benefits, HR consulting and wealth management firm; sells no engineering services.",
+  "sources": [
+   "https://www.onedigital.com/",
+   "https://www.onedigital.com/en-US/about-us/"
+  ]
+ },
+ "20": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "NCI-designated comprehensive cancer center and nonprofit research and treatment system. Own site blocked automated reads (Cloudflare 403); read via third-party pages.",
+  "sources": [
+   "https://www.cityofhope.org/",
+   "https://adcc.org/our-centers/city-of-hope-comprehensive-cancer-center/",
+   "https://en.wikipedia.org/wiki/City_of_Hope_National_Medical_Center"
+  ]
+ },
+ "21": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Am Law 100 law firm with 750+ lawyers selling legal services.",
+  "sources": [
+   "https://www.ballardspahr.com/",
+   "https://www.ballardspahr.com/services"
+  ]
+ },
+ "22": {
+  "label": "mixed_uncertain",
+  "confidence": "medium",
+  "why": "Sells its own platforms (Xelence, pension administration, unemployment insurance, Medicaid products) implemented for public agencies, and also sells managed IT, cloud and security services to them; product vendor and IT services provider at once.",
+  "sources": [
+   "https://www.sagitec.com/en-us/",
+   "https://www.sagitec.com/about",
+   "https://www.sagitec.com/it-cloud-security-services"
+  ]
+ },
+ "23": {
+  "label": "staffing_recruitment",
+  "confidence": "high",
+  "why": "Hire-train-deploy talent company that supplies trained engineers to enterprise clients (Pods, RaaS, Forward Deployed Engineers), plus corporate training.",
+  "sources": [
+   "https://www.revature.com/",
+   "https://www.revature.com/about-revature"
+  ]
+ },
+ "24": {
+  "label": "engineering_services",
+  "confidence": "high",
+  "why": "Microsoft professional services firm (cloud, M365, security, AI services) for the public sector, 27 Microsoft Partner of the Year awards.",
+  "sources": [
+   "https://go-planet.com/",
+   "https://go-planet.com/about-planet/company/"
+  ]
+ },
+ "25": {
+  "label": "engineering_services",
+  "confidence": "high",
+  "why": "IT consulting firm since 1982 delivering cloud migration, app modernization, data and AI, and security services to commercial and federal clients; accelerators are part of its services.",
+  "sources": [
+   "https://www.ais.com/",
+   "https://www.ais.com/about/"
+  ]
+ },
+ "26": {
+  "label": "engineering_services",
+  "confidence": "medium",
+  "why": "Microsoft Dynamics 365 and NetSuite implementation and support partner: ERP/CRM implementation, integration, application support, cloud migration. Its 'products' are resold Microsoft/Oracle platforms and packaged implementations, not a separate product business.",
+  "sources": [
+   "https://www.velosio.com/",
+   "https://www.velosio.com/about-us/",
+   "https://www.velosio.com/products/"
+  ]
+ },
+ "27": {
+  "label": "engineering_services",
+  "confidence": "high",
+  "why": "Software development company selling custom software, AI development, IT consulting, staff augmentation, managed IT and QA to clients; listed in IAOP Global Outsourcing 100.",
+  "sources": [
+   "https://www.scnsoft.com/",
+   "https://www.scnsoft.com/about/company"
+  ]
+ },
+ "28": {
+  "label": "engineering_services",
+  "confidence": "high",
+  "why": "Managed IT services provider: managed infrastructure, cloud hosting, service desk, cybersecurity/SOC and IT consulting sold to businesses.",
+  "sources": [
+   "https://www.dataprise.com/",
+   "https://www.dataprise.com/company/overview/"
+  ]
+ },
+ "29": {
+  "label": "engineering_services",
+  "confidence": "high",
+  "why": "Gulf South IT consulting firm selling AI consulting, custom app development, data, cybersecurity, infrastructure and managed IT services.",
+  "sources": [
+   "https://www.sparkhound.com/",
+   "https://www.sparkhound.com/about/"
+  ]
+ },
+ "30": {
+  "label": "engineering_services",
+  "confidence": "high",
+  "why": "Business and technology consulting firm selling software development, Microsoft/Salesforce/NetSuite consulting, data, AI agent development and cybersecurity services to clients.",
+  "sources": [
+   "https://centricconsulting.com/",
+   "https://centricconsulting.com/about-us/"
+  ]
+ },
+ "31": {
+  "label": "staffing_recruitment",
+  "confidence": "high",
+  "why": "National staffing agency: direct hire, contract and project staffing across IT, engineering, accounting and healthcare.",
+  "sources": [
+   "https://www.kore1.com/",
+   "https://www.kore1.com/why-kore1/"
+  ]
+ },
+ "32": {
+  "label": "staffing_recruitment",
+  "confidence": "high",
+  "why": "Tech recruitment agency supplying contract and permanent IT/tech talent through specialized recruiters.",
+  "sources": [
+   "https://motionrecruitment.com/",
+   "https://motionrecruitment.com/about"
+  ]
+ },
+ "33": {
+  "label": "engineering_services",
+  "confidence": "high",
+  "why": "Microsoft Dynamics 365 partner that implements, customizes, develops for and supports Dynamics, Power Platform and Azure for clients.",
+  "sources": [
+   "https://stoneridgesoftware.com/",
+   "https://stoneridgesoftware.com/about-us/",
+   "https://stoneridgesoftware.com/products/"
+  ]
+ },
+ "34": {
+  "label": "engineering_services",
+  "confidence": "medium",
+  "why": "Services-led IT solutions provider (value-added reseller) delivering consulting, implementation and managed services across data center, cloud, security and networking; significant product resale and financing make it less than a pure services firm.",
+  "sources": [
+   "https://www.eplus.com/",
+   "https://www.eplus.com/who-we-are",
+   "https://www.eplus.com/how-we-deliver"
+  ]
+ },
+ "35": {
+  "label": "end_customer",
+  "confidence": "medium",
+  "why": "Government IT distributor/'Master Aggregator' reselling vendor software and hardware (AWS, Microsoft, Salesforce, etc.) through contract vehicles; it sells products and procurement, not engineering services.",
+  "sources": [
+   "https://www.carahsoft.com/",
+   "https://www.carahsoft.com/about",
+   "https://www.carahsoft.com/solve"
+  ]
+ },
+ "36": {
+  "label": "engineering_services",
+  "confidence": "medium",
+  "why": "Global digital engineering and IT services firm (application services, cloud, QA, cybersecurity); also owns some platforms (NetSfere, Sensyon, Turbify), but services are the core.",
+  "sources": [
+   "https://www.infinite.com/",
+   "https://www.infinite.com/about-us/"
+  ]
+ },
+ "37": {
+  "label": "engineering_services",
+  "confidence": "high",
+  "why": "Managed IT services provider selling 24/7 IT support, IT consulting, cybersecurity and cloud services as an outsourced IT team.",
+  "sources": [
+   "https://www.ntiva.com/",
+   "https://www.ntiva.com/managed-it-services-pricing"
+  ]
+ },
+ "38": {
+  "label": "mixed_uncertain",
+  "confidence": "medium",
+  "why": "Celsior is the technology services/digital engineering arm, but the named entity Pyramid Consulting, Inc. is primarily an IT staffing firm (Pyramid Talent) alongside Celsior; the company genuinely does both.",
+  "sources": [
+   "https://www.celsiortech.com/",
+   "https://www.celsiortech.com/about/",
+   "https://pyramidci.com/"
+  ]
+ },
+ "39": {
+  "label": "engineering_services",
+  "confidence": "high",
+  "why": "Technology integration and management firm selling cybersecurity, cloud and infrastructure, data/AI, business apps and managed services to clients.",
+  "sources": [
+   "https://ivision.com/",
+   "https://ivision.com/about-us"
+  ]
+ },
+ "40": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Credit union offering checking, savings, loans and cards to members; buys engineering for itself.",
+  "sources": [
+   "https://www.psecu.com/",
+   "https://www.psecu.com/about-psecu/our-story"
+  ]
+ },
+ "41": {
+  "label": "end_customer",
+  "confidence": "medium",
+  "why": "Engineering, architecture, construction and consulting firm for life sciences and food & beverage facilities; physical design-build, not software engineering or IT services.",
+  "sources": [
+   "https://www.crbgroup.com/",
+   "https://www.crbgroup.com/services"
+  ]
+ },
+ "42": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Sells its own secure collaboration SaaS platform (CMMC Ready Suite, supplier management, identity) to aerospace, defense and life sciences.",
+  "sources": [
+   "https://www.exostar.com/",
+   "https://www.exostar.com/about-us/"
+  ]
+ },
+ "43": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Software vendor selling its own P&C insurance core platform (policy, billing, claims) as SaaS.",
+  "sources": [
+   "https://www.duckcreek.com/",
+   "https://www.duckcreek.com/about-us/"
+  ]
+ },
+ "44": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Software product company (OpenEdge, Sitefinity, Chef, data platform) selling its own licensed software.",
+  "sources": [
+   "https://www.progress.com/",
+   "https://www.progress.com/company"
+  ]
+ },
+ "45": {
+  "label": "mixed_uncertain",
+  "confidence": "medium",
+  "why": "Primarily a CPA, tax and advisory firm, but it also sells technology consulting, ERP consulting, cybersecurity and data services to clients; both sides are real.",
+  "sources": [
+   "https://www.plantemoran.com/",
+   "https://www.plantemoran.com/services"
+  ]
+ },
+ "46": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Sells payroll, HR and benefits software and services to businesses; not engineering services or staffing. (Site geo-blocked from PY, read via reader proxy.)",
+  "sources": [
+   "https://www.paychex.com/",
+   "https://www.paychex.com/corporate"
+  ]
+ },
+ "47": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Develops and sells its own electronic health record software to health systems.",
+  "sources": [
+   "https://www.epic.com/",
+   "https://www.epic.com/about/"
+  ]
+ },
+ "48": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Contract research organization selling Phase I-IV clinical development services to biotech and pharma, not engineering.",
+  "sources": [
+   "https://www.medpace.com/",
+   "https://www.medpace.com/about/"
+  ]
+ },
+ "49": {
+  "label": "end_customer",
+  "confidence": "high",
+  "why": "Sells its own UI component and document SDK products licensed per developer.",
+  "sources": [
+   "https://www.syncfusion.com/",
+   "https://www.syncfusion.com/company/about-us",
+   "https://www.syncfusion.com/sales/pricing"
+  ]
+ },
+ "50": {
+  "label": "engineering_services",
+  "confidence": "high",
+  "why": "Microsoft consulting and systems integrator selling custom application development, SharePoint/Power Platform/Azure services, plus technical staff augmentation as a secondary line.",
+  "sources": [
+   "https://i3solutions.com/",
+   "https://i3solutions.com/custom-application-development-services/"
+  ]
+ }
+}

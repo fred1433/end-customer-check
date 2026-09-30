@@ -1,0 +1,6 @@
+{
+  "selected_by": "research agents working from written briefs, on 2026-09-30, before any classification ran",
+  "rule": "US companies with a dated public signal of a .NET, Azure, Power Platform or Dynamics initiative, taken from sources other than job boards: Microsoft customer stories, partner case studies, press releases, leadership-change announcements, the company's own careers or service pages. One brief asked for end customers, one for hard cases (companies that describe themselves as IT solutions or consulting firms, IT staffing firms, Microsoft partners, mixed businesses), one for leadership changes and careers pages. One company appearing in two briefs was kept once; one company was added by hand to reach 50.",
+  "not_a_client_list": "Public sample selected by me, not a client-provided list.",
+  "frozen": "The 50 rows, the research prompt and the decision policy were fixed before the benchmark run started in Clay."
+}

@@ -1,0 +1,69 @@
+{
+ "measured_on": "2026-09-30",
+ "workspace_plan": "Clay 14-day trial (postPricingChange2026Trial), 1,000 data credits and 5,000 actions",
+ "models": {
+  "research": "Clay Argon, web research (fixed 3 data credits per row)",
+  "review": "Claude Sonnet 5 through Clay, no web access (about 0.7 data credits per row)"
+ },
+ "final_run_by_stage": {
+  "research": {
+   "executions": 50,
+   "skipped": 0,
+   "data_credits": 150.0,
+   "actions": 50
+  },
+  "quote_check": {
+   "executions": 50,
+   "skipped": 0,
+   "data_credits": 0.0,
+   "actions": 50
+  },
+  "signal_check": {
+   "executions": 50,
+   "skipped": 0,
+   "data_credits": 0.0,
+   "actions": 50
+  },
+  "review": {
+   "executions": 30,
+   "skipped": 20,
+   "data_credits": 21.0,
+   "actions": 30
+  },
+  "write_evidence": {
+   "executions": 50,
+   "skipped": 0,
+   "data_credits": 0,
+   "actions": 50
+  },
+  "lookup_and_formulas": {
+   "executions": 50,
+   "skipped": 0,
+   "data_credits": 0,
+   "actions": 0
+  }
+ },
+ "final_run": {
+  "data_credits": 171.0,
+  "actions": 230
+ },
+ "whole_workspace_so_far": {
+  "data_credits": 206.1,
+  "actions": 339,
+  "note": "Everything spent in the workspace on 2026-09-30: building and testing the table, one review pass that ran on every row before its run condition was saved, one accidental research rerun, and the five fixtures."
+ },
+ "development": {
+  "data_credits": 35.1,
+  "actions": 109
+ },
+ "price_basis": {
+  "usd_per_data_credit": 0.05,
+  "usd_per_data_credit_source": "workspace centsPerCredit = 5, read 2026-09-30",
+  "usd_per_action": 0.005125,
+  "usd_per_action_source": "Growth plan, 40K actions/mo for $205/mo, clay.com/pricing read 2026-09-30"
+ },
+ "final_run_usd": 9.73,
+ "per_input_company_usd": 0.195,
+ "external_spend": "none: the quote checker runs on Cloudflare Workers free tier; no model API was called outside Clay",
+ "cheap_filter_rows_stopped": 0
+}

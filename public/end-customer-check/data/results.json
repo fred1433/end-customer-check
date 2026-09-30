@@ -1,0 +1,3962 @@
+{
+ "run_date": "2026-09-30",
+ "sample_rule": {
+  "selected_by": "research agents working from written briefs, on 2026-09-30, before any classification ran",
+  "rule": "US companies with a dated public signal of a .NET, Azure, Power Platform or Dynamics initiative, taken from sources other than job boards: Microsoft customer stories, partner case studies, press releases, leadership-change announcements, the company's own careers or service pages. One brief asked for end customers, one for hard cases (companies that describe themselves as IT solutions or consulting firms, IT staffing firms, Microsoft partners, mixed businesses), one for leadership changes and careers pages. One company appearing in two briefs was kept once; one company was added by hand to reach 50.",
+  "not_a_client_list": "Public sample selected by me, not a client-provided list.",
+  "frozen": "The 50 rows, the research prompt and the decision policy were fixed before the benchmark run started in Clay."
+ },
+ "featured": {
+  "focal": 22,
+  "fixture": "F2 unsupported conclusion"
+ },
+ "tally": {
+  "companies": 50,
+  "accepted": 24,
+  "withheld_text_not_on_page": 13,
+  "withheld_not_supported": 6,
+  "withheld_other": 0,
+  "unverifiable": 7,
+  "not_on_page_where": {
+   "nowhere on the page": 8,
+   "page source outside visible text": 1,
+   "page metadata only": 4
+  },
+  "accepted_by_model": {
+   "end_customer": 13,
+   "mixed_uncertain": 1,
+   "staffing_recruitment": 1,
+   "engineering_services": 9
+  },
+  "signal_found": 48,
+  "cheap_filter_stops": 0
+ },
+ "evaluation": {
+  "raw": {
+   "accepted": 50,
+   "accepted_correct": 43,
+   "accepted_wrong": 7,
+   "not_accepted": 0,
+   "middleman_accepted_as_end_customer": 0,
+   "wrong_rows": [
+    18,
+    32,
+    35,
+    38,
+    41,
+    47,
+    50
+   ]
+  },
+  "text_present": {
+   "accepted": 30,
+   "accepted_correct": 25,
+   "accepted_wrong": 5,
+   "not_accepted": 20,
+   "middleman_accepted_as_end_customer": 0,
+   "wrong_rows": [
+    18,
+    32,
+    35,
+    38,
+    50
+   ]
+  },
+  "supported": {
+   "accepted": 24,
+   "accepted_correct": 23,
+   "accepted_wrong": 1,
+   "not_accepted": 26,
+   "middleman_accepted_as_end_customer": 0,
+   "wrong_rows": [
+    38
+   ]
+  }
+ },
+ "usage": {
+  "measured_on": "2026-09-30",
+  "workspace_plan": "Clay 14-day trial (postPricingChange2026Trial), 1,000 data credits and 5,000 actions",
+  "models": {
+   "research": "Clay Argon, web research (fixed 3 data credits per row)",
+   "review": "Claude Sonnet 5 through Clay, no web access (about 0.7 data credits per row)"
+  },
+  "final_run_by_stage": {
+   "research": {
+    "executions": 50,
+    "skipped": 0,
+    "data_credits": 150,
+    "actions": 50
+   },
+   "quote_check": {
+    "executions": 50,
+    "skipped": 0,
+    "data_credits": 0,
+    "actions": 50
+   },
+   "signal_check": {
+    "executions": 50,
+    "skipped": 0,
+    "data_credits": 0,
+    "actions": 50
+   },
+   "review": {
+    "executions": 30,
+    "skipped": 20,
+    "data_credits": 21,
+    "actions": 30
+   },
+   "write_evidence": {
+    "executions": 50,
+    "skipped": 0,
+    "data_credits": 0,
+    "actions": 50
+   },
+   "lookup_and_formulas": {
+    "executions": 50,
+    "skipped": 0,
+    "data_credits": 0,
+    "actions": 0
+   }
+  },
+  "final_run": {
+   "data_credits": 171,
+   "actions": 230
+  },
+  "whole_workspace_so_far": {
+   "data_credits": 206.1,
+   "actions": 339,
+   "note": "Everything spent in the workspace on 2026-09-30: building and testing the table, one review pass that ran on every row before its run condition was saved, one accidental research rerun, and the five fixtures."
+  },
+  "development": {
+   "data_credits": 35.1,
+   "actions": 109
+  },
+  "price_basis": {
+   "usd_per_data_credit": 0.05,
+   "usd_per_data_credit_source": "workspace centsPerCredit = 5, read 2026-09-30",
+   "usd_per_action": 0.005125,
+   "usd_per_action_source": "Growth plan, 40K actions/mo for $205/mo, clay.com/pricing read 2026-09-30"
+  },
+  "final_run_usd": 9.73,
+  "per_input_company_usd": 0.195,
+  "external_spend": "none: the quote checker runs on Cloudflare Workers free tier; no model API was called outside Clay",
+  "cheap_filter_rows_stopped": 0,
+  "per_accepted_classification_usd": 0.405,
+  "per_accepted_end_customer_usd": 0.748
+ },
+ "fixtures": [
+  {
+   "fixture": "F1 fabricated text",
+   "company": "Northwind Mutual",
+   "claimed_business_model": "end_customer",
+   "url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/northwind-mutual.html",
+   "quote": "Northwind Mutual builds all of its insurance software in-house and has never used an outside vendor",
+   "claimed_date": null,
+   "proposition": "Northwind Mutual sells something other than engineering services, and does not sell engineering staff or engineering services to other organizations.",
+   "check": {
+    "status": "absent",
+    "reason": "not_on_page",
+    "quote_found": false,
+    "http_status": 200,
+    "final_url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/northwind-mutual.html",
+    "page_title": "Northwind Mutual | About (test fixture)",
+    "publisher": "Northwind Mutual (fictional test fixture)",
+    "dates": {
+     "claimed": null,
+     "published": "2023-03-14",
+     "retrieved": "2026-09-30",
+     "published_source": "page metadata",
+     "claimed_printed_on_page": null
+    },
+    "before": null,
+    "match": null,
+    "after": null,
+    "verifier_version": "2026-09-30.3",
+    "retrieved_at": "2026-09-30T16:30:46.882Z"
+   },
+   "review": null
+  },
+  {
+   "fixture": "F2 unsupported conclusion",
+   "company": "Northwind Mutual",
+   "claimed_business_model": "engineering_services",
+   "url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/northwind-mutual.html",
+   "quote": "Last year we engaged an offshore development partner to modernize our internal claims systems",
+   "claimed_date": null,
+   "proposition": "Northwind Mutual sells software engineering, IT consulting, implementation or managed IT services to other organizations.",
+   "check": {
+    "status": "found",
+    "reason": "exact",
+    "quote_found": true,
+    "http_status": 200,
+    "final_url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/northwind-mutual.html",
+    "page_title": "Northwind Mutual | About (test fixture)",
+    "publisher": "Northwind Mutual (fictional test fixture)",
+    "dates": {
+     "claimed": null,
+     "published": "2023-03-14",
+     "retrieved": "2026-09-30",
+     "published_source": "page metadata",
+     "claimed_printed_on_page": null
+    },
+    "before": "...used to test the evidence checks. It does not exist. About Northwind Mutual Northwind Mutual is a regional property and casualty insurer serving families and small businesses across Iowa and Nebraska since 1952. ",
+    "match": "Last year we engaged an offshore development partner to modernize our internal claims systems",
+    "after": ", and our own IT team now runs the platform on Azure. Our agents sell home, auto and farm policies through 140 independent offices. Published March 14, 2023",
+    "verifier_version": "2026-09-30.3",
+    "retrieved_at": "2026-09-30T16:30:46.880Z"
+   },
+   "review": {
+    "why": "The page describes Northwind Mutual as an insurer that hired an offshore development partner as a client/customer of IT services, not as a provider of software engineering, IT consulting, or managed IT services to other organizations.",
+    "supports": false,
+    "totalCreditsCharged": 0.7
+   }
+  },
+  {
+   "fixture": "F3 wrong entity",
+   "company": "BrightPath Consulting",
+   "claimed_business_model": "end_customer",
+   "url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/brightpath-case-study.html",
+   "quote": "Harbor Freightways is a family-owned trucking company that hauls refrigerated freight across the Southeast with its own fleet of 600 tractors",
+   "claimed_date": null,
+   "proposition": "BrightPath Consulting sells something other than engineering services, and does not sell engineering staff or engineering services to other organizations.",
+   "check": {
+    "status": "found",
+    "reason": "exact",
+    "quote_found": true,
+    "http_status": 200,
+    "final_url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/brightpath-case-study.html",
+    "page_title": "Case study: Harbor Freightways moves dispatch to Power Platform | BrightPath Consulting (test fixture)",
+    "publisher": "BrightPath Consulting (fictional test fixture)",
+    "dates": {
+     "claimed": null,
+     "published": null,
+     "retrieved": "2026-09-30",
+     "published_source": "none found",
+     "claimed_printed_on_page": null
+    },
+    "before": "...Platform | BrightPath Consulting (test fixture) Test fixture. BrightPath Consulting and Harbor Freightways are fictional companies used to test the evidence checks. Harbor Freightways moves dispatch to Power Platform ",
+    "match": "Harbor Freightways is a family-owned trucking company that hauls refrigerated freight across the Southeast with its own fleet of 600 tractors",
+    "after": ". BrightPath Consulting designed and built the new dispatch apps on Power Apps and Dataverse in fourteen weeks.",
+    "verifier_version": "2026-09-30.3",
+    "retrieved_at": "2026-09-30T16:30:46.943Z"
+   },
+   "review": {
+    "why": "The passage describes Harbor Freightways (the client) and BrightPath's app-building work for it, saying nothing about what BrightPath itself sells or whether it excludes engineering staff/services as a business offering.",
+    "supports": false,
+    "totalCreditsCharged": 0.7
+   }
+  },
+  {
+   "fixture": "F4 stale date",
+   "company": "Northwind Mutual",
+   "claimed_business_model": "end_customer",
+   "url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/northwind-mutual.html",
+   "quote": "Northwind Mutual is a regional property and casualty insurer serving families and small businesses across Iowa and Nebraska since 1952",
+   "claimed_date": "2026-06-01",
+   "proposition": "Northwind Mutual sells something other than engineering services, and does not sell engineering staff or engineering services to other organizations.",
+   "check": {
+    "status": "found",
+    "reason": "exact",
+    "quote_found": true,
+    "http_status": 200,
+    "final_url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/northwind-mutual.html",
+    "page_title": "Northwind Mutual | About (test fixture)",
+    "publisher": "Northwind Mutual (fictional test fixture)",
+    "dates": {
+     "claimed": null,
+     "published": "2023-03-14",
+     "retrieved": "2026-09-30",
+     "published_source": "page metadata",
+     "claimed_printed_on_page": null
+    },
+    "before": "Northwind Mutual | About (test fixture) Test fixture. Northwind Mutual is a fictional company used to test the evidence checks. It does not exist. About Northwind Mutual ",
+    "match": "Northwind Mutual is a regional property and casualty insurer serving families and small businesses across Iowa and Nebraska since 1952",
+    "after": ". Last year we engaged an offshore development partner to modernize our internal claims systems, and our own IT team now runs the platform on Azure. Our agents sell home, auto and farm policies through 140 independent...",
+    "verifier_version": "2026-09-30.3",
+    "retrieved_at": "2026-09-30T16:30:46.863Z"
+   },
+   "review": {
+    "why": "The page states Northwind Mutual is a property and casualty insurer selling home, auto, and farm policies through independent agents, and only outsourced IT development as a client rather than selling engineering services itself.",
+    "supports": true,
+    "totalCreditsCharged": 0.7
+   }
+  },
+  {
+   "fixture": "F5 unavailable page",
+   "company": "Northwind Mutual",
+   "claimed_business_model": "end_customer",
+   "url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/removed-page.html",
+   "quote": "Northwind Mutual is a regional property and casualty insurer serving families and small businesses",
+   "claimed_date": null,
+   "proposition": "Northwind Mutual sells something other than engineering services, and does not sell engineering staff or engineering services to other organizations.",
+   "check": {
+    "status": "unreadable",
+    "reason": "http_404",
+    "quote_found": false,
+    "http_status": 404,
+    "final_url": "https://raw.githubusercontent.com/fred1433/end-customer-check/master/public/end-customer-check/fixtures/removed-page.html",
+    "page_title": null,
+    "publisher": null,
+    "dates": null,
+    "before": null,
+    "match": null,
+    "after": null,
+    "verifier_version": "2026-09-30.3",
+    "retrieved_at": "2026-09-30T16:30:47.051Z"
+   },
+   "review": null
+  }
+ ],
+ "rows": [
+  {
+   "id": 1,
+   "company": "Access Community Health Network",
+   "domain": "accesscommunityhealth.net",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/26106-access-community-health-network-azure",
+    "quote": "The organization pivoted to a Microsoft Azure environment, migrating its electronic medical record system with over 300 servers",
+    "date": "2026-02-17",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/26106-access-community-health-network-azure",
+     "final_url": "https://www.microsoft.com/en/customers/story/26106-access-community-health-network-azure",
+     "retrieved_at": "2026-09-30T16:18:36.460Z",
+     "content_sha256": "945df144ffbbb1d13c7908fa932cc57ccd070b86a747e382112d8010b510eb0b",
+     "page_title": "Access Community Health Network reduces costs with 11-month migration to Azure | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "unverifiable",
+    "why": "timeout"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": null,
+    "check_reason": "timeout"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 2,
+   "company": "CareSource",
+   "domain": "caresource.com",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/25041-caresource-azure",
+    "quote": "CareSource chose Microsoft Azure OpenAI, Dynamics 365, Azure Functions, Cosmos DB, GitHub Copilot, and Azure Virtual Desktop",
+    "date": "2025-08-19",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/25041-caresource-azure",
+     "final_url": "https://www.microsoft.com/en/customers/story/25041-caresource-azure",
+     "retrieved_at": "2026-09-30T16:18:36.496Z",
+     "content_sha256": "6f583095e0094a0dd877f3a59886f86cf02098e16f0062a8366fe6a84ca22b51",
+     "page_title": "Microsoft AI drives greater efficiency and a human touch in CareSource member experience | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "unverifiable",
+    "why": "not_html"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": null,
+    "check_reason": "not_html"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 3,
+   "company": "Taylor Farms",
+   "domain": "taylorfarms.com",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/24441-taylor-farms-dynamics-365-supply-chain-management",
+    "quote": "the company replaced its operational platform with Microsoft Dynamics 365 Supply Chain Management and Dynamics 365 Finance",
+    "date": "2025-06-24",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/24441-taylor-farms-dynamics-365-supply-chain-management",
+     "final_url": "https://www.microsoft.com/en/customers/story/24441-taylor-farms-dynamics-365-supply-chain-management",
+     "retrieved_at": "2026-09-30T16:18:36.210Z",
+     "content_sha256": "5426549224e85cae303473cc53ec50341d6b4a728a41d5875d2c3f74645d800e",
+     "page_title": "Taylor Farms delivers freshness and drives efficiency with Dynamics 365 | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "end_customer",
+   "agrees_with_reference": true,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "The company sells fresh-food products to consumers, not engineering services or staffing.",
+    "url": "https://www.taylorfarms.com/our-impact",
+    "quote": "Our diverse product offerings allow healthy fresh foods to be accessible and enjoyable for our family of consumers across North America, to which we deliver 265 million servings every week!",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.taylorfarms.com/our-impact",
+     "final_url": "https://www.taylorfarms.com/our-impact/",
+     "retrieved_at": "2026-09-30T16:18:26.515Z",
+     "content_sha256": "cc66fb74ca6cd4d497183493fd976384e4a5d08b02e555a11cc5d43a74ffe659",
+     "page_title": "Our Impact - Taylor Farms",
+     "publisher": "Taylor Farms",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "...We strive to have our products be a force for good through our dedication to product and packaging innovation as well as food safety and quality. Consumer health and well-being is a top priority at Taylor Farms. ",
+     "match": "Our diverse product offerings allow healthy fresh foods to be accessible and enjoyable for our family of consumers across North America, to which we deliver 265 million servings every week!",
+     "after": " This is made possible by our commitment to functional packaging that maintains freshness and extends shelf life, and a comprehensive food safety program that meticulously monitors our produce from field to fork. Learn..."
+    },
+    "review": {
+     "why": "The passage describes Taylor Farms as delivering healthy fresh food products to consumers, confirming it sells fresh food products rather than engineering services or staff.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 4,
+   "company": "Rheem Manufacturing",
+   "domain": "rheem.com",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/25108-rheem-manufacturing-dynamics-365-customer-service",
+    "quote": "Rheem implemented Dynamics 365 Contact Center and Customer Service, integrating telephony, case tracking, and knowledge base tools",
+    "date": "2025-09-11",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/25108-rheem-manufacturing-dynamics-365-customer-service",
+     "final_url": "https://www.microsoft.com/en/customers/story/25108-rheem-manufacturing-dynamics-365-customer-service",
+     "retrieved_at": "2026-09-30T16:18:36.494Z",
+     "content_sha256": "1851c35861db9d69102f0f246105718c042827d31e779acfa2ad6a8c73195a5f",
+     "page_title": "Rheem Manufacturing transforms the customer experience with Dynamics 365 Contact Center | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "end_customer",
+   "agrees_with_reference": true,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "Rheem sells air and water products to end users and businesses; the cited passage does not describe selling software engineering or staffing services.",
+    "url": "http://rheem.com/about",
+    "quote": "At Rheem, we engineer a full line of global air and water products that deliver reliable performance, comfort and energy savings—providing just the right temperature for virtually any time and any place.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "http://rheem.com/about",
+     "final_url": "https://www.rheem.com/about/",
+     "retrieved_at": "2026-09-30T16:18:26.667Z",
+     "content_sha256": "a1fab94eaa478df3505e1698cf3d13189070fbc0638c12330c536870d5241bce",
+     "page_title": "About - Rheem Manufacturing Company",
+     "publisher": "Rheem USA | Heating, Cooling & Water Heating Solutions",
+     "dates": {
+      "claimed": null,
+      "published": "2024-09-20",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "Every breakthrough, every innovation designed to be a part of everyday life. Learn more ",
+     "match": "At Rheem, we engineer a full line of global air and water products that deliver reliable performance, comfort and energy savings—providing just the right temperature for virtually any time and any place.",
+     "after": " Count on us as your single source for innovative products & solutions, backed by 100 years of expertise and a bold commitment to sustainability. One big global family With more than 50 brands around the world, we..."
+    },
+    "review": {
+     "why": "The page describes Rheem as engineering and selling physical air and water products (manufactured goods) to consumers, not offering engineering services or staff to other organizations, supporting the proposition.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 5,
+   "company": "Publix Employees Federal Credit Union",
+   "domain": "pefcu.com",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/24708-publix-employees-federal-credit-union-azure-migrate",
+    "quote": "adopted Azure Local, Azure Arc, Azure Site Recovery, and Azure Migrate to simplify management, improve disaster recovery",
+    "date": "2025-07-16",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/24708-publix-employees-federal-credit-union-azure-migrate",
+     "final_url": "https://www.microsoft.com/en/customers/story/24708-publix-employees-federal-credit-union-azure-migrate",
+     "retrieved_at": "2026-09-30T16:18:36.444Z",
+     "content_sha256": "02d19182457a9a5643f2a6a176109e4aa2530945a562676f3da81e899dce12de",
+     "page_title": "How Publix Employees Federal Credit Union strengthened its disaster recovery strategy with Azure Local | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "end_customer",
+   "agrees_with_reference": true,
+   "reference_label": "end_customer",
+   "reference_confidence": "medium",
+   "evidence": {
+    "reason": "PEFCU offers financial products and services directly to its members, so it fits the end_customer category.",
+    "url": "https://www.pefcu.com/about/about-us/welcome-to-pefcu",
+    "quote": "From a child’s first savings account and personal loans to make weddings sparkle to first-time homebuyer programs and high-yield retirement accounts, your family and community are at the heart of every product and service available.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.pefcu.com/about/about-us/welcome-to-pefcu",
+     "final_url": "https://www.pefcu.com/about/about-us/welcome-to-pefcu",
+     "retrieved_at": "2026-09-30T16:18:26.287Z",
+     "content_sha256": "fa8b5005e56d8ed574dd9fbea285e2b166e9817d43d833b4189edaaae97e6fc1",
+     "page_title": "Welcome to PEFCU | Publix Employees Federal Credit Union",
+     "publisher": "pefcu.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "...That means that instead of pocketing profits like big banks do, we pass them down to you through better loans and savings options. As your trusted financial partner, we're here to help you at every stage of life. ",
+     "match": "From a child's first savings account and personal loans to make weddings sparkle to first-time homebuyer programs and high-yield retirement accounts, your family and community are at the heart of every product and service available.",
+     "after": " We appreciate you joining us as we serve, educate, and make dreams come true for members and their communities. Welcome to the PEFCU family. Jeremiah Kossen President and CEO Publix Employees Federal Credit Union Why..."
+    },
+    "review": {
+     "why": "The passage describes PEFCU as a credit union offering financial products like savings accounts, loans, homebuyer programs, and retirement accounts, confirming it sells financial services rather than engineering services or engineering staff.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 6,
+   "company": "Members 1st Federal Credit Union",
+   "domain": "members1st.org",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/23344-members-1st-federal-credit-union-microsoft-fabric",
+    "quote": "Members 1st centralized data from more than 15 disparate sources in a data lakehouse that became the M1-360 platform",
+    "date": "2025-04-10",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/23344-members-1st-federal-credit-union-microsoft-fabric",
+     "final_url": "https://www.microsoft.com/en/customers/story/23344-members-1st-federal-credit-union-microsoft-fabric",
+     "retrieved_at": "2026-09-30T16:18:36.485Z",
+     "content_sha256": "2f378b740bd2966106f1fca533d2dae0bac351d9385565b156df2a1c33e233c4",
+     "page_title": "Transforming banking with data analytics: Members 1st Federal Credit Union reduces model run time by 89% with 3Cloud and Microsoft Azure | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "end_customer",
+   "agrees_with_reference": true,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "Classify as end_customer: Members 1st sells financial products and services to members and business customers rather than staffing or engineering services to other organizations.",
+    "url": "https://members1st.org/",
+    "quote": "And we offer a full suite of financial tools and services that help our members do more with their money.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://members1st.org/",
+     "final_url": "https://www.members1st.org/",
+     "retrieved_at": "2026-09-30T16:18:26.309Z",
+     "content_sha256": "7a0bff1cc62a9d8c26c8106fbc4590ea3317196f5334a91a5f579bafdef06a97",
+     "page_title": "Members 1st Federal Credit Union | PA Credit Union",
+     "publisher": "members1st.org",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "...just a name—it's a mindset. Everything we do is in the best interest of all of us. We're here to help members thrive and better the communities we serve. Where others see dollars and cents, we see people and passions. ",
+     "match": "And we offer a full suite of financial tools and services that help our members do more with their money.",
+     "after": " We're Here to Help Getting ready for life's moments and milestones Visa Signature ® Card"
+    },
+    "review": {
+     "why": "The page states Members 1st offers \"a full suite of financial tools and services\" to its members, confirming it is a financial services credit union rather than an engineering staffing/services provider.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 7,
+   "company": "TriHealth",
+   "domain": "trihealth.com",
+   "entry_reason": "Press release",
+   "signal": {
+    "url": "https://www.trihealth.com/news/ms-azure-migration",
+    "quote": "TriHealth is migrating its customer electronic health record solution, Epic, to Microsoft Azure",
+    "date": "2026-04-20",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.trihealth.com/news/ms-azure-migration",
+     "final_url": "https://www.trihealth.com/news/ms-azure-migration",
+     "retrieved_at": "2026-09-30T16:18:36.624Z",
+     "content_sha256": "946f294650138c2b946caa8ed23003343cd697b264a1353f6fe624286eed757c",
+     "page_title": "TriHealth Advances Technology and Data Modernization with Microsoft Azure",
+     "publisher": "trihealth.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "end_customer",
+   "agrees_with_reference": true,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "Its stated business is providing healthcare, not selling software engineering or staffing services.",
+    "url": "https://www.trihealth.com/about-trihealth",
+    "quote": "TriHealth is a full-service, not-for-profit health system that provides a wide range of clinical, educational, preventive and social programs.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.trihealth.com/about-trihealth",
+     "final_url": "https://www.trihealth.com/about-trihealth",
+     "retrieved_at": "2026-09-30T16:18:26.524Z",
+     "content_sha256": "82424fc0f025dc4fd0a03ad74e72df9189fa3fa085772f1f7c934ed9a05e6841",
+     "page_title": "About TriHealth | TriHealth",
+     "publisher": "trihealth.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "...and Conditions Notice of Privacy Practices Privacy Statement Facts and Figures TriHealth is the integrated health care system that formed as a partnership between Good Samaritan Hospital and Bethesda Hospital, Inc. ",
+     "match": "TriHealth is a full-service, not-for-profit health system that provides a wide range of clinical, educational, preventive and social programs.",
+     "after": " TriHealth at a Glance Established in 1995 as an operating company for a hospital system One of the top integrated health systems in Greater Cincinnati 3rd largest employer in the Southwestern Ohio/Tri-State Region with..."
+    },
+    "review": {
+     "why": "The page describes TriHealth as a not-for-profit health system providing clinical, educational, preventive and social programs, confirming it is a healthcare provider and not an engineering services or staffing company.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 8,
+   "company": "Carle Health",
+   "domain": "carle.org",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/23790-carle-health-dynamics-365-customer-insights",
+    "quote": "implementing Dynamics 365 Customer Insights and Cloud for Healthcare to personalize outreach and unify data",
+    "date": "2025-05-05",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/23790-carle-health-dynamics-365-customer-insights",
+     "final_url": "https://www.microsoft.com/en/customers/story/23790-carle-health-dynamics-365-customer-insights",
+     "retrieved_at": "2026-09-30T16:18:36.437Z",
+     "content_sha256": "79bb98f4bc1038820692bc63ef207d011d50fda5a0cc3eba890a7dedcb267085",
+     "page_title": "Carle Health boosts patient response to 87% with Microsoft Dynamics 365 Customer Insights | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text not on the page"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": "nowhere on the page",
+    "check_reason": "not_on_page"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 9,
+   "company": "Ziegler Companies",
+   "domain": "zieglercat.com",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/25424-ziegler-companies-dynamics-365-supply-chain-management",
+    "quote": "Ziegler unified operations and boosted efficiency by implementing Microsoft Dynamics 365, enabling real-time data access",
+    "date": "2025-11-12",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/25424-ziegler-companies-dynamics-365-supply-chain-management",
+     "final_url": "https://www.microsoft.com/en/customers/story/25424-ziegler-companies-dynamics-365-supply-chain-management",
+     "retrieved_at": "2026-09-30T16:18:36.915Z",
+     "content_sha256": "7069b4ea54721cb91a9ecee295e51eb372269c39c0af230dbb126f499da4f2af",
+     "page_title": "Ziegler Companies powers efficiency, productivity, and cost savings with Dynamics 365 | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text not on the page"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": "page source outside visible text",
+    "check_reason": "not_on_page"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 10,
+   "company": "Regional Water Authority",
+   "domain": "rwater.com",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/25543-regional-water-authority-dynamics-365-contact-center",
+    "quote": "RWA implemented Dynamics 365 and UMAX, unifying platforms, automating billing, and enabling real-time analytics for seamless operations",
+    "date": "2025-10-28",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/25543-regional-water-authority-dynamics-365-contact-center",
+     "final_url": "https://www.microsoft.com/en/customers/story/25543-regional-water-authority-dynamics-365-contact-center",
+     "retrieved_at": "2026-09-30T16:18:36.692Z",
+     "content_sha256": "2fcecb2e1ee0992b408239f6f86aec50fb8e019b85c68c787c88edfeb1ad8af7",
+     "page_title": "Regional Water Authority taps into transformation and automation with Dynamics 365 | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "end_customer",
+   "agrees_with_reference": true,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "Regional Water Authority's description focuses on delivering water to the communities it serves, not selling engineering or recruiting services to other organizations.",
+    "url": "https://www.rwater.com/about-us/our-organization",
+    "quote": "On average, we supply about 44 million gallons of water a day to a population of more than 432,000 people in 15 South Central Connecticut municipalities.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.rwater.com/about-us/our-organization",
+     "final_url": "https://www.rwater.com/about-us/our-organization",
+     "retrieved_at": "2026-09-30T16:18:26.718Z",
+     "content_sha256": "f28dd6cf48a83f2310764e9907f2565bb1d99d62b48adc568d84bf278d9dad71",
+     "page_title": "Regional Water Authority",
+     "publisher": "Regional Water Authority",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "...take great pride in the delivery of this life-sustaining product and the services that safeguard public health, provide fire protection, support local economic growth and maintain the overall quality of life we enjoy. ",
+     "match": "On average, we supply about 44 million gallons of water a day to a population of more than 432,000 people in 15 South Central Connecticut municipalities.",
+     "after": " It takes running four state-of-the-art surface water treatment plants, maintaining over 1,700 miles of underground pipes, managing nearly 28,000 acres of watershed land, conducting 110,000 drinking water tests per..."
+    },
+    "review": {
+     "why": "The passage describes Regional Water Authority itself as supplying drinking water to municipalities, confirming its business is water supply/utility services rather than selling engineering staff or services to other organizations.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 11,
+   "company": "Clyde Companies",
+   "domain": "clydeinc.com",
+   "entry_reason": "Press release",
+   "signal": {
+    "url": "https://www.prnewswire.com/news-releases/sis-llc-announces-successful-go-live-of-microsoft-dynamics-365-and-sis-construct-365-at-clyde-companies-302646008.html",
+    "quote": "today announced the successful go-live of Microsoft Dynamics 365 with SIS Construct 365 at Clyde Companies",
+    "date": "2025-12-18",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.prnewswire.com/news-releases/sis-llc-announces-successful-go-live-of-microsoft-dynamics-365-and-sis-construct-365-at-clyde-companies-302646008.html",
+     "final_url": "https://www.prnewswire.com/news-releases/sis-llc-announces-successful-go-live-of-microsoft-dynamics-365-and-sis-construct-365-at-clyde-companies-302646008.html",
+     "retrieved_at": "2026-09-30T16:18:36.760Z",
+     "content_sha256": "c5c87b3d4eaddf387ea353daeb5bc8711b55716e282831a4bce281a1cae1e2a7",
+     "page_title": "SIS, LLC Announces Successful Go-Live of Microsoft Dynamics 365 and SIS Construct 365 at Clyde Companies",
+     "publisher": "prnewswire.com",
+     "dates": {
+      "claimed": null,
+      "published": "2025-12-18",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text not on the page"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": "nowhere on the page",
+    "check_reason": "not_on_page"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 12,
+   "company": "Hayward Holdings, Inc.",
+   "domain": "hayward.com",
+   "entry_reason": "Press release",
+   "signal": {
+    "url": "https://www.prnewswire.com/news-releases/alithya-announces-microsoft-d365-go-live-completion-in-europe-for-global-pool-and-outdoor-living-manufacturer-302502008.html",
+    "quote": "The European implementations are the first step in Hayward's plan to standardize the company on a single platform",
+    "date": "2025-07-10",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.prnewswire.com/news-releases/alithya-announces-microsoft-d365-go-live-completion-in-europe-for-global-pool-and-outdoor-living-manufacturer-302502008.html",
+     "final_url": "https://www.prnewswire.com/news-releases/alithya-announces-microsoft-d365-go-live-completion-in-europe-for-global-pool-and-outdoor-living-manufacturer-302502008.html",
+     "retrieved_at": "2026-09-30T16:18:36.482Z",
+     "content_sha256": "b78d4de8ce8e3358434be5be9538ba18deb622bb65ba410b500208edc98b1e59",
+     "page_title": "Alithya Announces Microsoft D365 Go-Live Completion in Europe for Global Pool and Outdoor Living Manufacturer",
+     "publisher": "prnewswire.com",
+     "dates": {
+      "claimed": null,
+      "published": "2025-07-10",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "end_customer",
+   "agrees_with_reference": true,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "The page identifies pool equipment as Hayward’s offering; it does not describe selling engineering staff or software development services to other organizations.",
+    "url": "https://www.hayward.com/company/about-us",
+    "quote": "We offer a full line of energy-efficient, sustainable and digitally-connected residential and commercial pool equipment including pumps, filters, heaters, cleaners, LED lighting, and water features.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.hayward.com/company/about-us",
+     "final_url": "https://www.hayward.com/company/about-us",
+     "retrieved_at": "2026-09-30T16:18:26.655Z",
+     "content_sha256": "0fecaad7e04f9841415e611e54e32383504110469bf4cd889f7a9361b8f8c482",
+     "page_title": "Hayward Pool Products About Us",
+     "publisher": "hayward.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "...internet-connected homes. Guided by our mission to build better so you can backyard better, Hayward delivers exceptional products, outstanding service, and innovative technology to transform the experience of water. ",
+     "match": "We offer a full line of energy-efficient, sustainable and digitally-connected residential and commercial pool equipment including pumps, filters, heaters, cleaners, LED lighting, and water features.",
+     "after": " Whether you're trying to create the perfect backyard environment, reduce operating and maintenance costs, or harness the power and convenience of wireless controls, Hayward makes the equipment and technology to help..."
+    },
+    "review": {
+     "why": "The page describes Hayward itself as offering pool equipment (pumps, filters, heaters, cleaners, LED lighting, water features), confirming it sells physical products rather than engineering staff or services.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 13,
+   "company": "Beasley Group",
+   "domain": "beasleygroup.com",
+   "entry_reason": "Press release",
+   "signal": {
+    "url": "https://www.prnewswire.com/news-releases/sis-llc-announces-beasley-groups-adoption-of-microsoft-dynamics-365-and-sis-construct-365-project-cost-management-302734021.html",
+    "quote": "today announced that Beasley Group has chosen Microsoft Dynamics 365 integrated with the Project Cost Management module",
+    "date": "2026-04-07",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.prnewswire.com/news-releases/sis-llc-announces-beasley-groups-adoption-of-microsoft-dynamics-365-and-sis-construct-365-project-cost-management-302734021.html",
+     "final_url": "https://www.prnewswire.com/news-releases/sis-llc-announces-beasley-groups-adoption-of-microsoft-dynamics-365-and-sis-construct-365-project-cost-management-302734021.html",
+     "retrieved_at": "2026-09-30T16:18:36.693Z",
+     "content_sha256": "a080efb05093f7828f269a63b9fd70516db442a7e68e0fbbe58b6ad28a50b51f",
+     "page_title": "SIS, LLC Announces Beasley Group's Adoption of Microsoft Dynamics 365 and SIS Construct 365 Project Cost Management",
+     "publisher": "prnewswire.com",
+     "dates": {
+      "claimed": null,
+      "published": "2026-04-07",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "end_customer",
+   "agrees_with_reference": true,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "The cited passage lists Beasley Group’s products, supporting a product-sales business model rather than engineering or recruitment services.",
+    "url": "https://www.beasleygroup.com/",
+    "quote": "In addition to mats and grade lumber, we offer a product line which includes cross ties, pallet lumber, renewable energy, and finished goods, such as flooring.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.beasleygroup.com/",
+     "final_url": "https://www.beasleygroup.com/",
+     "retrieved_at": "2026-09-30T16:18:26.276Z",
+     "content_sha256": "0b5591ab64001922514d41b1eb894c335e6b185a26ad37d076e35d59442caeb2",
+     "page_title": "Home - Beasley Group",
+     "publisher": "beasleygroup.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "...have fueled our growth to become the largest hardwood sawmill in the United States and North America's foremost producer of crane mats and timbers for the energy transmission, utility, and construction industries. ",
+     "match": "In addition to mats and grade lumber, we offer a product line which includes cross ties, pallet lumber, renewable energy, and finished goods, such as flooring.",
+     "after": " The Beasley Group works with customers, large and small, to meet their needs in the domestic and export markets of the USA, Canada, Europe, and Asia. We are committed to product quality and service delivery that form..."
+    },
+    "review": {
+     "why": "The page describes Beasley Group as a hardwood sawmill and producer of crane mats, timbers, cross ties, pallet lumber, and flooring, confirming it sells wood products rather than engineering services or staff.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 14,
+   "company": "Vera Bradley",
+   "domain": "verabradley.com",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/24992-vera-bradley-dynamics-365-finance",
+    "quote": "Vera Bradley unified finance, commerce, supply chain, and customer service with Microsoft Dynamics 365 and Copilot Studio",
+    "date": "2025-08-21",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/24992-vera-bradley-dynamics-365-finance",
+     "final_url": "https://www.microsoft.com/en/customers/story/24992-vera-bradley-dynamics-365-finance",
+     "retrieved_at": "2026-09-30T16:18:36.197Z",
+     "content_sha256": "413440d29d0ce8da55ee782d886eba225cc1ce4f7f5dad0fe735465238578de5",
+     "page_title": "Vera Bradley designs efficiency and better customer experiences with Dynamics 365 | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text not on the page"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": "page metadata only",
+    "check_reason": "not_on_page"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 15,
+   "company": "Community Health Network",
+   "domain": "ecommunity.com",
+   "entry_reason": "Partner case study",
+   "signal": {
+    "url": "https://partner.microsoft.com/en-US/case-studies/ehc-consulting",
+    "quote": "they turned to EHC to lead a strategic, first-of-its-kind migration to Microsoft Azure",
+    "date": "2025-11-10",
+    "check": {
+     "status": "unreadable",
+     "reason": "http_403",
+     "quote_found": false,
+     "http_status": 403,
+     "original_url": "https://partner.microsoft.com/en-US/case-studies/ehc-consulting",
+     "final_url": "https://partner.microsoft.com/en-US/case-studies/ehc-consulting",
+     "retrieved_at": "2026-09-30T16:18:36.459Z",
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "unverifiable",
+    "why": "http_403"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": null,
+    "check_reason": "http_403"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 16,
+   "company": "Tinius Olsen",
+   "domain": "tiniusolsen.com",
+   "entry_reason": "Partner case study",
+   "signal": {
+    "url": "https://partner.microsoft.com/en-us/case-studies/cloudfronts",
+    "quote": "enabling online sales required seamless integration between their chosen platform, Shopify, and their ERP, Microsoft Dynamics 365 Finance and Operations",
+    "date": "2025-11-12",
+    "check": {
+     "status": "unreadable",
+     "reason": "http_403",
+     "quote_found": false,
+     "http_status": 403,
+     "original_url": "https://partner.microsoft.com/en-us/case-studies/cloudfronts",
+     "final_url": "https://partner.microsoft.com/en-us/case-studies/cloudfronts",
+     "retrieved_at": "2026-09-30T16:18:36.490Z",
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "end_customer",
+   "agrees_with_reference": true,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "The official page identifies Tinius Olsen as a manufacturer and supplier of equipment, not a staffing, recruiting, or engineering-services provider.",
+    "url": "http://tiniusolsen.com/our-company",
+    "quote": "Tinius Olsen is a global manufacturer and supplier of materials testing machines.",
+    "claimed_date": "2022-06-03",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "http://tiniusolsen.com/our-company",
+     "final_url": "http://www.tiniusolsen.com/our-company/",
+     "retrieved_at": "2026-09-30T16:18:26.504Z",
+     "content_sha256": "24e2a2ce3edad9a38e2e34f208c00af97cc142addef8fbf8f6536d3fadc134bb",
+     "page_title": "Our Company | Tinius Olsen",
+     "publisher": "Tinius Olsen",
+     "dates": {
+      "claimed": null,
+      "published": "2021-06-15",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "Our Company Tinius Olsen Testing Machine Company ",
+     "match": "Tinius Olsen is a global manufacturer and supplier of materials testing machines.",
+     "after": " We have been at the cutting edge of research and development for over 140 years, producing high quality specialist equipment to clients in many different industries around the world. Tinius Olsen was born in Kongsberg,..."
+    },
+    "review": {
+     "why": "The page explicitly states Tinius Olsen is a \"global manufacturer and supplier of materials testing machines,\" describing its own business as producing physical equipment rather than selling engineering staff or services to other organizations.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 17,
+   "company": "Heritage Grocers Group",
+   "domain": "heritagegrocers.com",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/22559-heritage-grocers-group-microsoft-fabric",
+    "quote": "Heritage Grocers Group adopted Lucid Data Hub, a solution from Adastra that uses Microsoft Fabric for deep analytics",
+    "date": "2025-02-24",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/22559-heritage-grocers-group-microsoft-fabric",
+     "final_url": "https://www.microsoft.com/en/customers/story/22559-heritage-grocers-group-microsoft-fabric",
+     "retrieved_at": "2026-09-30T16:18:36.448Z",
+     "content_sha256": "241d9bb6d61b43dd8f6869bc22e9aef6f8c1ec028a3b2965b9af181e81d84166",
+     "page_title": "Adastra helps Heritage Grocers Group save $500,000 by adopting Microsoft Fabric | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "unverifiable",
+    "why": "domain_not_allowed"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": null,
+    "check_reason": "domain_not_allowed"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 18,
+   "company": "Now Optics",
+   "domain": "nowoptics.com",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/23869-now-optics-dynamics-365-supply-chain-management",
+    "quote": "With support from Avantiico, Now Optics migrated its finance and supply chain operations to Microsoft Dynamics 365",
+    "date": "2025-05-08",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/23869-now-optics-dynamics-365-supply-chain-management",
+     "final_url": "https://www.microsoft.com/en/customers/story/23869-now-optics-dynamics-365-supply-chain-management",
+     "retrieved_at": "2026-09-30T16:18:36.404Z",
+     "content_sha256": "871a4f83637709d096a37bcd2ee041b322eb57bb71ea3a5e62039d7de884522d",
+     "page_title": "Now Optics and Avantiico’s ERP integration fuels expansion and modernizes eye care in 18 months with Microsoft Dynamics 365 | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text on the page but it does not support the label in context"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "medium",
+   "not_accepted": {
+    "where": null,
+    "check_reason": "exact"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": false
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": false
+    },
+    "supported": {
+     "accepted": false,
+     "correct": false
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 19,
+   "company": "OneDigital",
+   "domain": "onedigital.com",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/23595-onedigital-azure-open-ai-service",
+    "quote": "co-develop custom AI agents with Data Science Dojo, leveraging Azure OpenAI and Ejento AI to streamline research",
+    "date": "2025-04-23",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/23595-onedigital-azure-open-ai-service",
+     "final_url": "https://www.microsoft.com/en/customers/story/23595-onedigital-azure-open-ai-service",
+     "retrieved_at": "2026-09-30T16:18:36.652Z",
+     "content_sha256": "128b276a3cb4729ff849812f45f59c813d362d569f1c27ad3b9b9853f73d8c1c",
+     "page_title": "OneDigital leverages Microsoft Azure to scale consulting power with AI Coworkers | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text not on the page"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": "page metadata only",
+    "check_reason": "not_on_page"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 20,
+   "company": "City of Hope",
+   "domain": "cityofhope.org",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/23397-city-of-hope-azure-open-ai-service",
+    "quote": "City of Hope has developed an innovative generative AI platform that supports oncology doctors in preparing for new patient appointments",
+    "date": "2025-04-11",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/23397-city-of-hope-azure-open-ai-service",
+     "final_url": "https://www.microsoft.com/en/customers/story/23397-city-of-hope-azure-open-ai-service",
+     "retrieved_at": "2026-09-30T16:18:36.260Z",
+     "content_sha256": "b492b9de37f4fe2f6face53b6d9fdf7225531caead5ea72a6f5565490fd01219",
+     "page_title": "City of Hope uses Microsoft Azure and AI to rapidly onboard thousands of patients per year | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "unverifiable",
+    "why": "http_403"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": null,
+    "check_reason": "http_403"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 21,
+   "company": "Ballard Spahr",
+   "domain": "ballardspahr.com",
+   "entry_reason": "Microsoft customer story",
+   "signal": {
+    "url": "https://www.microsoft.com/en/customers/story/24650-ballard-spahr-azure-openai",
+    "quote": "Ballard Spahr worked with Neudesic to create Ballard X-Ray, a large-scale repository and interactive agent powered by Azure OpenAI",
+    "date": "2025-07-01",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.microsoft.com/en/customers/story/24650-ballard-spahr-azure-openai",
+     "final_url": "https://www.microsoft.com/en/customers/story/24650-ballard-spahr-azure-openai",
+     "retrieved_at": "2026-09-30T16:18:36.438Z",
+     "content_sha256": "8136c03b9ede007a1ac8911a835514ffbdd5e2dd8c2c6fc51b51c9e9244941f8",
+     "page_title": "Ballard Spahr saves $2 million in unplanned losses and cuts research time 60% with Neudesic and Azure OpenAI | Microsoft Customer Stories",
+     "publisher": "microsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "end_customer",
+   "agrees_with_reference": true,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "The company’s stated offering is strategic legal services, not software engineering or IT delivery.",
+    "url": "http://ballardspahr.com/about/about-the-firm",
+    "quote": "We provide strategic legal services and business solutions of the highest quality, delivered with uncommon efficiency.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "http://ballardspahr.com/about/about-the-firm",
+     "final_url": "https://www.ballardspahr.com/about/about-the-firm",
+     "retrieved_at": "2026-09-30T16:18:26.480Z",
+     "content_sha256": "9f83643b7d9b8fcc71586df95e2421b002c44683587810f050474892a0718a0f",
+     "page_title": "About The Firm | Ballard Spahr",
+     "publisher": "ballardspahr.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "...How can we help you today? Menu About The Firm Overview History Community Strategic Affiliations Firm Management Overview Overview History Community Strategic Affiliations Firm Management Overview Ballard Goes Beyond ",
+     "match": "We provide strategic legal services and business solutions of the highest quality, delivered with uncommon efficiency.",
+     "after": " With more than 750 lawyers in 19 U.S. offices, we bring industry knowledge augmented by tenacity, initiative, and a drive for results-creating an outsized advantage for clients in litigation, transactions, and..."
+    },
+    "review": {
+     "why": "The page describes Ballard Spahr as a law firm with lawyers providing legal services and business solutions, confirming it sells legal (not engineering) services and does not supply engineering staff to other organizations.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 22,
+   "company": "Sagitec Solutions",
+   "domain": "sagitec.com",
+   "entry_reason": "Company site",
+   "signal": {
+    "url": "https://www.sagitec.com/about",
+    "quote": "Supported by our underlying .NET software framework, Neospin is a dynamic IT solution with unmatched flexibility to grow, adapt, and evolve.",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.sagitec.com/about",
+     "final_url": "https://www.sagitec.com/about",
+     "retrieved_at": "2026-09-30T16:18:36.686Z",
+     "content_sha256": "451588291beb1f1ac4a6c891f3756e4ee9b1971b5f99f0c5ad1b344a165aaca0",
+     "page_title": "About Sagitec Solutions – IT Solutions Company",
+     "publisher": "sagitec.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "mixed_uncertain",
+   "agrees_with_reference": true,
+   "reference_label": "mixed_uncertain",
+   "reference_confidence": "medium",
+   "evidence": {
+    "reason": "The evidence shows both Sagitec’s own software products and services delivered to clients.",
+    "url": "https://www.sagitec.com/about",
+    "quote": "We accomplish our mission by providing high-quality business solutions and technology platforms, products, and services.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.sagitec.com/about",
+     "final_url": "https://www.sagitec.com/about",
+     "retrieved_at": "2026-09-30T16:18:26.434Z",
+     "content_sha256": "451588291beb1f1ac4a6c891f3756e4ee9b1971b5f99f0c5ad1b344a165aaca0",
+     "page_title": "About Sagitec Solutions – IT Solutions Company",
+     "publisher": "sagitec.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "best-in-class service to their end customers. Our Vision ",
+     "match": "We accomplish our mission by providing high-quality business solutions and technology platforms, products, and services.",
+     "after": " We aim to reduce redundancy, improve delivery efficiency, and ensure a customer's solution never becomes obsolete."
+    },
+    "review": {
+     "why": "The About page states Sagitec provides \"business solutions and technology platforms, products, and services,\" indicating it sells both IT services and its own technology products/platforms.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 23,
+   "company": "Revature",
+   "domain": "revature.com",
+   "entry_reason": "Company site",
+   "signal": {
+    "url": "https://revature.com/get-hired",
+    "quote": "we train on more than 200 different technologies ranging from foundational (Java Full Stack, Microsoft .NET Full Stack, Java with Automation)",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://revature.com/get-hired",
+     "final_url": "https://revature.com/get-hired",
+     "retrieved_at": "2026-09-30T16:18:36.476Z",
+     "content_sha256": "d8aaf4a87b14f59181f545a8ad4fdd37b0a0f66c06affc5a2a5d141cf67c52df",
+     "page_title": "Revature Careers | Paid Training & Pathways to Tech Roles",
+     "publisher": "revature.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "staffing_recruitment",
+   "agrees_with_reference": true,
+   "reference_label": "staffing_recruitment",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "Revature primarily supplies trained engineering talent to other organizations through deployment and placement, so staffing_recruitment is the best fit.",
+    "url": "https://www.revature.com/emerging-talent-program",
+    "quote": "Hire-Train-Deploy (HTD) Junior Talent Deployment-ready engineers trained on your stack and ways of working, with a full-time-employee (FTE) conversion path when you're ready.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.revature.com/emerging-talent-program",
+     "final_url": "https://www.revature.com/emerging-talent-program",
+     "retrieved_at": "2026-09-30T16:18:26.287Z",
+     "content_sha256": "95944ba8ac527b34d2baa799d4a85c1766df632a728139c7d0bfd55e34af47f1",
+     "page_title": "Emerging Talent Program: Hire, Train, Deploy Job-Ready Engineers | Revature",
+     "publisher": "revature.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "...spend with a predictable pipeline of day-1-ready engineers, trained on your stack, vetted by senior interviewers, and supported with mentoring, so teams ship faster and talent stays. Build Capabilities That Stick ",
+     "match": "Hire-Train-Deploy (HTD) Junior Talent Deployment-ready engineers trained on your stack and ways of working, with a full-time-employee (FTE) conversion path when you’re ready.",
+     "after": " Programs include client-specific curriculum, hands-on labs, and graduation gates aligned to your standards. Trained to your tech and delivery practices Day-1 productivity on deployment Zero upfront cost; predictable..."
+    },
+    "review": {
+     "why": "The page describes Revature's Hire-Train-Deploy program where Revature trains engineers on the client's stack and deploys them to client organizations with a predictable pipeline and zero upfront cost, indicating Revature itself supplies trained staff/contractors to other organizations.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 24,
+   "company": "Planet Technologies",
+   "domain": "go-planet.com",
+   "entry_reason": "Press release",
+   "signal": {
+    "url": "https://go-planet.com/planet-technologies-and-carahsoft-partner-to-bring-optimization-of-microsoft-solutions-to-government-agencies/",
+    "quote": "A flexible suite of services—including M365, Azure, Sentinel, Compliance, OCM, and Helpdesk Advantage—all designed to help organizations manage, secure, and support their Microsoft environments",
+    "date": "2025-04-22",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://go-planet.com/planet-technologies-and-carahsoft-partner-to-bring-optimization-of-microsoft-solutions-to-government-agencies/",
+     "final_url": "https://go-planet.com/planet-technologies-and-carahsoft-partner-to-bring-optimization-of-microsoft-solutions-to-government-agencies/",
+     "retrieved_at": "2026-09-30T16:18:36.480Z",
+     "content_sha256": "b3ddc99445a55d2f9eb105cd644c421c7304abbd0f18fdaf452759fd1d0d8e87",
+     "page_title": "Planet Technologies and Carahsoft Partner to Bring Optimization of Microsoft Solutions to Government Agencies - Planet Technologies",
+     "publisher": "Planet Technologies",
+     "dates": {
+      "claimed": null,
+      "published": "2025-04-22",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "engineering_services",
+   "agrees_with_reference": true,
+   "reference_label": "engineering_services",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "Planet sells IT support and managed services to organizations, which places it in the engineering_services category.",
+    "url": "https://go-planet.com/Microsoft-managed-services",
+    "quote": "Planet provides expert IT support when you need it most. As a trusted Microsoft partner, Planet can augment your IT staff—providing expert guidance, support, and solutions for your helpdesk challenges.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://go-planet.com/Microsoft-managed-services",
+     "final_url": "https://go-planet.com/Microsoft-managed-services/",
+     "retrieved_at": "2026-09-30T16:18:26.469Z",
+     "content_sha256": "b1c65e5fc92541c2acf2dc86d02cfa639107ce14489d59919c882c8329a5ec51",
+     "page_title": "Microsoft Managed Services - Planet Technologies",
+     "publisher": "Planet Technologies",
+     "dates": {
+      "claimed": null,
+      "published": "2024-10-01",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "Keep your operations running smoothly with responsive and reliable IT support. ",
+     "match": "Planet provides expert IT support when you need it most. As a trusted Microsoft partner, Planet can augment your IT staff—providing expert guidance, support, and solutions for your helpdesk challenges.",
+     "after": " We can help you with migration, deployment, configuration, governance, security, compliance, and more. Success Stories Helpdesk Advantage Services Training and Mentoring: Partner with your team to build skills and..."
+    },
+    "review": {
+     "why": "The page explicitly states Planet Technologies itself provides managed IT/helpdesk support and staff augmentation services to clients as a Microsoft partner, directly supporting the proposition.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 25,
+   "company": "Applied Information Sciences (AIS)",
+   "domain": "ais.com",
+   "entry_reason": "Press release",
+   "signal": {
+    "url": "https://www.ais.com/resources/news/ais-acquires-dorrean/",
+    "quote": "AIS is a leading Microsoft partner with all Solution Partner Designations and many Specializations, demonstrating the company’s leadership in delivering secure, scalable, and innovative technology solutions.",
+    "date": "2025-07-17",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.ais.com/resources/news/ais-acquires-dorrean/",
+     "final_url": "https://www.ais.com/resources/news/ais-acquires-dorrean/",
+     "retrieved_at": "2026-09-30T16:18:36.217Z",
+     "content_sha256": "6e902514b6c4fed408145cb28351632410afaa837c819935e7e40608b3d96e52",
+     "page_title": "AIS Acquires Dorrean - Applied Information Sciences",
+     "publisher": "Applied Information Sciences",
+     "dates": {
+      "claimed": null,
+      "published": "2025-07-17",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "engineering_services",
+   "agrees_with_reference": true,
+   "reference_label": "engineering_services",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "AIS sells software product development and engineering services to client organizations, so the best fit is engineering_services.",
+    "url": "https://www.ais.com/capabilities/application-development",
+    "quote": "Turn your ideas into reality with our innovative product development services. Our teams of seasoned developers, designers, and strategists collaborate closely to bring your vision to life. We ensure your product meets and exceeds user expectations from concept to deployment.",
+    "claimed_date": "2023-08-31",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.ais.com/capabilities/application-development",
+     "final_url": "https://www.ais.com/capabilities/application-development/",
+     "retrieved_at": "2026-09-30T16:18:26.494Z",
+     "content_sha256": "de376bed42e50b92fad9c54dadf29004b38d7d991c17d77944930afc940d9ecf",
+     "page_title": "Expert Application Development Services - AIS",
+     "publisher": "Applied Information Sciences",
+     "dates": {
+      "claimed": null,
+      "published": "2023-08-31",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "he latest technologies to future-proof your applications and drive enduring value. Bring your product to life with a partner who can help you dream up and build out your next major application. ",
+     "match": "Turn your ideas into reality with our innovative product development services. Our teams of seasoned developers, designers, and strategists collaborate closely to bring your vision to life. We ensure your product meets and exceeds user expectations from concept to deployment.",
+     "after": " Working across a wide range of enterprise customers within Federal and Commercial sectors, we bring a broad perspective and a certain level of creativity to designing products that meet business and mission goals. At..."
+    },
+    "review": {
+     "why": "The page, on AIS's own capabilities/application-development page, describes AIS's own product development and software engineering services offered to enterprise customers, directly supporting the proposition.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 26,
+   "company": "Velosio",
+   "domain": "velosio.com",
+   "entry_reason": "Press release",
+   "signal": {
+    "url": "https://www.prweb.com/releases/velosio-acquires-strava-technology-group-expanding-customer-engagement-capabilities-across-the-microsoft-cloud-portfolio-302472866.html",
+    "quote": "Velosio has acquired Strava Technology Group, a Microsoft Partner specializing in Dynamics 365 Customer Engagement and Power Platform.",
+    "date": "2025-06-04",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.prweb.com/releases/velosio-acquires-strava-technology-group-expanding-customer-engagement-capabilities-across-the-microsoft-cloud-portfolio-302472866.html",
+     "final_url": "https://www.prweb.com/releases/velosio-acquires-strava-technology-group-expanding-customer-engagement-capabilities-across-the-microsoft-cloud-portfolio-302472866.html",
+     "retrieved_at": "2026-09-30T16:18:36.392Z",
+     "content_sha256": "83a5b39305d87bd72e8bc0b44523b338922167868d84cad6569456516b9715e6",
+     "page_title": "Velosio Acquires Strava Technology Group, Expanding Customer Engagement Capabilities across the Microsoft Cloud Portfolio",
+     "publisher": "prweb.com",
+     "dates": {
+      "claimed": null,
+      "published": "2025-06-04",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "engineering_services",
+   "agrees_with_reference": true,
+   "reference_label": "engineering_services",
+   "reference_confidence": "medium",
+   "evidence": {
+    "reason": "Velosio provides implementation and development services to business clients, rather than supplying staff or recruiters.",
+    "url": "https://www.velosio.com/services",
+    "quote": "Velosio provides tailored ERP, CRM implementations, data and analytics, automation and app dev, and business productivity solutions to optimize business operations.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.velosio.com/services",
+     "final_url": "https://www.velosio.com/products/",
+     "retrieved_at": "2026-09-30T16:18:26.419Z",
+     "content_sha256": "dba5aaf37720ec0ff5ba698d26b345e73162a875c7f0f06de64beb69b61ed4b0",
+     "page_title": "Business Software & Technology Consulting Services | Velosio",
+     "publisher": "Velosio",
+     "dates": {
+      "claimed": null,
+      "published": "2019-05-24",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "Adoption & Change Velosio’s holistic approach to change management enables your workforce to thrive in new environments and support long-term success. Learn More Business Transformation ",
+     "match": "Velosio provides tailored ERP, CRM implementations, data and analytics, automation and app dev, and business productivity solutions to optimize business operations.",
+     "after": " Learn More Read Our Customer's Success Stories"
+    },
+    "review": {
+     "why": "The page explicitly states that Velosio itself provides ERP/CRM implementation, data/analytics, automation, app dev, and business productivity consulting services to businesses, directly supporting the proposition.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 27,
+   "company": "ScienceSoft",
+   "domain": "scnsoft.com",
+   "entry_reason": "Company site",
+   "signal": {
+    "url": "https://www.scnsoft.com/software-development/dotnet",
+    "quote": "ScienceSoft is a flexible ASP.NET development company that offers different cooperation models to perfectly meet your .NET development project needs.",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.scnsoft.com/software-development/dotnet",
+     "final_url": "https://www.scnsoft.com/software-development/dotnet",
+     "retrieved_at": "2026-09-30T16:18:36.476Z",
+     "content_sha256": "53b87126d1107e55d95f63fab0b44f63b65ee119687cafd5d23b3db968e93894",
+     "page_title": "Custom .NET Software Development Company - ScienceSoft",
+     "publisher": "scnsoft.com",
+     "dates": {
+      "claimed": null,
+      "published": "2019-10-17",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text not on the page"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "engineering_services",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": "nowhere on the page",
+    "check_reason": "not_on_page"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 28,
+   "company": "Dataprise",
+   "domain": "dataprise.com",
+   "entry_reason": "Partner case study",
+   "signal": {
+    "url": "https://www.dataprise.com/",
+    "quote": "Dematic digitally transformed their compute infrastructure to Azure with the help of Dataprise.",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.dataprise.com/",
+     "final_url": "https://www.dataprise.com/",
+     "retrieved_at": "2026-09-30T16:18:36.462Z",
+     "content_sha256": "24ac841f87945a9b92a82d638da45b5bcd4c1f50bf253f4b0a174d1c78f9ae8e",
+     "page_title": "Managed IT Services Provider l IT Solutions | Dataprise",
+     "publisher": "Dataprise",
+     "dates": {
+      "claimed": null,
+      "published": "2022-09-30",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text not on the page"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "engineering_services",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": "nowhere on the page",
+    "check_reason": "not_on_page"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 29,
+   "company": "Sparkhound",
+   "domain": "sparkhound.com",
+   "entry_reason": "Partner case study",
+   "signal": {
+    "url": "https://www.sparkhound.com/",
+    "quote": "Sparkhound has been an outstanding partner in our Power Platform journey.",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.sparkhound.com/",
+     "final_url": "https://www.sparkhound.com/",
+     "retrieved_at": "2026-09-30T16:18:36.510Z",
+     "content_sha256": "eff56c22a590193b464d501a3f5df1205bcdbf58d43365e3837287103724501c",
+     "page_title": "Gulf Coast Business and Technology Consulting Services | Sparkhound",
+     "publisher": "Sparkhound",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text not on the page"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "engineering_services",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": "nowhere on the page",
+    "check_reason": "not_on_page"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 30,
+   "company": "Centric Consulting",
+   "domain": "centricconsulting.com",
+   "entry_reason": "Partner case study",
+   "signal": {
+    "url": "https://centricconsulting.com/",
+    "quote": "In this client story, learn how Centric Consulting helped their client transform data analytics and operations—migrating from Excel-based workflows to a cloud-based architecture using Microsoft Azure.",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://centricconsulting.com/",
+     "final_url": "https://centricconsulting.com/",
+     "retrieved_at": "2026-09-30T16:18:36.694Z",
+     "content_sha256": "6fd29b6ffba76e1a25610050cbc926f2dbd970424fa820b23605347a66d11a7e",
+     "page_title": "Digital, Business and Technology Solutions | Centric Consulting",
+     "publisher": "Centric Consulting",
+     "dates": {
+      "claimed": null,
+      "published": "2013-08-30",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "engineering_services",
+   "agrees_with_reference": true,
+   "reference_label": "engineering_services",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "Centric Consulting sells consulting and technology-related services to client organizations, so it fits engineering_services rather than staffing_recruitment.",
+    "url": "https://centricconsulting.com/",
+    "quote": "With flexible engagement models, including solution-based consulting, role-based support, and managed services, we ensure you get the right team and the right solution to meet your unique needs.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://centricconsulting.com/",
+     "final_url": "https://centricconsulting.com/",
+     "retrieved_at": "2026-09-30T16:18:26.492Z",
+     "content_sha256": "6fd29b6ffba76e1a25610050cbc926f2dbd970424fa820b23605347a66d11a7e",
+     "page_title": "Digital, Business and Technology Solutions | Centric Consulting",
+     "publisher": "Centric Consulting",
+     "dates": {
+      "claimed": null,
+      "published": "2013-08-30",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "...partner shouldn’t be difficult. We make it easy. Unlike firms that take a one-size-fits-all approach, we tailor our solutions to what’s best for your business — structuring projects thoughtfully to maximize value. ",
+     "match": "With flexible engagement models, including solution-based consulting, role-based support, and managed services, we ensure you get the right team and the right solution to meet your unique needs.",
+     "after": " Learn About Our Approach TAILORED SOLUTIONS FOR TOUGH PROBLEMS VIEW ALL CLIENT STORIES Data Analysis Time Reduced by 30% Maas Energy Works scaled its renewable energy operations by implementing a cloud"
+    },
+    "review": {
+     "why": "The passage is on Centric Consulting's own homepage describing its own flexible engagement models (consulting, role-based support, managed services) offered to clients, directly supporting the proposition that it sells IT consulting/managed services to other organizations.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 31,
+   "company": "KORE1",
+   "domain": "kore1.com",
+   "entry_reason": "Company site",
+   "signal": {
+    "url": "https://www.kore1.com/dynamics-365-consultant-staffing/",
+    "quote": "We recruit functional leads, X++ and Power Platform developers, data migration specialists, and change management resources for programs that usually run 6 to 14 months",
+    "date": "2026-07-27",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.kore1.com/dynamics-365-consultant-staffing/",
+     "final_url": "https://www.kore1.com/dynamics-365-consultant-staffing/",
+     "retrieved_at": "2026-09-30T16:18:36.415Z",
+     "content_sha256": "8cd2700bb62a1557d0e72984001567e55cc198a5353738f460b8a897d0cc9173",
+     "page_title": "Microsoft Dynamics 365 Consultant Staffing - KORE1",
+     "publisher": "KORE1",
+     "dates": {
+      "claimed": null,
+      "published": "2026-07-27",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text not on the page"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "staffing_recruitment",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": "page metadata only",
+    "check_reason": "not_on_page"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 32,
+   "company": "Motion Recruitment",
+   "domain": "motionrecruitment.com",
+   "entry_reason": "Careers page",
+   "signal": {
+    "url": "https://motionrecruitment.com/tech-jobs/dot-net",
+    "quote": "A large, mission-driven organization is looking to hire a .NET Developer to support and enhance",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://motionrecruitment.com/tech-jobs/dot-net",
+     "final_url": "https://motionrecruitment.com/tech-jobs/dot-net",
+     "retrieved_at": "2026-09-30T16:18:36.261Z",
+     "content_sha256": "9715ff9bfaa5be1d9e762ca2884e1c21a6550d54dd52b4f3f9fcf395d07831ca",
+     "page_title": ".Net Jobs | Motion Recruitment",
+     "publisher": "Motion Recruitment",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text on the page but it does not support the label in context"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "staffing_recruitment",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": null,
+    "check_reason": "exact"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": false
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": false
+    },
+    "supported": {
+     "accepted": false,
+     "correct": false
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 33,
+   "company": "Stoneridge Software",
+   "domain": "stoneridgesoftware.com",
+   "entry_reason": "Company site",
+   "signal": {
+    "url": "https://stoneridgesoftware.com/",
+    "quote": "As a Microsoft Solutions partner, Stoneridge Software has met rigorous technical criteria, demonstrating expertise across several Microsoft products and business applications.",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://stoneridgesoftware.com/",
+     "final_url": "https://stoneridgesoftware.com/",
+     "retrieved_at": "2026-09-30T16:18:36.469Z",
+     "content_sha256": "0b1363b0d2d07d8bebee2f2cce55f5833494b341b61168b67cd3a2fa6e8d490f",
+     "page_title": "Stoneridge Software | Microsoft Dynamics 365 Partner",
+     "publisher": "Stoneridge Software",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "engineering_services",
+   "agrees_with_reference": true,
+   "reference_label": "engineering_services",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "The company provides implementation and support services to other organizations, so it is an engineering_services business.",
+    "url": "https://stoneridgesoftware.com/business-profile",
+    "quote": "We specialize in delivering and supporting full lifecycle business technology solutions – ERP and CRM – that empower organizations to innovate, streamline operations, improve decision-making, and drive growth, primarily using Microsoft Dynamics 365 systems.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://stoneridgesoftware.com/business-profile",
+     "final_url": "https://stoneridgesoftware.com/business-profile/",
+     "retrieved_at": "2026-09-30T16:18:26.498Z",
+     "content_sha256": "5caa47cb29d2fb868d9b78421a810f0e00b89681c2de22f0054c94fd12a599d6",
+     "page_title": "Business Profile - Stoneridge Software",
+     "publisher": "Stoneridge Software",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "We’re an award-winning place to work! Search Submit Log in to the Client Portal Contact Us Stoneridge Software Business Profile ",
+     "match": "We specialize in delivering and supporting full lifecycle business technology solutions – ERP and CRM – that empower organizations to innovate, streamline operations, improve decision-making, and drive growth, primarily using Microsoft Dynamics 365 systems.",
+     "after": " Stoneridge Software is a reliable Microsoft Solutions Partner and a proud member of the Microsoft Inner Circle for Business Applications 2025/2026 , an elite group representing the top 1% of Microsoft partners..."
+    },
+    "review": {
+     "why": "The page's Business Profile explicitly states Stoneridge Software delivers and supports ERP/CRM business technology solutions (implementation/consulting services using Microsoft Dynamics 365) for organizations, directly supporting the proposition.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 34,
+   "company": "ePlus inc.",
+   "domain": "eplus.com",
+   "entry_reason": "Press release",
+   "signal": {
+    "url": "https://www.eplus.com/who-we-are/investor-relations/press-releases/2026/08/eplus-acquires-assets-of-daymark-solutions",
+    "quote": "Daymark’s status as a Microsoft Tier 1 Cloud Solution Provider (CSP) compliments ePlus’ current Azure and Microsoft 365 professional and managed services offerings.",
+    "date": "2026-08-24",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.eplus.com/who-we-are/investor-relations/press-releases/2026/08/eplus-acquires-assets-of-daymark-solutions",
+     "final_url": "https://www.eplus.com/who-we-are/investor-relations/press-releases/2026/08/eplus-acquires-assets-of-daymark-solutions",
+     "retrieved_at": "2026-09-30T16:18:36.162Z",
+     "content_sha256": "45ad30f75393cfd5a30fb6b6803d7d64f9637b5eba7f6da70b50a4ef646e0f54",
+     "page_title": "ePlus Acquires Assets of Daymark Solutions",
+     "publisher": "eplus.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "engineering_services",
+   "agrees_with_reference": true,
+   "reference_label": "engineering_services",
+   "reference_confidence": "medium",
+   "evidence": {
+    "reason": "ePlus sells managed IT services to other organizations, so it fits engineering_services under the supplied definitions.",
+    "url": "https://eplus.com/how-we-deliver/eplus-managed-services",
+    "quote": "Managed Services allow you to outsource the day-to-day operations of your IT infrastructure, shifting your focus from keeping the lights on to driving your business forward through:",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://eplus.com/how-we-deliver/eplus-managed-services",
+     "final_url": "https://www.eplus.com/how-we-deliver/eplus-managed-services",
+     "retrieved_at": "2026-09-30T16:18:26.700Z",
+     "content_sha256": "4d7843aa7028becc85bb0da309fa02190b351792068220e326d1fedf234590b2",
+     "page_title": "ePlus Managed Services",
+     "publisher": "eplus.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "https://delivery-p155402-e1860468.adobeaemcloud.com/adobe/assets/urn:aaid:aem:d4dcaeb9-ac03-42eb-8fa2-18d6343fc11c/as/Services-Support_Services-Shimmering_Globe.avif Digital orb ",
+     "match": "Managed Services allow you to outsource the day-to-day operations of your IT infrastructure, shifting your focus from keeping the lights on to driving your business forward through:",
+     "after": " Superior IT Solutions : Leverage large-scale adoption of cloud computing and As-a-Service models that deliver speed and agility. IT Service Excellence : Move from managing IT to managing the broader..."
+    },
+    "review": {
+     "why": "The page, titled \"ePlus Managed Services\" on eplus.com, describes ePlus's own Managed Services offering that lets customers outsource IT operations, directly supporting that ePlus sells managed IT services to other organizations.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 35,
+   "company": "Carahsoft Technology Corp.",
+   "domain": "carahsoft.com",
+   "entry_reason": "Company site",
+   "signal": {
+    "url": "https://www.carahsoft.com/microsoft",
+    "quote": "During the Federal fiscal year-end, Carahsoft and Microsoft are helping Federal agencies streamline IT procurement, reduce costs and accelerate service delivery through the OneGov Strategy.",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.carahsoft.com/microsoft",
+     "final_url": "https://www.carahsoft.com/microsoft",
+     "retrieved_at": "2026-09-30T16:18:36.451Z",
+     "content_sha256": "4f798c6e4c89900d36eccc9b6a11e038d956a44d55359f6587d7530f6843e25e",
+     "page_title": "Microsoft - AI & Integrated Cloud Computing Solutions | Carahsoft",
+     "publisher": "Carahsoft",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text on the page but it does not support the label in context"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "medium",
+   "not_accepted": {
+    "where": null,
+    "check_reason": "exact"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": false
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": false
+    },
+    "supported": {
+     "accepted": false,
+     "correct": false
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 36,
+   "company": "Infinite Computer Solutions",
+   "domain": "infinite.com",
+   "entry_reason": "Partner case study",
+   "signal": {
+    "url": "https://www.infinite.com/",
+    "quote": "Keys to success and benefits of moving Epic on-prem to Azure.",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.infinite.com/",
+     "final_url": "https://www.infinite.com/",
+     "retrieved_at": "2026-09-30T16:18:36.378Z",
+     "content_sha256": "445517229b4e72f8fed6253b539b4668a00067939ae308a4589e249280f60c73",
+     "page_title": "Infinite | Global Digital Engineering & IT Services",
+     "publisher": "Infinite Computer Solutions",
+     "dates": {
+      "claimed": null,
+      "published": "2025-01-21",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "engineering_services",
+   "agrees_with_reference": true,
+   "reference_label": "engineering_services",
+   "reference_confidence": "medium",
+   "evidence": {
+    "reason": "Infinite sells digital engineering and IT services to clients, so it fits engineering_services.",
+    "url": "https://www.infinite.com/services",
+    "quote": "Infinite is a global leader in digital engineering and IT services, with 20+ years of experience driving digital transformation. We help clients optimize and scale their technology using innovative solutions, industry expertise, and a focus on business outcomes.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.infinite.com/services",
+     "final_url": "https://www.infinite.com/",
+     "retrieved_at": "2026-09-30T16:18:26.340Z",
+     "content_sha256": "445517229b4e72f8fed6253b539b4668a00067939ae308a4589e249280f60c73",
+     "page_title": "Infinite | Global Digital Engineering & IT Services",
+     "publisher": "Infinite Computer Solutions",
+     "dates": {
+      "claimed": null,
+      "published": "2025-01-21",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "...Corporate Social Responsibility & Sustainability Corporate Sponsorship Innovation Alliances & Partners Awards & Recognition Locations News & Events Resources Driving Digital Transformation with Expertise and Innovation ",
+     "match": "Infinite is a global leader in digital engineering and IT services, with 20+ years of experience driving digital transformation. We help clients optimize and scale their technology using innovative solutions, industry expertise, and a focus on business outcomes.",
+     "after": " Careers Contact Us Digitally Engineering Tomorrow, Today Building future-ready enterprises through innovation and strategic partnerships. Contact Us Front-of-Shirt Partner of Welsh Fire for 2026 Season I"
+    },
+    "review": {
+     "why": "The quote is Infinite's own description of itself as a global leader in digital engineering and IT services helping clients optimize and scale technology, directly supporting that it sells IT/software engineering services to other organizations.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 37,
+   "company": "Ntiva",
+   "domain": "ntiva.com",
+   "entry_reason": "Company site",
+   "signal": {
+    "url": "https://www.ntiva.com/",
+    "quote": "Our Microsoft Certified Experts specialize in Cloud, M365, Teams, and Azure to optimize and secure your Microsoft environment",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.ntiva.com/",
+     "final_url": "https://www.ntiva.com/",
+     "retrieved_at": "2026-09-30T16:18:36.718Z",
+     "content_sha256": "9454dc9e93e8aa18755c071f25d873a889055fd9f407b4ab953ca6bdb17fba93",
+     "page_title": "Managed IT Services, IT Consulting, Cybersecurity, and IT Solutions from Ntiva",
+     "publisher": "Ntiva",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "engineering_services",
+   "agrees_with_reference": true,
+   "reference_label": "engineering_services",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "The passage describes providing managed IT services for businesses, not staffing or recruitment, or a software product sold to end customers.",
+    "url": "https://www.ntiva.com/",
+    "quote": "Ntiva is your strategic IT partner, delivering managed IT services that power business growth with the local support you expect, backed by national expertise, proactive security, and responsive service to keep your organization productive and future-ready.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.ntiva.com/",
+     "final_url": "https://www.ntiva.com/",
+     "retrieved_at": "2026-09-30T16:18:26.322Z",
+     "content_sha256": "9454dc9e93e8aa18755c071f25d873a889055fd9f407b4ab953ca6bdb17fba93",
+     "page_title": "Managed IT Services, IT Consulting, Cybersecurity, and IT Solutions from Ntiva",
+     "publisher": "Ntiva",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "111-HeroHome 111-HeroHome Managed IT Services Built Around Your Business Our Clients Said It Best Book an IT Strategy Session Explore how Ntiva transforms IT into a growth engine 108-GradientText ",
+     "match": "Ntiva is your strategic IT partner, delivering managed IT services that power business growth with the local support you expect, backed by national expertise, proactive security, and responsive service to keep your organization productive and future-ready.",
+     "after": " 110-ContentCards 22-StackedContentCards Everything You Need, All in One IT Partner From day-to-day IT management to forward-looking technology"
+    },
+    "review": {
+     "why": "The quote, taken from Ntiva's own homepage, explicitly states that Ntiva is a strategic IT partner delivering managed IT services to businesses, directly supporting the proposition that Ntiva sells managed IT/consulting services to other organizations.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 38,
+   "company": "Celsior (Pyramid Consulting, Inc.)",
+   "domain": "celsiortech.com",
+   "entry_reason": "Partner case study",
+   "signal": {
+    "url": "https://celsiortech.com/",
+    "quote": "Celsior migrated critical applications to Microsoft Azure — resolving latency issues with minimal downtime and cutting provisioning times from weeks to hours.",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://celsiortech.com/",
+     "final_url": "https://celsiortech.com/",
+     "retrieved_at": "2026-09-30T16:18:36.689Z",
+     "content_sha256": "3e3e5870d727307aa5edd12a517f4e005a4892ac6ceb24b34bad63d60c55437b",
+     "page_title": "Celsior | Modernize. Operate. Innovate.",
+     "publisher": "Celsior",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "engineering_services",
+   "agrees_with_reference": false,
+   "reference_label": "mixed_uncertain",
+   "reference_confidence": "medium",
+   "evidence": {
+    "reason": "Celsior sells managed software engineering delivery to enterprise clients, so the best fit is engineering_services—not staffing_recruitment.",
+    "url": "https://celsiortech.com/",
+    "quote": "Teams-as-a-Service Fully managed engineering pods embedded in your delivery cycle — scrum-ready, domain-trained, and outcomes-focused.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://celsiortech.com/",
+     "final_url": "https://celsiortech.com/",
+     "retrieved_at": "2026-09-30T16:18:26.468Z",
+     "content_sha256": "3e3e5870d727307aa5edd12a517f4e005a4892ac6ceb24b34bad63d60c55437b",
+     "page_title": "Celsior | Modernize. Operate. Innovate.",
+     "publisher": "Celsior",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "d future-ready platforms. 02 GCC & Nearshore Build your own Global Capability Centre or leverage our nearshore hubs in Mexico and India for cost-efficient, high-quality delivery. 03 ",
+     "match": "Teams-as-a-Service Fully managed engineering pods embedded in your delivery cycle — scrum-ready, domain-trained, and outcomes-focused.",
+     "after": " 04 AI-Trained Engineering Talent We source, AI-train, and deploy engineering talent tailored to your stack, industry, and regulatory context; reducing ramp time dramatically."
+    },
+    "review": {
+     "why": "The homepage lists Celsior's own service offerings (GCC & Nearshore delivery, Teams-as-a-Service engineering pods, AI-trained engineering talent), directly establishing that the company sells IT/engineering staffing and managed services to client organizations.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": false
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": false
+    },
+    "supported": {
+     "accepted": true,
+     "correct": false
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 39,
+   "company": "ivision",
+   "domain": "ivision.com",
+   "entry_reason": "Press release",
+   "signal": {
+    "url": "https://ivision.com/news/microsoft-solutions-partner-business-application",
+    "quote": "recognizing the company’s proven expertise helping clients modernize critical business processes with Dynamics 365 and the Microsoft Power Platform.",
+    "date": "2026-01-16",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://ivision.com/news/microsoft-solutions-partner-business-application",
+     "final_url": "https://ivision.com/news/microsoft-solutions-partner-business-application",
+     "retrieved_at": "2026-09-30T16:18:36.699Z",
+     "content_sha256": "5c51efe11db76084f943b69cfd77c37d8e5c9cfb1829d14d76c2668661114f1c",
+     "page_title": "ivision Achieves Microsoft Solutions Partner Designation for Business Applications",
+     "publisher": "ivision.com",
+     "dates": {
+      "claimed": null,
+      "published": "2026-06-14",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "unverifiable",
+    "why": "http_404"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "engineering_services",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": null,
+    "check_reason": "http_404"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  },
+  {
+   "id": 40,
+   "company": "PSECU (Pennsylvania State Employees Credit Union)",
+   "domain": "psecu.com",
+   "entry_reason": "Leadership change",
+   "signal": {
+    "url": "https://www.psecu.com/learn/psecu-to-appoint-van-scyoc-new-cio-long-retires-after-41-year-career",
+    "quote": "Clifton Van Scyoc, who has served as Vice President of Technology since 2021, will succeed Long as CIO",
+    "date": "2025-04-29",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.psecu.com/learn/psecu-to-appoint-van-scyoc-new-cio-long-retires-after-41-year-career",
+     "final_url": "https://www.psecu.com/learn/psecu-to-appoint-van-scyoc-new-cio-long-retires-after-41-year-career",
+     "retrieved_at": "2026-09-30T16:18:36.726Z",
+     "content_sha256": "40da0a1a1732d22dc4d02a9a70b605e5799f2b29d2400d2bf517dfb3796e3f3c",
+     "page_title": "PSECU to Appoint Van Scyoc New CIO; Long Retires After 41-Year Career",
+     "publisher": "psecu.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "end_customer",
+   "agrees_with_reference": true,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "PSECU serves account holders with financial products and banking services, so it is an end-customer business.",
+    "url": "https://www.psecu.com/join",
+    "quote": "We offer the financial products, services, and 24/7 digital banking channels necessary to meet them. Check out all the ways you can achieve more when you open a PSECU account.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.psecu.com/join",
+     "final_url": "https://www.psecu.com/join",
+     "retrieved_at": "2026-09-30T16:18:26.720Z",
+     "content_sha256": "4b97875174068269470ee1c78623ae3c7c0a2afe40101f65fdb724d0c27e3c77",
+     "page_title": "Achieve More with Exclusive Member Benefits | PSECU",
+     "publisher": "psecu.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "Start Earning Your Cash Bonus Our Products & Services You have unique financial needs. ",
+     "match": "We offer the financial products, services, and 24/7 digital banking channels necessary to meet them. Check out all the ways you can achieve more when you open a PSECU account.",
+     "after": " Checking Savings Loans Credit Cards Free, Award-Winning Checking One simple acc"
+    },
+    "review": {
+     "why": "The page explicitly states PSECU offers financial products and services (checking, savings, loans, credit cards) to its members, confirming it is a financial institution and not an engineering services or staffing provider.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 41,
+   "company": "CRB Group, Inc.",
+   "domain": "crbgroup.com",
+   "entry_reason": "Leadership change",
+   "signal": {
+    "url": "https://finance.yahoo.com/technology/ai/articles/crb-names-joe-finsterwald-chief-120500871.html",
+    "quote": "Joe Finsterwald is CRB's first CTO, reflecting the company's continued investment in digital innovation, enterprise technology and AI-enabled project delivery.",
+    "date": "2026-07-23",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://finance.yahoo.com/technology/ai/articles/crb-names-joe-finsterwald-chief-120500871.html",
+     "final_url": "https://finance.yahoo.com/technology/ai/articles/crb-names-joe-finsterwald-chief-120500871.html",
+     "retrieved_at": "2026-09-30T16:18:36.535Z",
+     "content_sha256": "fbc546e2eea23b9f5d47ab138fa530b4c09840027d877579b82263c070ac5a5a",
+     "page_title": "CRB Names Joe Finsterwald Chief Technology Officer",
+     "publisher": "Yahoo Finance",
+     "dates": {
+      "claimed": null,
+      "published": "2026-07-23",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text not on the page"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "medium",
+   "not_accepted": {
+    "where": "nowhere on the page",
+    "check_reason": "not_on_page"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": false
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": false
+    },
+    "supported": {
+     "accepted": false,
+     "correct": false
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 42,
+   "company": "Exostar",
+   "domain": "exostar.com",
+   "entry_reason": "Leadership change",
+   "signal": {
+    "url": "https://www.prnewswire.com/news-releases/exostar-names-amy-hogan-chief-information-officer-302729392.html",
+    "quote": "Hogan will serve as Exostar's first CIO amidst company's continued explosive growth",
+    "date": "2026-03-31",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.prnewswire.com/news-releases/exostar-names-amy-hogan-chief-information-officer-302729392.html",
+     "final_url": "https://www.prnewswire.com/news-releases/exostar-names-amy-hogan-chief-information-officer-302729392.html",
+     "retrieved_at": "2026-09-30T16:18:36.505Z",
+     "content_sha256": "44aec5bbc0b40b8aa432f5970c8a64aceb68b79b3b40ea2630e1f08657f3cec5",
+     "page_title": "Exostar Names Amy Hogan Chief Information Officer",
+     "publisher": "prnewswire.com",
+     "dates": {
+      "claimed": null,
+      "published": "2026-03-31",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text on the page but it does not support the label in context"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": null,
+    "check_reason": "exact"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 43,
+   "company": "Duck Creek Technologies",
+   "domain": "duckcreek.com",
+   "entry_reason": "Leadership change",
+   "signal": {
+    "url": "https://www.prnewswire.com/news-releases/duck-creek-technologies-announces-veteran-enterprise-technology-leader-rajesh-raheja-as-chief-technology-officer-302630081.html",
+    "quote": "As CTO, Raheja will lead Duck Creek's global technology strategy, platform innovation, and engineering organization",
+    "date": "2025-12-02",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.prnewswire.com/news-releases/duck-creek-technologies-announces-veteran-enterprise-technology-leader-rajesh-raheja-as-chief-technology-officer-302630081.html",
+     "final_url": "https://www.prnewswire.com/news-releases/duck-creek-technologies-announces-veteran-enterprise-technology-leader-rajesh-raheja-as-chief-technology-officer-302630081.html",
+     "retrieved_at": "2026-09-30T16:18:36.438Z",
+     "content_sha256": "40ed0eb61c022a93ff79eafa1270bb9b00e060e12d293fef6770efeb9729d4de",
+     "page_title": "Duck Creek Technologies Announces Veteran Enterprise Technology Leader Rajesh Raheja as Chief Technology Officer",
+     "publisher": "prnewswire.com",
+     "dates": {
+      "claimed": null,
+      "published": "2025-12-02",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text not on the page"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": "nowhere on the page",
+    "check_reason": "not_on_page"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 44,
+   "company": "Progress Software Corporation",
+   "domain": "progress.com",
+   "entry_reason": "Leadership change",
+   "signal": {
+    "url": "https://finance.yahoo.com/technology/ai/articles/progress-software-appoints-bridget-collins-123000561.html",
+    "quote": "Progress Software (Nasdaq: PRGS), an AI infrastructure software leader, today announced the appointment of Bridget Collins as Chief Information Officer (CIO).",
+    "date": "2026-08-18",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://finance.yahoo.com/technology/ai/articles/progress-software-appoints-bridget-collins-123000561.html",
+     "final_url": "https://finance.yahoo.com/technology/ai/articles/progress-software-appoints-bridget-collins-123000561.html",
+     "retrieved_at": "2026-09-30T16:18:36.225Z",
+     "content_sha256": "071be00a4dd4b2e29cece86edecce033975564eb36dc71156f85b6d6783dd7cf",
+     "page_title": "Progress Software Appoints Bridget Collins as Chief Information Officer",
+     "publisher": "Yahoo Finance",
+     "dates": {
+      "claimed": null,
+      "published": "2026-08-18",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text not on the page"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": "page metadata only",
+    "check_reason": "not_on_page"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 45,
+   "company": "Plante Moran",
+   "domain": "plantemoran.com",
+   "entry_reason": "Careers page",
+   "signal": {
+    "url": "https://careers.plantemoran.com/power-platform-developer/job/B264876E3B0B3396B6A5959841F6BC9E",
+    "quote": "Architect Power Platform solutions across SharePoint and Dataverse, selecting the right data backend, connectors, and integration patterns.",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://careers.plantemoran.com/power-platform-developer/job/B264876E3B0B3396B6A5959841F6BC9E",
+     "final_url": "https://careers.plantemoran.com/power-platform-developer/job/B264876E3B0B3396B6A5959841F6BC9E",
+     "retrieved_at": "2026-09-30T16:18:36.650Z",
+     "content_sha256": "1778f30217a8f3538925f395abc9db37cf18b23e30c53852a7ab2f9ac124e00b",
+     "page_title": "Power Platform Developer",
+     "publisher": "Power Platform Developer",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text on the page but it does not support the label in context"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "mixed_uncertain",
+   "reference_confidence": "medium",
+   "not_accepted": {
+    "where": null,
+    "check_reason": "exact"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 46,
+   "company": "Paychex, Inc.",
+   "domain": "paychex.com",
+   "entry_reason": "Careers page",
+   "signal": {
+    "url": "https://careers.paychex.com/it-teams",
+    "quote": "Our technologies include Java, .NET Core, Angular, React, Open Shift, AWS, Azure, MongoDB and more.",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://careers.paychex.com/it-teams",
+     "final_url": "https://careers.paychex.com/it-teams",
+     "retrieved_at": "2026-09-30T16:18:36.221Z",
+     "content_sha256": "456718ae3ed03c20b25587626915a3ba9c7828c921ec9e40a78d10e399b65e8b",
+     "page_title": "IT Career Areas | Paychex Careers Apply",
+     "publisher": "IT Career Areas | Paychex Careers Apply",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "end_customer",
+   "agrees_with_reference": true,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "The cited passage identifies payroll services for business customers as Paychex’s offering, rather than staffing, recruiting, or engineering services.",
+    "url": "https://www.paychex.com/",
+    "quote": "Yes, we are a payroll company, offering payroll services for small- and medium-sized businesses for over 50 years.",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.paychex.com/",
+     "final_url": "https://www.paychex.com/",
+     "retrieved_at": "2026-09-30T16:18:26.448Z",
+     "content_sha256": "cd601c5a28b10e89a85a14627e5b70bacd13927908940e2d63ce036165011995",
+     "page_title": "Paychex: Payroll & HR Solutions",
+     "publisher": "Paychex",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "...businesses succeed. With our award-winning combination of digital HR technology and advisory services, we can help you simplify your complex business challenges. Does Paychex Do Payroll? Does Paychex Do Payroll? ",
+     "match": "Yes, we are a payroll company, offering payroll services for small- and medium-sized businesses for over 50 years.",
+     "after": " We offer easy processing, automated tax administration, employee self-service, flexible methods of delivering your paychecks, and more. To learn more about our payroll solution, please visit our product page . What..."
+    },
+    "review": {
+     "why": "The page explicitly states Paychex is a payroll company offering payroll services, confirming it sells payroll/HR services rather than engineering services or engineering staff.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 47,
+   "company": "Epic Systems Corporation",
+   "domain": "epic.com",
+   "entry_reason": "Careers page",
+   "signal": {
+    "url": "https://careers.epic.com/jobs/softwaredevelopment/",
+    "quote": "Currently, our teams use a combination of languages and platforms including but not limited to .NET/C#, Typescript/Javascript, Swift/Objective C, Java/Kotlin, Caché, and React.",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://careers.epic.com/jobs/softwaredevelopment/",
+     "final_url": "https://careers.epic.com/jobs/softwaredevelopment/",
+     "retrieved_at": "2026-09-30T16:18:36.687Z",
+     "content_sha256": "ea17b45bae0c7129b9f651623c2892da176e0e5f445ccf1561242b4ea8792cac",
+     "page_title": "LinkedIn",
+     "publisher": "careers.epic.com",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "unverifiable",
+    "why": "not_html"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": null,
+    "check_reason": "not_html"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": false
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": false
+    },
+    "supported": {
+     "accepted": false,
+     "correct": false
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 48,
+   "company": "Medpace",
+   "domain": "medpace.com",
+   "entry_reason": "Careers page",
+   "signal": {
+    "url": "https://www.medpace.com/careers/functional-areas/information-technology/",
+    "quote": "Works with various development technologies including Angular, ASP.NET Web API, .NET Core, ASP.NET Web Forms, C#, SQL, MVC, Entity Framework (EF), Git, TFS/DevOps, and Agile/Scrum.",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.medpace.com/careers/functional-areas/information-technology/",
+     "final_url": "https://www.medpace.com/careers/functional-areas/information-technology/",
+     "retrieved_at": "2026-09-30T16:18:36.616Z",
+     "content_sha256": "2988f7f882583978c0d8a0b3857c80868baf5ebd1e49377c58df036355f8009c",
+     "page_title": "Information Technology Careers | Medpace Careers",
+     "publisher": "Medpace Careers",
+     "dates": {
+      "claimed": null,
+      "published": "2023-02-28",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "accepted",
+    "why": "text on the page and it supports the label in context"
+   },
+   "business_model": "end_customer",
+   "agrees_with_reference": true,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "evidence": {
+    "reason": "Medpace sells clinical research and clinical-development services to clients, rather than software engineering services or staffing/recruitment.",
+    "url": "http://medpace.com/",
+    "quote": "coordinates and integrates all services for our clients, Medpace provides an accountable, seamless, integrated, and efficient platform for executing clinical research",
+    "claimed_date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "http://medpace.com/",
+     "final_url": "https://www.medpace.com/",
+     "retrieved_at": "2026-09-30T16:18:26.511Z",
+     "content_sha256": "b4d2de9e01a0cacb0d690ada51039946987ef92e9285bcc51b6e7daa6d63d162",
+     "page_title": "Global, Full-Service Contract Research Organization (CRO) | Medpace",
+     "publisher": "Medpace Corporate",
+     "dates": {
+      "claimed": null,
+      "published": "2019-07-19",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3",
+     "before": "Learn More The Medpace Advantage A Full-Service CRO Model for Quality and Efficiency Driven by a full-service CRO model that ",
+     "match": "coordinates and integrates all services for our clients, Medpace provides an accountable, seamless, integrated, and efficient platform for executing clinical research",
+     "after": " – increasing quality and speed while significantly reducing the need for duplicate management oversight. More than a “set of extra hands”, we are an extension of your team – embedding medical, regulatory, and..."
+    },
+    "review": {
+     "why": "The page describes Medpace as a full-service Contract Research Organization providing clinical research services (medical, regulatory, etc.), confirming its business is clinical research/CRO services rather than engineering staffing or engineering services.",
+     "supports": true,
+     "totalCreditsCharged": 0.7
+    }
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": true
+    },
+    "supported": {
+     "accepted": true,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 49,
+   "company": "Syncfusion, Inc.",
+   "domain": "syncfusion.com",
+   "entry_reason": "Careers page",
+   "signal": {
+    "url": "https://www.syncfusion.com/careers/dotnet-developer-experience/",
+    "quote": "develop world-class products using a wide range of technologies, including .NET (WPF, Silverlight, ASP.NET, ASP.NET MVC, Windows Forms, Windows Phone, and WinRT)",
+    "date": null,
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://www.syncfusion.com/careers/dotnet-developer-experience/",
+     "final_url": "https://www.syncfusion.com/careers/dotnet-developer-experience/",
+     "retrieved_at": "2026-09-30T16:18:36.693Z",
+     "content_sha256": "00febaa0184c95647973c80061426b1f4f011ea559ae7be8b745fe028ef5eb26",
+     "page_title": ".NET Developer (Experience) - Syncfusion Job Details",
+     "publisher": "Syncfusion",
+     "dates": {
+      "claimed": null,
+      "published": null,
+      "retrieved": "2026-09-30",
+      "published_source": "none found",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text not on the page"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "end_customer",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": "nowhere on the page",
+    "check_reason": "not_on_page"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": true
+    },
+    "text_present": {
+     "accepted": false,
+     "correct": true
+    },
+    "supported": {
+     "accepted": false,
+     "correct": true
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": false
+  },
+  {
+   "id": 50,
+   "company": "i3solutions",
+   "domain": "i3solutions.com",
+   "entry_reason": "Company site",
+   "signal": {
+    "url": "https://i3solutions.com/hire-power-platform-developers/",
+    "quote": "Organizations hire Power Platform developers from i3solutions to augment their teams with dedicated",
+    "date": "2025-11-06",
+    "check": {
+     "status": "found",
+     "reason": "exact",
+     "quote_found": true,
+     "http_status": 200,
+     "original_url": "https://i3solutions.com/hire-power-platform-developers/",
+     "final_url": "https://i3solutions.com/hire-power-platform-developers/",
+     "retrieved_at": "2026-09-30T16:18:36.723Z",
+     "content_sha256": "3872b68234e30bb2f817fc4f3268bc77668027ab74602989db3a7a83f839a124",
+     "page_title": "Hire Power Platform Developers | U.S.-Based | i3solutions",
+     "publisher": "i3solutions",
+     "dates": {
+      "claimed": null,
+      "published": "2025-11-06",
+      "retrieved": "2026-09-30",
+      "published_source": "page metadata",
+      "claimed_printed_on_page": null
+     },
+     "verifier_version": "2026-09-30.3"
+    }
+   },
+   "decision": {
+    "status": "withheld",
+    "why": "text on the page but it does not support the label in context"
+   },
+   "business_model": "unresolved",
+   "agrees_with_reference": null,
+   "reference_label": "engineering_services",
+   "reference_confidence": "high",
+   "not_accepted": {
+    "where": null,
+    "check_reason": "exact"
+   },
+   "stages": {
+    "raw": {
+     "accepted": true,
+     "correct": false
+    },
+    "text_present": {
+     "accepted": true,
+     "correct": false
+    },
+    "supported": {
+     "accepted": false,
+     "correct": false
+    }
+   },
+   "middleman_proposed_as_end_customer": false,
+   "reference_is_middleman": true
+  }
+ ]
+}
