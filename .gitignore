@@ -2,3 +2,5 @@ node_modules/
 private/
 .wrangler/
 .DS_Store
+# Private pages for one buyer, served by the Worker under an unguessable path; kept out of this public repository.
+public/end-customer-check/a-*/
