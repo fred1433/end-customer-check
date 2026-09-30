@@ -127,6 +127,6 @@ const cost = {
   per_accepted_end_customer_usd: +(usage.final_run_usd_exact / (tally.accepted_by_model.end_customer || 1)).toFixed(4),
 };
 
-const results = { run_date: "2026-09-30", policy: "Demo evidence policy v2", sample_rule: read("data/sample_rule.json"), featured, tally, evaluation, usage, cost, fixtures, rows: out };
+const results = { run_date: "2026-09-30", policy: "Demo evidence policy v3", sample_rule: read("data/sample_rule.json"), featured, tally, evaluation, usage, cost, fixtures, rows: out };
 writeFileSync(process.env.SCORE_OUT || root + "public/end-customer-check/data/results.json", JSON.stringify(results, null, 1));
 if (!process.env.SCORE_QUIET) console.log(JSON.stringify({ tally, evaluation, cost }, null, 1));

@@ -2,7 +2,7 @@
 // theaipipe.com/end-customer-check/api/verify  re-reads a page and looks for a quote. No model is called here.
 //
 // Restrictions: a key in the x-check-key header (CHECK_KEY secret), source domains on a list (ALLOWED_HOSTS secret,
-// comma separated), 30 requests a minute per IP and 60 a minute in total, bounded redirects (each hop re-checked),
+// comma separated), 30 requests a minute per IP and 60 a minute per Cloudflare location (per-location limiters, not a hard global cap), bounded redirects (each hop re-checked),
 // time and size caps from src/verify.js.
 import { verifyEvidence } from "./verify.js";
 
@@ -34,7 +34,7 @@ export default {
         const ip = request.headers.get("cf-connecting-ip") || "unknown";
         if (!(await env.LIMITER.limit({ key: ip })).success) return json({ error: "rate_limited", detail: "30 checks a minute per IP" }, 429);
       }
-      if (env.GLOBAL_LIMITER && !(await env.GLOBAL_LIMITER.limit({ key: "all" })).success) return json({ error: "rate_limited", detail: "60 checks a minute in total" }, 429);
+      if (env.GLOBAL_LIMITER && !(await env.GLOBAL_LIMITER.limit({ key: "all" })).success) return json({ error: "rate_limited", detail: "60 checks a minute per Cloudflare location" }, 429);
       const raw = await request.text();
       if (raw.length > 8192) return json({ error: "body_too_large" }, 400);
       let b;

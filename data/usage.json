@@ -58,7 +58,7 @@
  "final_run": {
   "data_credits": 171.0,
   "actions": 230,
-  "definition": "The cost of the final workflow configuration: for every cell, the charge Clay recorded for its latest run (upfront plus reconciliation; no cell was refunded)."
+  "definition": "The charge Clay recorded (upfront plus reconciliation, no refunds) for the cells the final configuration runs. The 20 review cells it skips by its run condition still carry 14 credits and 20 actions from an earlier pass that ran before the condition was saved; those are counted in development."
  },
  "whole_workspace_so_far": {
   "data_credits": 227.1,

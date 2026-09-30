@@ -1,6 +1,6 @@
 {
  "run_date": "2026-09-30",
- "policy": "Demo evidence policy v2",
+ "policy": "Demo evidence policy v3",
  "sample_rule": {
   "selected_by": "research agents working from written briefs, on 2026-09-30, before any classification ran",
   "rule": "50 US companies, each with a public signal about .NET, Azure, Power Platform or Dynamics taken from a source other than a job board: 15 Microsoft customer stories, 9 press releases, 8 company service pages, 7 partner case studies, 6 careers pages, 5 leadership-change announcements. 33 signals carry a date; 17 are undated service, careers or leadership pages. One brief asked for end customers, one for hard cases (companies that call themselves IT solutions or consulting firms, IT staffing firms, Microsoft partners, mixed businesses), one for leadership changes and careers pages. One company found by two briefs was kept once; one was added by hand to reach 50.",
@@ -23,8 +23,8 @@
   "unverifiable": 7,
   "refused": 1,
   "not_on_page_where": {
-   "page source outside visible text": 1,
-   "nowhere on the page": 7,
+   "opening on the page, words dropped or changed": 2,
+   "nowhere on the page": 6,
    "page metadata only": 4
   },
   "accepted_by_model": {
@@ -116,7 +116,7 @@
   "final_run": {
    "data_credits": 171,
    "actions": 230,
-   "definition": "The cost of the final workflow configuration: for every cell, the charge Clay recorded for its latest run (upfront plus reconciliation; no cell was refunded)."
+   "definition": "The charge Clay recorded (upfront plus reconciliation, no refunds) for the cells the final configuration runs. The 20 review cells it skips by its run condition still carry 14 credits and 20 actions from an earlier pass that ran before the condition was saved; those are counted in development."
   },
   "whole_workspace_so_far": {
    "data_credits": 227.1,
@@ -862,7 +862,7 @@
    "business_model": "unresolved",
    "decision_in_clay": "withheld: text not on the page",
    "not_accepted": {
-    "where": "page source outside visible text",
+    "where": "opening on the page, words dropped or changed",
     "check_reason": "not_on_page"
    }
   },
@@ -1925,7 +1925,7 @@
    "business_model": "unresolved",
    "decision_in_clay": "withheld: text not on the page",
    "not_accepted": {
-    "where": "nowhere on the page",
+    "where": "opening on the page, words dropped or changed",
     "check_reason": "not_on_page"
    }
   },

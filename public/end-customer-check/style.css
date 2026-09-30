@@ -333,6 +333,9 @@ a:hover { text-decoration-color: var(--ink); }
   .fallen { margin: 22px 0 0; width: 100%; transform: none; }
   .clay-grid, .fine { grid-template-columns: 1fr; gap: 28px; }
   .fx { grid-template-columns: 1fr; }
+  .states .shot { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .states .shot img { width: 900px; max-width: none; }
+  .states .shot figcaption { width: auto; }
   .breakdown { grid-template-columns: 1fr; }
   .result span { padding: 2px 10px; }
   .result { font-size: 16px; }

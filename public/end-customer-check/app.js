@@ -19,6 +19,7 @@ const WHY = {
 const WHERE = {
   "page metadata only": "the quote is the page's meta description, not its visible text",
   "page source outside visible text": "the words are in the page's code, not its visible text",
+  "opening on the page, words dropped or changed": "the quote's opening is on the page, but words were dropped or changed further on",
   "nowhere on the page": "the words are nowhere on the page",
 };
 
@@ -183,7 +184,7 @@ function steps(d) {
 function costLine(d) {
   const u = d.usage, c = d.cost;
   const w = u.whole_workspace_so_far;
-  return `<b>Credit breakdown.</b> The final configuration costs <b>${u.final_run.data_credits}</b> data credits and <b>${u.final_run.actions}</b> actions for the 50 rows (Clay's recorded charge for each cell's latest run), about <b>${money(u.final_run_usd_exact)}</b>: <b>${money(c.per_input_company_usd)}</b> per company, <b>${money(c.per_accepted_classification_usd)}</b> per retained classification, <b>${money(c.per_accepted_end_customer_usd)}</b> per retained end customer. Marginal costs on Clay's Growth plan, the first with HTTP API columns ($495 a month billed monthly, clay.com, ${fmtDate(u.measured_on)}). Building, testing and two rescoring passes used another ${u.development.data_credits} data credits and ${u.development.actions} actions (workspace balance read ${w.balance_read_at.slice(11, 16)} UTC). Rows stopped by a cheap filter: 0.`;
+  return `<b>Credit breakdown.</b> The final configuration costs <b>${u.final_run.data_credits}</b> data credits and <b>${u.final_run.actions}</b> actions for the 50 rows: the charge Clay recorded for the cells the final configuration runs (the 20 review cells it skips still carry 14 credits and 20 actions from an earlier pass, counted in development), about <b>${money(u.final_run_usd_exact)}</b>: <b>${money(c.per_input_company_usd)}</b> per company, <b>${money(c.per_accepted_classification_usd)}</b> per retained classification, <b>${money(c.per_accepted_end_customer_usd)}</b> per retained end customer. Marginal costs on Clay's Growth plan, the first with HTTP API columns ($495 a month billed monthly, clay.com, ${fmtDate(u.measured_on)}). Building, testing and two rescoring passes used another ${u.development.data_credits} data credits and ${u.development.actions} actions (workspace balance read ${w.balance_read_at.slice(11, 16)} UTC). Rows stopped by a cheap filter: 0.`;
 }
 
 function fixtures(d) {

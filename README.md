@@ -59,8 +59,9 @@ error. It shows them removing 21 labels that agreed with the reference and 6 tha
 evidence.
 
 **Credit breakdown.** The final configuration costs 171 data credits and 230 actions for the 50 rows (research 150
-credits and 50 actions, quote check 50 actions, signal check 50, review 21 credits and 30 actions, write 50): Clay's
-recorded charge for each cell's latest run, upfront plus reconciliation, no refunds. About $9.73: $0.19 per company,
+credits and 50 actions, quote check 50 actions, signal check 50, review 21 credits and 30 actions, write 50): the charge
+Clay recorded for the cells the final configuration runs, upfront plus reconciliation, no refunds. The 20 review cells
+it skips still carry 14 credits and 20 actions from an earlier pass, counted in development. About $9.73: $0.19 per company,
 $0.42 per retained classification, $0.75 per retained end customer. These are marginal costs on Clay's Growth plan,
 the first with HTTP API columns ($495 a month billed monthly, clay.com, 2026-09-30). Building, testing and two
 rescoring passes used another 56.1 data credits and 339 actions (balance read 2026-09-30 18:39 UTC). Details in
@@ -101,8 +102,9 @@ npm run score     # rebuilds public/end-customer-check/data/results.json (from d
 - The review is another model; it can agree with a weak passage.
 - The 50 companies were picked by me from public signals; 17 of those signals are undated. Results on another list
   can differ.
-- "Not on the page" means not in the text extracted from the fetched HTML: 4 of the 12 were the page's meta
-  description, and a page that builds its text in the browser can hide a real quote.
+- "Not on the page" means not in the text extracted from the fetched HTML: of the 12, 4 quotes were the page's meta
+  description, 2 had their opening on the page with words dropped or changed further on, and 6 were nowhere on it. A
+  page that builds its text in the browser can hide a real quote.
 - The stale-date fixture shows date extraction, not a comparison: its claimed date was not sent to the checker.
 - One reference label is debatable: Carahsoft, which resells software and services to government. Its label was not
   retained either way.
