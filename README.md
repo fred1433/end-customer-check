@@ -45,11 +45,11 @@ caps time and size, and calls no model. Its rate limits are Cloudflare's per-loc
 
 ## Results (2026-09-30)
 
-23 of 50 classifications retained; one disagrees with the reference; the other 27 remain unresolved (12 quotes not
+13 end customers on the call list, 10 middlemen excluded, 27 unresolved and not called (12 quotes not
 on the page, 7 quotes not supporting the label in context, 7 pages that could not be read or were error pages, 1
 refused because our sample had the wrong domain: heritagegrocers.com instead of heritagegrocersgroup.com, our error).
-The 23 are 13 end customers (the call list) and 10 providers kept to exclude them (9 engineering services, 1
-staffing). No evidence came from a third-party site.
+The 10 excluded are 9 engineering services firms and 1 staffing firm. One of the 23 decided labels disagrees with the
+reference. No evidence came from a third-party site.
 
 Against the reference: research alone keeps 50 labels, 43 agreeing; keeping only quotes found on the page, 30 and 25;
 all checks, 23 and 22. The one disagreement (Celsior) is about subtype and scope: the reference reads the brand
@@ -62,7 +62,7 @@ evidence.
 credits and 50 actions, quote check 50 actions, signal check 50, review 21 credits and 30 actions, write 50): the charge
 Clay recorded for the cells the final configuration runs, upfront plus reconciliation, no refunds. The 20 review cells
 it skips still carry 14 credits and 20 actions from an earlier pass, counted in development. About $9.73: $0.19 per company,
-$0.42 per retained classification, $0.75 per retained end customer. These are marginal costs on Clay's Growth plan,
+$0.42 per decided company, $0.75 per end customer on the call list. These are marginal costs on Clay's Growth plan,
 the first with HTTP API columns ($495 a month billed monthly, clay.com, 2026-09-30). Building, testing and two
 rescoring passes used another 56.1 data credits and 339 actions (balance read 2026-09-30 18:39 UTC). Details in
 `data/usage.json`.
@@ -89,9 +89,9 @@ npm run score     # rebuilds public/end-customer-check/data/results.json (from d
 ## Data
 
 - `data/clay_records.json`: the Accounts table as exported from Clay. Every row keeps the decision Clay recorded and
-  the facts the policy uses. For a row that was not retained, the research step's proposal (label, reason, quote,
+  the facts the policy uses. For an unresolved row, the research step's proposal (label, reason, quote,
   URL) is removed: an unsupported label is not published next to a company name.
-- `data/reference.json`: the reference labels, published only for the 23 retained rows.
+- `data/reference.json`: the reference labels, published only for the 23 decided rows.
 - `data/evaluation.json`: the step-by-step comparison with the reference, as totals (it needs the withheld proposals).
 - `data/fixtures.json`, `data/usage.json`, `data/sample_rule.json`, `data/absent_where.json`,
   `data/sample_corrections.json`.
@@ -106,6 +106,6 @@ npm run score     # rebuilds public/end-customer-check/data/results.json (from d
   description, 2 had their opening on the page with words dropped or changed further on, and 6 were nowhere on it. A
   page that builds its text in the browser can hide a real quote.
 - The stale-date fixture shows date extraction, not a comparison: its claimed date was not sent to the checker.
-- One reference label is debatable: Carahsoft, which resells software and services to government. Its label was not
-  retained either way.
+- One reference label is debatable: Carahsoft, which resells software and services to government. It stays
+  unresolved either way.
 - Full account qualification was not assessed.

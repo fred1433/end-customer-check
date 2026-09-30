@@ -37,7 +37,7 @@ const tidy = (s) => String(s ?? "").replace(/\b\d{2,3}-[A-Z][A-Za-z]+\b/g, "..."
 
 function decisionLabel(r) {
   const s = r.decision.status;
-  if (s === "accepted") return "Retained";
+  if (s === "accepted") return r.business_model === "end_customer" ? "Call list" : "Excluded";
   if (s === "routed") return "Routed to a person";
   if (s === "unverifiable") return "Page could not be read";
   if (s === "refused") return "Refused: our sample error";
@@ -93,7 +93,7 @@ function fixtureCard(f) {
 
 function resultLine(d) {
   const t = d.tally, e = d.evaluation.supported;
-  return `<span><b>${t.accepted}/${t.companies}</b> classifications retained</span><span><b>${e.accepted_wrong}</b> reference disagreement</span><span><b>${t.companies - t.accepted}</b> unresolved or routed</span>`;
+  return `<span><b>${t.accepted_by_model.end_customer || 0}</b> end customers to call</span><span><b>${t.accepted - (t.accepted_by_model.end_customer || 0)}</b> middlemen excluded</span><span><b>${t.companies - t.accepted}</b> unresolved, not called</span><span><b>${e.accepted_wrong}</b> reference disagreement</span>`;
 }
 
 function breakdown(d) {
@@ -101,9 +101,9 @@ function breakdown(d) {
   const m = t.accepted_by_model;
   const providers = (m.engineering_services || 0) + (m.staffing_recruitment || 0);
   const line = (n, l, cls = "") => `<div class="tot ${cls}"><span class="n">${n}</span><span class="l">${l}</span></div>`;
-  return `<div class="bd-col"><p class="tot-head">Retained, ${t.accepted}</p>`
+  return `<div class="bd-col"><p class="tot-head">Decided, ${t.accepted}</p>`
     + line(m.end_customer || 0, "end customers: the call list")
-    + line(providers, `providers, kept to exclude them (${m.engineering_services || 0} engineering services, ${m.staffing_recruitment || 0} staffing)`)
+    + line(providers, `middlemen: excluded (${m.engineering_services || 0} engineering services, ${m.staffing_recruitment || 0} staffing)`)
     + `</div><div class="bd-col"><p class="tot-head">Unresolved, ${t.companies - t.accepted}</p>`
     + line(t.withheld_text_not_on_page, "quote not on the page")
     + line(t.withheld_not_supported, "quote found but not supporting the label")
@@ -118,7 +118,7 @@ function stages(d) {
     <div class="stage">
       <p class="stage-name">${name}</p>
       <p class="stage-sub">${sub}</p>
-      <p class="stage-n"><b>${x.accepted}</b> accepted</p>
+      <p class="stage-n"><b>${x.accepted}</b> labels kept</p>
       <p class="stage-w ${x.accepted_wrong ? "bad" : ""}"><b>${x.accepted_wrong}</b> wrong</p>
     </div>`;
   return col("Research alone", "Take every label the research step returns", s.raw)
@@ -129,6 +129,7 @@ function stages(d) {
 function rowHtml(r) {
   const shown = r.decision.status === "accepted" || r.decision.status === "routed";
   const acc = r.decision.status === "accepted";
+  const call = acc && r.business_model === "end_customer";
   const ref = !shown ? `<span class="mark n" title="Nothing accepted to compare">–<span class="visually-hidden"> nothing to compare</span></span>`
     : r.agrees_with_reference ? `<span class="mark p" title="Agrees with the reference review">✓<span class="visually-hidden"> agrees</span></span>`
     : `<span class="mark f" title="Reference review: ${esc(MODEL[r.reference.label])}">✗<span class="visually-hidden"> disagrees</span></span>`;
@@ -157,11 +158,11 @@ function rowHtml(r) {
       <div><h4>Why it entered the sample</h4><p>${esc(r.entry_reason)}${r.signal.check?.status === "found" ? ", signal quote found on the page" : ""}.</p></div>`;
   }
   const dom = r.sample_correction?.domain ? `${r.domain} (real site: ${r.sample_correction.domain})` : r.domain;
-  return `<li data-group="${acc ? "accepted" : "unresolved"}">
+  return `<li data-group="${call ? "call" : acc ? "excluded" : "unresolved"}">
     <button class="row-main" type="button" aria-expanded="false" aria-controls="d${r.id}">
       <span class="acct"><span class="nm">${esc(r.company)}</span><span class="src">${esc(dom)}, ${esc(r.entry_reason.toLowerCase())}</span></span>
-      <span class="vd ${acc ? "q" : "u"}">${esc(MODEL[r.business_model])}</span>
-      <span class="dc ${acc ? "q" : ""}">${esc(decisionLabel(r))}</span>
+      <span class="vd ${call ? "q" : acc ? "" : "u"}">${esc(MODEL[r.business_model])}</span>
+      <span class="dc ${call ? "q" : acc ? "ex" : ""}">${esc(decisionLabel(r))}</span>
       ${ref}
     </button>
     <div class="detail" id="d${r.id}" hidden>${detail}</div>
@@ -184,7 +185,7 @@ function steps(d) {
 function costLine(d) {
   const u = d.usage, c = d.cost;
   const w = u.whole_workspace_so_far;
-  return `<b>Credit breakdown.</b> The final configuration costs <b>${u.final_run.data_credits}</b> data credits and <b>${u.final_run.actions}</b> actions for the 50 rows: the charge Clay recorded for the cells the final configuration runs (the 20 review cells it skips still carry 14 credits and 20 actions from an earlier pass, counted in development), about <b>${money(u.final_run_usd_exact)}</b>: <b>${money(c.per_input_company_usd)}</b> per company, <b>${money(c.per_accepted_classification_usd)}</b> per retained classification, <b>${money(c.per_accepted_end_customer_usd)}</b> per retained end customer. Marginal costs on Clay's Growth plan, the first with HTTP API columns ($495 a month billed monthly, clay.com, ${fmtDate(u.measured_on)}). Building, testing and two rescoring passes used another ${u.development.data_credits} data credits and ${u.development.actions} actions (workspace balance read ${w.balance_read_at.slice(11, 16)} UTC). Rows stopped by a cheap filter: 0.`;
+  return `<b>Credit breakdown.</b> The final configuration costs <b>${u.final_run.data_credits}</b> data credits and <b>${u.final_run.actions}</b> actions for the 50 rows: the charge Clay recorded for the cells the final configuration runs (the 20 review cells it skips still carry 14 credits and 20 actions from an earlier pass, counted in development), about <b>${money(u.final_run_usd_exact)}</b>: <b>${money(c.per_input_company_usd)}</b> per company, <b>${money(c.per_accepted_classification_usd)}</b> per decided company, <b>${money(c.per_accepted_end_customer_usd)}</b> per end customer on the call list. Marginal costs on Clay's Growth plan, the first with HTTP API columns ($495 a month billed monthly, clay.com, ${fmtDate(u.measured_on)}). Building, testing and two rescoring passes used another ${u.development.data_credits} data credits and ${u.development.actions} actions (workspace balance read ${w.balance_read_at.slice(11, 16)} UTC). Rows stopped by a cheap filter: 0.`;
 }
 
 function fixtures(d) {
@@ -223,7 +224,8 @@ async function main() {
   document.getElementById("breakdown").innerHTML = breakdown(d);
   document.getElementById("stages").innerHTML = stages(d);
   const rank = { accepted: 0, routed: 1, withheld: 2, unverifiable: 3, refused: 4 };
-  const rows = [...d.rows].sort((a, b) => rank[a.decision.status] - rank[b.decision.status] || a.id - b.id);
+  const key = (r) => rank[r.decision.status] * 2 + (r.decision.status === "accepted" && r.business_model !== "end_customer" ? 1 : 0);
+  const rows = [...d.rows].sort((a, b) => key(a) - key(b) || a.id - b.id);
   const ol = document.getElementById("rows");
   ol.innerHTML = rows.map(rowHtml).join("");
   ol.addEventListener("click", (e) => {
