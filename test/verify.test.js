@@ -257,3 +257,47 @@ test("evidence must come from the account's own site: host compared to the accou
   const hop = await verifyEvidence({ url: "https://acme.example.com/go", quote: Q, domain: "acme.example.com" }, { fetchImpl: f, now: NOW });
   assert.equal(hop.on_own_site, false, "judged on the final URL, not the one cited");
 });
+
+test("text hidden in the HTML is not counted: hidden attribute, aria-hidden, inline display:none", async () => {
+  const filler = "<p>" + "Our members come first in everything we do. ".repeat(20) + "</p>";
+  for (const wrap of [(q) => `<div hidden><p>${q}</p></div>`, (q) => `<span aria-hidden="true">${q}</span>`, (q) => `<div style="color:red; display: none"><div><p>${q}</p></div></div>`]) {
+    const html = `<html><body>${filler}${wrap(Q)}<p>Visible ending paragraph with enough words.</p></body></html>`;
+    const f = fakeFetch({ "https://h.example.com/": { body: html } });
+    const r = await verifyEvidence({ url: "https://h.example.com/", quote: Q }, { fetchImpl: f, now: NOW });
+    assert.equal(r.status, "absent", wrap("x"));
+  }
+  assert.ok(htmlToText(`<p>a</p><div hidden><div>x</div><img src=y><div>z</div></div><p>after hidden</p>`).includes("after hidden"));
+});
+
+test("a quote beyond the size cap is incomplete, never 'absent'", async () => {
+  const page = "<html><body>" + "<p>filler words for the page body.</p>".repeat(3000) + `<p>${Q}</p></body></html>`;
+  const f = fakeFetch({ "https://big.example.com/": { body: page } });
+  const cut = await verifyEvidence({ url: "https://big.example.com/", quote: Q }, { fetchImpl: f, now: NOW, maxBytes: 20_000 });
+  assert.equal(cut.status, "unreadable");
+  assert.equal(cut.reason, "incomplete_download");
+  const whole = await verifyEvidence({ url: "https://big.example.com/", quote: Q }, { fetchImpl: f, now: NOW });
+  assert.equal(whole.status, "found");
+});
+
+test("error and challenge pages are recognised at any length", async () => {
+  const long = "<p>" + "Please wait while we check your browser. ".repeat(40) + "</p>";
+  const f = fakeFetch({
+    "https://cf.example.com/": { body: `<html><head><title>Just a moment...</title></head><body>${long}</body></html>` },
+    "https://nf.example.com/about": { body: `<html><head><title>Page Not Found | Acme</title></head><body>${long}</body></html>` },
+    "https://err.example.com/about": { status: 302, headers: { location: "https://err.example.com/error?aspxerrorpath=/about" } },
+    "https://err.example.com/error?aspxerrorpath=/about": { body: `<html><head><title>Acme</title></head><body>${long}</body></html>` },
+  });
+  assert.equal((await verifyEvidence({ url: "https://cf.example.com/", quote: Q }, { fetchImpl: f, now: NOW })).reason, "bot_challenge");
+  assert.equal((await verifyEvidence({ url: "https://nf.example.com/about", quote: Q }, { fetchImpl: f, now: NOW })).reason, "error_page");
+  const e = await verifyEvidence({ url: "https://err.example.com/about", quote: Q }, { fetchImpl: f, now: NOW });
+  assert.equal(e.status, "unreadable");
+  assert.equal(e.reason, "error_page");
+});
+
+test("a date printed in the text is not a publication date", async () => {
+  const html = `<html><body><p>Founded March 14, 1990 in Des Moines.</p><p>${Q}</p>${"<p>More words about the company and its members.</p>".repeat(8)}</body></html>`;
+  const f = fakeFetch({ "https://d.example.com/": { body: html } });
+  const r = await verifyEvidence({ url: "https://d.example.com/", quote: Q, date: "1990-03-14" }, { fetchImpl: f, now: NOW });
+  assert.equal(r.dates.published, null);
+  assert.equal(r.dates.claimed_printed_on_page, true, "reported as printed somewhere, nothing more");
+});

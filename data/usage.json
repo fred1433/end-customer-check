@@ -10,24 +10,36 @@
    "executions": 50,
    "skipped": 0,
    "data_credits": 150.0,
+   "data_credits_upfront": 150.0,
+   "data_credits_additional": 0.0,
+   "refunded_cells": 0,
    "actions": 50
   },
   "quote_check": {
    "executions": 50,
    "skipped": 0,
    "data_credits": 0.0,
+   "data_credits_upfront": 0.0,
+   "data_credits_additional": 0.0,
+   "refunded_cells": 0,
    "actions": 50
   },
   "signal_check": {
    "executions": 50,
    "skipped": 0,
    "data_credits": 0.0,
+   "data_credits_upfront": 0.0,
+   "data_credits_additional": 0.0,
+   "refunded_cells": 0,
    "actions": 50
   },
   "review": {
    "executions": 30,
    "skipped": 20,
    "data_credits": 21.0,
+   "data_credits_upfront": 21.0,
+   "data_credits_additional": 0.0,
+   "refunded_cells": 0,
    "actions": 30
   },
   "write_evidence": {
@@ -45,16 +57,18 @@
  },
  "final_run": {
   "data_credits": 171.0,
-  "actions": 230
+  "actions": 230,
+  "definition": "The cost of the final workflow configuration: for every cell, the charge Clay recorded for its latest run (upfront plus reconciliation; no cell was refunded)."
  },
  "whole_workspace_so_far": {
-  "data_credits": 206.1,
-  "actions": 339,
-  "note": "Everything spent in the workspace on 2026-09-30 as of the last balance read: building and testing the table, one review pass that ran on every row before its run condition was saved, one accidental research rerun, the five fixtures, and one rewrite of the Evidence table after the policy changed."
+  "data_credits": 227.1,
+  "actions": 569,
+  "balance_read_at": "2026-09-30T18:39:42Z",
+  "note": "Everything spent in the trial workspace up to that time: building and testing, a review pass that ran before its run condition was saved, one accidental research rerun, the five fixtures, the policy v2 and v3 reruns (quote and signal checks, reviews) and two rewrites of the Evidence table. Not included: the three actions of the row-state demonstration run after that read (three quote checks on the Ntiva row)."
  },
  "development": {
-  "data_credits": 35.1,
-  "actions": 109
+  "data_credits": 56.1,
+  "actions": 339
  },
  "price_basis": {
   "usd_per_data_credit": 0.05,

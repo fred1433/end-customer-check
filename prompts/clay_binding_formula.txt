@@ -1,0 +1,1 @@
+Array.from([{{Domain}}, {{Research Business Model}}, {{Research Evidence Url}}, {{Research Evidence Quote}}].map((v) => String(v == null ? "" : v).trim()).join("|")).reduce((h, ch) => (((h * 33) ^ ch.charCodeAt(0)) % 4294967296 + 4294967296) % 4294967296, 5381).toString(16)

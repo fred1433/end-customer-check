@@ -29,11 +29,40 @@ export function decodeEntities(s) {
   });
 }
 
-// Visible text of an HTML page, script/style/template/noscript removed.
+const VOID = new Set(["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"]);
+const HIDDEN_ATTR = /\shidden(\s|=|\/?>|$)|\saria-hidden\s*=\s*["']?true|style\s*=\s*["'][^"']*(display\s*:\s*none|visibility\s*:\s*hidden)/i;
+
+// Drops elements hidden in the HTML itself: the hidden attribute, aria-hidden="true", inline display:none or
+// visibility:hidden. Hiding done by CSS classes or by scripts is not seen: this is text extracted from the fetched
+// HTML, not the page as a browser renders it.
+export function stripHidden(html) {
+  let out = "";
+  let i = 0;
+  const tagRe = /<\/?([a-zA-Z][a-zA-Z0-9-]*)\b[^>]*>/g;
+  let m;
+  while ((m = tagRe.exec(html))) {
+    const [tag, nameRaw] = m;
+    const name = nameRaw.toLowerCase();
+    if (tag[1] === "/" || VOID.has(name) || tag.endsWith("/>") || !HIDDEN_ATTR.test(tag)) continue;
+    // Opening tag of a hidden element: skip to its matching close tag.
+    out += html.slice(i, m.index);
+    let depth = 1;
+    const inner = new RegExp(`<(/?)${name}\\b[^>]*>`, "gi");
+    inner.lastIndex = tagRe.lastIndex;
+    let n;
+    while (depth > 0 && (n = inner.exec(html))) {
+      if (n[1] === "/") depth--;
+      else if (!n[0].endsWith("/>")) depth++;
+    }
+    i = n ? inner.lastIndex : html.length;
+    tagRe.lastIndex = i;
+  }
+  return out + html.slice(i);
+}
+
+// Text extracted from the fetched HTML: comments, scripts, styles, templates and hidden elements removed.
 export function htmlToText(html) {
-  let s = html
-    .replace(/<!--[\s\S]*?-->/g, " ")
-    .replace(/<(script|style|template|noscript|svg|iframe)\b[\s\S]*?<\/\1\s*>/gi, " ")
+  let s = stripHidden(html.replace(/<!--[\s\S]*?-->/g, " ").replace(/<(script|style|template|noscript|svg|iframe)\b[\s\S]*?<\/\1\s*>/gi, " "))
     .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<\/(p|div|li|h[1-6]|tr|section|article|header|footer|td|th|blockquote)\s*>/gi, "\n")
     .replace(/<[^>]+>/g, " ");
@@ -189,6 +218,7 @@ export function blockedTarget(raw) {
   return null;
 }
 
+const ERROR_PAGE = /\b(404|page not found|not found|error page|server error|something went wrong)\b/i;
 const CHALLENGE = [
   "just a moment...", "attention required! | cloudflare", "enable javascript and cookies to continue",
   "please enable javascript", "access denied", "are you a robot", "verify you are human", "request unsuccessful. incapsula",
@@ -235,6 +265,7 @@ export async function fetchPage(url, { fetchImpl = fetch, timeoutMs = LIMITS.tim
       return { ok: false, status: res.status, finalUrl: current, reason: "not_html" };
     }
     let html = "";
+    let truncated = false;
     try {
       const reader = res.body.getReader();
       const dec = new TextDecoder();
@@ -244,7 +275,7 @@ export async function fetchPage(url, { fetchImpl = fetch, timeoutMs = LIMITS.tim
         if (done) break;
         total += value.byteLength;
         html += dec.decode(value, { stream: true });
-        if (total >= maxBytes) { html = html.slice(0, maxBytes); try { await reader.cancel(); } catch {} break; }
+        if (total >= maxBytes) { html = html.slice(0, maxBytes); truncated = true; try { await reader.cancel(); } catch {} break; }
       }
     } catch (e) {
       clearTimeout(timer);
@@ -253,21 +284,26 @@ export async function fetchPage(url, { fetchImpl = fetch, timeoutMs = LIMITS.tim
     clearTimeout(timer);
     const text = htmlToText(html);
     const norm = normalize(text);
-    if (norm.length < 300 && CHALLENGE.some((c) => norm.includes(c))) {
+    const title = normalize(decodeEntities((html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || ""));
+    const head = norm.slice(0, 600);
+    if (CHALLENGE.some((c) => title.includes(c) || head.includes(c))) {
       return { ok: false, status: res.status, finalUrl: current, reason: "bot_challenge" };
+    }
+    if (ERROR_PAGE.test(title) || /[/?&](error|404)([/?=.&]|$)|aspxerrorpath|pagenotfound|page-not-found/i.test(current)) {
+      return { ok: false, status: res.status, finalUrl: current, reason: "error_page" };
     }
     if (norm.length < 200) {
       return { ok: false, status: res.status, finalUrl: current, reason: "no_readable_text" };
     }
-    return { ok: true, status: res.status, finalUrl: current, html, text };
+    return { ok: true, status: res.status, finalUrl: current, html, text, truncated };
   }
   return { ok: false, status: 0, finalUrl: current, reason: "too_many_redirects" };
 }
 
 // ---------- the check itself ----------
 
-export const VERIFIER_VERSION = "2026-09-30.4";
-export const METHOD = "substring match after NFKC, lowercase, unified quotes and dashes, collapsed whitespace; '...' splits fragments that must appear in order within 400 characters";
+export const VERIFIER_VERSION = "2026-09-30.5";
+export const METHOD = "matched in text extracted from the fetched HTML (scripts, styles and HTML-hidden elements removed; CSS- or script-driven visibility not evaluated): substring match after NFKC, lowercase, unified quotes and dashes, collapsed whitespace; '...' splits fragments that must appear in order within 400 characters";
 
 // Host allowed if it equals an allowed domain or is a subdomain of one. An empty list allows nothing.
 export function hostAllowed(raw, allowed) {
@@ -332,6 +368,10 @@ export async function verifyEvidence(input, opts = {}) {
   const page = await fetchPage(url, opts);
   if (!page.ok) return out({ status: "unreadable", reason: page.reason, http_status: page.status, final_url: page.finalUrl });
   const hit = findQuote(page.text, quote);
+  if (hit.status === "absent" && page.truncated) {
+    // Only part of the page was read: a missing quote proves nothing.
+    return out({ status: "unreadable", reason: "incomplete_download", http_status: page.status, final_url: page.finalUrl });
+  }
   const meta = metadataDate(page.html);
   const claimedOnPage = date ? dateOnPage(page.text, date) : null;
   return out({
@@ -342,14 +382,16 @@ export async function verifyEvidence(input, opts = {}) {
     on_own_site: onOwnSite(page.finalUrl, domain),
     http_status: page.status,
     content_sha256: await sha256(normalize(page.text)),
+    truncated: !!page.truncated,
     page_title: titleOf(page.html),
     publisher: publisherOf(page.html, page.finalUrl),
     before: hit.before ?? null,
     match: hit.match ?? null,
     after: hit.after ?? null,
     dates: {
-      published: meta ? meta.date : claimedOnPage ? date : null,
-      published_source: meta ? "page metadata" : claimedOnPage ? "printed on page" : "none found",
+      // Only a date the page declares as its publication date; a date merely printed in the text is not one.
+      published: meta ? meta.date : null,
+      published_source: meta ? "page metadata" : "none found",
       claimed: date || null,
       claimed_printed_on_page: claimedOnPage,
       retrieved: now.toISOString().slice(0, 10),

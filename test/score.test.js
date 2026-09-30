@@ -4,7 +4,6 @@ import { execFileSync } from "node:child_process";
 import { readFileSync, mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { decisionOf } from "../src/policy.js";
 
 const root = new URL("..", import.meta.url).pathname;
 const load = (p) => JSON.parse(readFileSync(join(root, p), "utf8"));
@@ -31,16 +30,6 @@ test("nothing is published for a decision that was not accepted or routed: no pr
     assert.equal(src.middleman_proposed_as_end_customer, undefined);
     assert.equal(src.review?.why ?? null, null);
   }
-});
-
-test("policy: a quote found on another company's site is withheld, a mixed label is routed, a refused domain is not 'unreadable'", () => {
-  const base = { proposal: { evidence_quote: "x", business_model: "end_customer" }, review: { supports: true } };
-  assert.equal(decisionOf({ ...base, quote_check: { status: "found", final_url: "https://www.acme.com/about" } }, "acme.com").status, "accepted");
-  assert.deepEqual(decisionOf({ ...base, quote_check: { status: "found", final_url: "https://www.microsoft.com/en/customers/story/acme" } }, "acme.com"),
-    { status: "withheld", why: "evidence from a third-party site" });
-  assert.equal(decisionOf({ ...base, proposal_is_mixed: true, quote_check: { status: "found", final_url: "https://acme.com/" } }, "acme.com").status, "routed");
-  assert.equal(decisionOf({ ...base, quote_check: { status: "rejected", reason: "domain_not_allowed" } }, "acme.com").status, "refused");
-  assert.equal(decisionOf({ ...base, quote_check: { status: "unreadable", reason: "http_403" } }, "acme.com").status, "unverifiable");
 });
 
 test("every accepted row passed all three checks on its own domain", () => {

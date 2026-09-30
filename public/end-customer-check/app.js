@@ -9,6 +9,10 @@ const WHY = {
   "text not on the page": "Quote not on the page",
   "text on the page but it does not support the label in context": "Quote does not support it",
   "evidence from a third-party site": "Evidence from another site",
+  "check was run on another input": "Check was for another input",
+  "review was run on another input": "Review was for another input",
+  "check not positive": "Check not positive",
+  "no account domain": "No account domain",
   "no quote": "No quote",
   "quote too short": "Quote too short",
 };
@@ -32,7 +36,7 @@ const tidy = (s) => String(s ?? "").replace(/\b\d{2,3}-[A-Z][A-Za-z]+\b/g, "..."
 
 function decisionLabel(r) {
   const s = r.decision.status;
-  if (s === "accepted") return "Accepted";
+  if (s === "accepted") return "Retained";
   if (s === "routed") return "Routed to a person";
   if (s === "unverifiable") return "Page could not be read";
   if (s === "refused") return "Refused: our sample error";
@@ -53,19 +57,18 @@ function focalCard(r, d) {
         <p class="card-name">${esc(r.company)}</p>
         <span class="card-id">Account ${r.id} of 50</span>
       </div>
+      <p class="action">Do not call. It sells IT work to other companies.</p>
       <dl class="fields">
         <div class="field"><dt>Its page title</dt><dd>${esc(c.page_title)}</dd></div>
-        <div class="field"><dt>Model proposed</dt><dd><span class="tag">Engineering services.</span> Managed IT services for businesses, not staffing and not its own product.</dd></div>
-        <div class="field"><dt>Checks</dt><dd>Quote found word for word on ntiva.com. The review, reading it in context: Ntiva itself sells managed IT services to other organizations.</dd></div>
-        <div class="field"><dt>Decision</dt><dd><span class="verdict held">Accepted: engineering services</span></dd></div>
-        <div class="field"><dt>Reason for call</dt><dd>Do not call. It sells IT work to other companies.</dd></div>
+        <div class="field"><dt>Label</dt><dd><span class="tag">Engineering services.</span> Provides managed IT services to other organizations.</dd></div>
+        <div class="field"><dt>Evidence check</dt><dd><span class="verdict held">Passed</span> Quote found on ntiva.com, the company's own site; the review, reading it in context, agrees.</dd></div>
         <div class="field"><dt>Cost</dt><dd>3.7 data credits and 5 actions, about ${money(perRow)}</dd></div>
       </dl>
     </article>
-    <figure class="source" aria-label="The page the quote came from, as re-read">
-      <figcaption class="source-bar"><span class="url">${esc(host(c.final_url || e.url))}</span><span class="read">Re-read ${esc(fmtDate(c.retrieved_at))}</span></figcaption>
+    <figure class="source" aria-label="Extracted passage from the cited page">
+      <figcaption class="source-bar"><span class="src-label">Extracted passage</span><a class="url" href="${esc(c.final_url || e.url)}" rel="nofollow noopener" target="_blank">${esc(host(c.final_url || e.url))}</a><span class="read">Re-read ${esc(fmtDate(c.retrieved_at))}</span></figcaption>
       <p class="source-text">${esc(tidy(c.before).slice(-150).replace(/^\S*\s/, "... "))} <mark>${esc(c.match)}</mark> ${esc(tidy(c.after).slice(0, 110).replace(/\s\S*$/, " ..."))}</p>
-      <p class="source-foot"><b>Found word for word.</b> ${esc(readLine(c))} Fingerprint ${esc(c.content_sha256.slice(0, 12))}.</p>
+      <p class="source-foot"><b>Found word for word</b> in the text extracted from the page's HTML, typeset here. ${esc(readLine(c))}</p>
     </figure>
   </div>`;
 }
@@ -87,17 +90,25 @@ function fixtureCard(f) {
   </div>`;
 }
 
-function totals(d) {
+function resultLine(d) {
   const t = d.tally, e = d.evaluation.supported;
+  return `<span><b>${t.accepted}/${t.companies}</b> classifications retained</span><span><b>${e.accepted_wrong}</b> reference disagreement</span><span><b>${t.companies - t.accepted}</b> unresolved or routed</span>`;
+}
+
+function breakdown(d) {
+  const t = d.tally, e = d.evaluation;
+  const m = t.accepted_by_model;
+  const providers = (m.engineering_services || 0) + (m.staffing_recruitment || 0);
   const line = (n, l, cls = "") => `<div class="tot ${cls}"><span class="n">${n}</span><span class="l">${l}</span></div>`;
-  return `<p class="tot-head">The 50, after the checks</p>`
-    + line(t.accepted, `accepted, ${e.accepted_wrong} of them wrong against the reference`)
-    + line(t.routed, "routed to a person: the evidence shows both")
+  return `<div class="bd-col"><p class="tot-head">Retained, ${t.accepted}</p>`
+    + line(m.end_customer || 0, "end customers: the call list")
+    + line(providers, `providers, kept to exclude them (${m.engineering_services || 0} engineering services, ${m.staffing_recruitment || 0} staffing)`)
+    + `</div><div class="bd-col"><p class="tot-head">Unresolved, ${t.companies - t.accepted}</p>`
     + line(t.withheld_text_not_on_page, "quote not on the page")
     + line(t.withheld_not_supported, "quote found but not supporting the label")
-    + line(t.unverifiable, "page could not be read")
-    + line(t.refused, "refused because our sample had the wrong domain")
-    + line(e.middleman_accepted_as_end_customer, "middlemen let through as end customers", "key");
+    + line(t.unverifiable, "page could not be read, or an error page")
+    + line(t.refused, "refused: our sample had the wrong domain")
+    + `</div><p class="bd-note">Middlemen labelled as end customers: ${e.supported.middleman_accepted_as_end_customer} after the checks, and also ${e.raw.middleman_accepted_as_end_customer} before them. This sample does not show the checks preventing that error; it shows them removing ${e.raw.accepted - e.supported.accepted - (e.raw.accepted_wrong - e.supported.accepted_wrong)} correct labels and ${e.raw.accepted_wrong - e.supported.accepted_wrong} wrong ones that lacked checkable evidence.</p>`;
 }
 
 function stages(d) {
@@ -111,7 +122,7 @@ function stages(d) {
     </div>`;
   return col("Research alone", "Take every label the research step returns", s.raw)
     + col("Quote on the page", "Keep a label only if code finds its quote", s.text_present)
-    + col("Supported in context", "Keep it only if the passage, on the company's own site and read in context, shows it", s.supported);
+    + col("All checks, same input", "Keep it only if the passage is on the company's own site and, read in context, shows the label", s.supported);
 }
 
 function rowHtml(r) {
@@ -132,7 +143,7 @@ function rowHtml(r) {
         <h4>Review in context</h4>
         <p>${esc(noDash(e.review.why))}</p>
         ${r.decision.status === "routed" ? `<p class="meta">A mission statement that fits both readings: the policy sends it to a person instead of counting it.</p>` : ""}
-        ${acc && !r.agrees_with_reference ? `<p class="meta">Reference review: ${esc(MODEL[r.reference.label].toLowerCase())}.</p>` : ""}
+        ${acc && !r.agrees_with_reference ? `<p class="meta">Reference: ${esc(MODEL[r.reference.label].toLowerCase())}. ${r.id === 38 ? "A subtype and scope disagreement: the reference reads the brand together with its parent group, an IT staffing firm, as mixed. Both readings exclude it from the call list." : ""}</p>` : ""}
       </div>`;
   } else {
     let why;
@@ -164,14 +175,15 @@ function steps(d) {
     line("Quote check", "HTTP API column to the checker, with the research URL and quote.", s.quote_check, `${s.quote_check.actions} actions, no credits.`),
     line("Signal check", "HTTP API column to the same checker, with the signal quote that brought the company into the sample.", s.signal_check, `${s.signal_check.actions} actions, no credits.`),
     line("Contextual review", "Use AI (Claude Sonnet 5), no web. Only runs if the quote was found.", s.review, `${s.review.data_credits} data credits, ${s.review.actions} actions.`),
-    line("Decision", "Formula: own-site check on the final URL, then accepted, routed to a person, withheld, unverifiable or refused.", { executions: 50, skipped: 0 }, "Formulas are free."),
+    line("Binding and Decision", "Formulas: a fingerprint of the input (domain, label, URL, quote) that the review must copy back; then the policy: every check positive, for this input, on the company\u2019s own domain.", { executions: 50, skipped: 0 }, "Formulas are free."),
     line("Write and look up", "Send table data to Evidence; Lookup single row reads it back.", s.write_evidence, `${s.write_evidence.actions} actions for the write; the lookup is free.`),
   ].join("");
 }
 
 function costLine(d) {
   const u = d.usage, c = d.cost;
-  return `Final run: <b>${u.final_run.data_credits}</b> data credits and <b>${u.final_run.actions}</b> actions, about <b>${money(u.final_run_usd_exact)}</b>: <b>${money(c.per_input_company_usd)}</b> per company in, <b>${money(c.per_accepted_classification_usd)}</b> per accepted classification, <b>${money(c.per_accepted_end_customer_usd)}</b> per accepted end customer. These are marginal costs on Clay's Growth plan, the first with HTTP API columns ($495 a month billed monthly: 40,000 actions and 6,000 data credits, clay.com on ${fmtDate(u.measured_on)}). Building and testing used ${u.development.data_credits} more data credits. Rows stopped by a cheap filter: 0; every company in the sample was a US company with a signal.`;
+  const w = u.whole_workspace_so_far;
+  return `<b>Credit breakdown.</b> The final configuration costs <b>${u.final_run.data_credits}</b> data credits and <b>${u.final_run.actions}</b> actions for the 50 rows (Clay's recorded charge for each cell's latest run), about <b>${money(u.final_run_usd_exact)}</b>: <b>${money(c.per_input_company_usd)}</b> per company, <b>${money(c.per_accepted_classification_usd)}</b> per retained classification, <b>${money(c.per_accepted_end_customer_usd)}</b> per retained end customer. Marginal costs on Clay's Growth plan, the first with HTTP API columns ($495 a month billed monthly, clay.com, ${fmtDate(u.measured_on)}). Building, testing and two rescoring passes used another ${u.development.data_credits} data credits and ${u.development.actions} actions (workspace balance read ${w.balance_read_at.slice(11, 16)} UTC). Rows stopped by a cheap filter: 0.`;
 }
 
 function fixtures(d) {
@@ -179,7 +191,7 @@ function fixtures(d) {
     "F1 fabricated text": () => "Quote invented. Code did not find it on the page, so the label was withheld and the review never ran.",
     "F2 unsupported conclusion": () => "Quote real, conclusion wrong. The review: the insurer hired an offshore partner as a client; it does not sell engineering.",
     "F3 wrong entity": () => "Quote real, but about the client on a vendor's case study. The review: it says nothing about what the vendor sells.",
-    "F4 stale date": (f) => `Claimed date ${fmtDate(f.claimed_date)}; the page says ${fmtDate(f.check?.dates?.published)}. The label holds; a date is never taken from the model.`,
+    "F4 stale date": (f) => `The page's metadata says ${fmtDate(f.check?.dates?.published)}; the claimed ${fmtDate(f.claimed_date)} was not sent to the checker, so this case shows date extraction, not a comparison. The label holds: an old About page can still describe the business.`,
     "F5 unavailable page": (f) => `Page gone (${f.check?.reason === "http_404" ? "404" : f.check?.reason}). Unverifiable, not called an invention.`,
   };
   return d.fixtures.map((f) => `<li><b>${esc(f.fixture.replace(/^F\d /, "").replace(/^./, (x) => x.toUpperCase()))}</b><span>${esc((text[f.fixture] || (() => ""))(f))}</span></li>`).join("");
@@ -206,7 +218,8 @@ async function main() {
   const byId = Object.fromEntries(d.rows.map((r) => [r.id, r]));
   const fx = d.fixtures.find((f) => f.fixture === d.featured.fixture);
   document.getElementById("stack").innerHTML = focalCard(byId[d.featured.focal], d) + (fx ? fixtureCard(fx) : "");
-  document.getElementById("totals").innerHTML = totals(d);
+  document.getElementById("result").innerHTML = resultLine(d);
+  document.getElementById("breakdown").innerHTML = breakdown(d);
   document.getElementById("stages").innerHTML = stages(d);
   const rank = { accepted: 0, routed: 1, withheld: 2, unverifiable: 3, refused: 4 };
   const rows = [...d.rows].sort((a, b) => rank[a.decision.status] - rank[b.decision.status] || a.id - b.id);
@@ -230,6 +243,7 @@ async function main() {
   document.getElementById("cost").innerHTML = costLine(d);
   document.getElementById("fixtures").innerHTML = fixtures(d);
   document.getElementById("sample-rule").textContent = d.sample_rule.rule;
+  document.getElementById("provenance").textContent = d.sample_rule.provenance;
   document.getElementById("config").textContent = CONFIG;
   document.getElementById("copy").addEventListener("click", async (e) => {
     try { await navigator.clipboard.writeText(CONFIG); e.target.textContent = "Copied"; } catch { e.target.textContent = "Select and copy"; }

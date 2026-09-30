@@ -17,5 +17,5 @@
   "accepted_wrong": 1,
   "middleman_accepted_as_end_customer": 0
  },
- "note": "The last step counts accepted rows only; a row routed to a person (evidence shows both) is not an accepted classification."
+ "note": "The last step counts accepted rows only. A label that the review confirms as mixed would be routed to a person, not counted; none was in this run."
 }

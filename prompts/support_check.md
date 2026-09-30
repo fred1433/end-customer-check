@@ -18,4 +18,8 @@ Does this evidence, read in its context, establish the proposition about the tar
 the passage describes another organization (a client, a partner, a vendor, a customer quoted on the page), when it
 only fits the proposition among other readings, or when it describes a job opening rather than the business.
 
-Return: supports (true or false), why (one sentence).
+Return: supports (true or false), why (one sentence), binding.
+
+Input fingerprint: /Binding
+
+Return binding: the input fingerprint above, copied exactly.

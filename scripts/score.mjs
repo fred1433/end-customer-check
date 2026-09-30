@@ -11,7 +11,7 @@
 //   absent_where.json    for quotes the checker did not find: page metadata only, page source, or nowhere
 //   fixtures.json, usage.json, featured.json, sample_rule.json, sample_corrections.json
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
-import { decisionOf } from "../src/policy.js";
+import { decide } from "../src/policy.js";
 
 const root = new URL("..", import.meta.url).pathname;
 const PRIVATE = existsSync(root + "private/clay_records.json") && process.env.SCORE_SRC !== "data/";
@@ -27,11 +27,11 @@ const corrections = read("data/sample_corrections.json");
 
 const MIDDLEMEN = new Set(["staffing_recruitment", "engineering_services"]);
 
-const CLAY_STATUS = (s) => (s || "").split(":")[0].replace("routed to a person", "routed").trim();
+const CLAY_STATUS = (s) => (s === "accepted" ? "accepted" : s === "routed to a person" ? "routed" : String(s || "").split(":")[0].trim());
 
 const out = [];
 for (const r of rows) {
-  const d = decisionOf(r, r.domain);
+  const d = decide(r.facts);
   if (r.decision_in_clay && CLAY_STATUS(r.decision_in_clay) !== d.status) {
     throw new Error(`decision mismatch on row ${r.id}: clay "${r.decision_in_clay}" vs script "${d.status}"`);
   }
@@ -46,6 +46,7 @@ for (const r of rows) {
     signal: { url: r.signal_url, quote: r.signal_quote, date: r.signal_date || null, check: slim(r.signal_check) },
     decision: d,
     business_model: d.status === "accepted" ? r.proposal.business_model : d.status === "routed" ? "mixed_uncertain" : "unresolved",
+    decision_in_clay: r.decision_in_clay,
   };
   if (shown) {
     row.reference = { label: ref.label, confidence: ref.confidence };
@@ -97,7 +98,7 @@ if (PRIVATE) {
     raw: stage(() => true),
     text_present: stage((r) => r.quote_check?.status === "found"),
     supported: stage((r, o) => o.decision.status === "accepted"),
-    note: "The last step counts accepted rows only; a row routed to a person (evidence shows both) is not an accepted classification.",
+    note: "The last step counts accepted rows only. A label that the review confirms as mixed would be routed to a person, not counted; none was in this run.",
   };
   writeFileSync(root + "data/evaluation.json", JSON.stringify(evaluation, null, 1));
 } else {
@@ -115,7 +116,7 @@ const tally = {
   withheld_other: count((r) => r.decision.status === "withheld" && !["text not on the page", "text on the page but it does not support the label in context", "evidence from a third-party site"].includes(r.decision.why)),
   unverifiable: count((r) => r.decision.status === "unverifiable"),
   refused: count((r) => r.decision.status === "refused"),
-  not_on_page_where: Object.values(absentWhere).reduce((a, w) => ((a[w] = (a[w] || 0) + 1), a), {}),
+  not_on_page_where: out.filter((r) => r.not_accepted?.where).reduce((a, r) => ((a[r.not_accepted.where] = (a[r.not_accepted.where] || 0) + 1), a), {}),
   accepted_by_model: out.filter((r) => r.decision.status === "accepted").reduce((a, r) => ((a[r.business_model] = (a[r.business_model] || 0) + 1), a), {}),
   signal_found: count((r) => r.signal.check?.status === "found"),
   cheap_filter_stops: 0,

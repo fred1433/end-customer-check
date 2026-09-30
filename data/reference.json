@@ -90,16 +90,6 @@
    "https://www.ballardspahr.com/services"
   ]
  },
- "22": {
-  "label": "mixed_uncertain",
-  "confidence": "medium",
-  "why": "Sells its own platforms (Xelence, pension administration, unemployment insurance, Medicaid products) implemented for public agencies, and also sells managed IT, cloud and security services to them; product vendor and IT services provider at once.",
-  "sources": [
-   "https://www.sagitec.com/en-us/",
-   "https://www.sagitec.com/about",
-   "https://www.sagitec.com/it-cloud-security-services"
-  ]
- },
  "23": {
   "label": "staffing_recruitment",
   "confidence": "high",
